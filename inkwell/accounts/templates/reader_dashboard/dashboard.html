@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container mt-5 text-center">
-  <h1>Welcome, {{ user.first_name|default:user.username }}</h1>
-  <p class="lead">Your reading adventure begins now.</p>
-  <a href="{% url 'start' %}" class="btn btn-primary mt-4">Browse the Library</a>
-</div>
-{% endblock %}
