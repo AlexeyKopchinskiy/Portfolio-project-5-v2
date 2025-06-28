@@ -1,0 +1,26 @@
+body {
+    outline: 1px solid limegreen;
+}
+
+.hover-shadow :hover {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+.alert.fade {
+    opacity: 0;
+    transition: opacity 0.5s ease-out !important;
+}
+
+.alert.fade.show {
+    opacity: 1;
+}
+
+.auto-dismiss {
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+}
+
+.auto-dismiss.fade-out {
+    opacity: 0;
+}

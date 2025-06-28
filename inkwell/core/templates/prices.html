@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block title %}Inkwell prices{% endblock %}
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Choose Your InkWell Plan</h1>
+    <p class="lead text-muted">Whether you're here to read, write, or both—there's a plan that fits your voice.</p>
+  </div>
+  
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100 border-primary position-relative hover-shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="my-0">Reader</h4>
+        </div>
+        <div class="card-body text-center">
+          <h1 class="card-title pricing-card-title">
+            <span class="price" data-monthly="€9" data-yearly="€90">Free</span>
+            <span class="fs-6 text-muted"></span>
+        </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Follow your favorite authors</li>
+            <li>Read public posts</li>
+            <li>Comment & react</li>
+          </ul>
+          <a href="#" class="btn btn-outline-primary">Create Account</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="card h-100 border-success position-relative hover-shadow">
+        <div class="card-header bg-success text-white text-center">
+          <h4 class="my-0">Author</h4>
+        </div>
+        <div class="card-body text-center">
+            <h1 class="card-title pricing-card-title">
+                <span class="price" data-monthly="€9" data-yearly="€90">€9</span>
+                <span class="fs-6 text-muted">/month</span>
+            </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Publish unlimited posts</li>
+            <li>Gain followers & feedback</li>
+            <li>Detailed post analytics</li>
+          </ul>
+          <a href="#" class="btn btn-success">Upgrade to Author</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+        <div class="card h-100 border-dark position-relative hover-shadow">
+        <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-warning text-dark mt-2">
+            ⭐ Best Value
+          </div>
+        <div class="card-header bg-dark text-white text-center">
+          <h4 class="my-0">Patron</h4>
+        </div>
+        <div class="card-body text-center">
+            <h1 class="card-title pricing-card-title">
+                <span class="price" data-monthly="€9" data-yearly="€90">€15</span>
+                <span class="fs-6 text-muted">/month</span>
+            </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Access premium content</li>
+            <li>Support your favorite authors</li>
+            <li>Early access & bonus posts</li>
+          </ul>
+          <a href="#" class="btn btn-dark">Join as Patron</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center my-4">
+    <div class="btn-group" role="group" id="billing-toggle">
+      <button type="button" class="btn btn-outline-secondary active" data-billing="monthly">Monthly Billing</button>
+      <button type="button" class="btn btn-outline-secondary" data-billing="yearly">Yearly Billing</button>
+    </div>
+  </div>
+
+  <div class="table-responsive mt-5">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Features</th>
+          <th>Reader</th>
+          <th>Author</th>
+          <th>Patron</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Access to public content</td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+        </tr>
+        <tr>
+          <td>Publish posts</td>
+          <td>—</td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+        </tr>
+        <tr>
+          <td>Access premium content</td>
+          <td>—</td>
+          <td>—</td>
+          <td><i class="bi bi-check2 text-success"></i></td>
+        </tr>
+        <tr>
+          <td>Monthly analytics</td>
+          <td>—</td>
+          <td><i class="bi bi-graph-up text-success"></i></td>
+          <td><i class="bi bi-graph-up text-success"></i></td>
+        </tr>
+        <tr>
+          <td>Priority support</td>
+          <td>—</td>
+          <td>—</td>
+          <td><i class="bi bi-star text-warning"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-5">
+    <h2 class="mb-4 text-center">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+      
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq-1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true">
+            Can I switch plans later?
+          </button>
+        </h2>
+        <div id="collapse-1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Absolutely. You can upgrade, downgrade, or cancel your plan at any time from your account settings—no questions asked.
+          </div>
+        </div>
+      </div>
+  
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq-2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2">
+            What payment methods do you accept?
+          </button>
+        </h2>
+        <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            We accept all major credit and debit cards, and you can pay via Apple Pay, Google Pay, or PayPal where available.
+          </div>
+        </div>
+      </div>
+  
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq-3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3">
+            Can I try InkWell before committing?
+          </button>
+        </h2>
+        <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Of course! Signing up as a Reader is 100% free. You can explore content and features before upgrading to a paid plan.
+          </div>
+        </div>
+      </div>
+  
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq-4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4">
+            What happens to my posts if I cancel?
+          </button>
+        </h2>
+        <div id="collapse-4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            All your published content remains visible to your readers. You just won’t be able to create new posts or access premium features.
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  <div class="alert alert-info text-center mt-4" role="alert">
+    <strong>No hidden fees.</strong> Cancel anytime. 100% satisfaction guaranteed.
+  </div>
+
+  <div id="testimonialCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div class="carousel-inner text-center">
+      <div class="carousel-item active">
+        <blockquote class="blockquote">
+          <p>"InkWell gave my writing a real audience. The feedback and encouragement have kept me going."</p>
+          <footer class="blockquote-footer">Marina V., Essayist</footer>
+        </blockquote>
+      </div>
+      <div class="carousel-item">
+        <blockquote class="blockquote">
+          <p>"Beautiful design, focused tools, and a community that cares. This platform feels like home."</p>
+          <footer class="blockquote-footer">Leo F., Poet</footer>
+        </blockquote>
+      </div>
+      <div class="carousel-item">
+        <blockquote class="blockquote">
+          <p>"Supporting the authors I love with a single click? Take my money."</p>
+          <footer class="blockquote-footer">Clara H., Reader & Patron</footer>
+        </blockquote>
+      </div>
+    </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+{% endblock %}

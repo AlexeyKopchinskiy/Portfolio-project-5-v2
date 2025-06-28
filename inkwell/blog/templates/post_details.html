@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 post-detail-page">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <h1 class="mb-3">{{ post.title }}</h1>
+      <p class="text-muted">
+        By <strong>{{ post.author.get_full_name|default:post.author.username }}</strong> |
+        {{ post.created_at|date:"F j, Y" }}
+      </p>
+      {% if post.category %}
+        <span class="badge bg-secondary">{{ post.category }}</span>
+      {% endif %}
+      {% if post.tags.all %}
+        <div class="mt-2 mb-4">
+          {% for tag in post.tags.all %}
+            <span class="badge bg-light text-dark border">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <hr class="my-4">
+
+      <article class="post-body">
+        {{ post.content|linebreaks }}
+      </article>
+
+      <hr class="my-5">
+
+      <a href="{% url 'author_dashboard' %}" class="btn btn-outline-primary">
+        ← Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{% block sidebar %}
+  <div class="container mt-5">
+    <h3>About the Author</h3>
+    <p>{{ post.author.get_full_name|default:post.author.username }}</p>
+    <p>{{ post.author.profile.bio|default:"No bio available." }}</p>
+    <hr>
+    <h4>Other Posts by {{ post.author.get_full_name|default:post.author.username }}</h4>
+    <ul>
+      {% for other_post in post.author.post_set.all %}
+        <li><a href="{% url 'post_details' other_post.id %}">{{ other_post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
