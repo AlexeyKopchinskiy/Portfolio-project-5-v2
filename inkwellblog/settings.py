@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,8 +89,16 @@ WSGI_APPLICATION = "inkwellblog.wsgi.application"
 #     }
 # }
 
+# DATABASES = {
+#     "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
+# }
+
 DATABASES = {
-    "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=False,  # Avoid issues locally
+    )
 }
 
 
