@@ -1,1 +1,1 @@
-web: gunicorn inkwell-blog.wsgi
+web: gunicorn inkwell_blog.wsgi
