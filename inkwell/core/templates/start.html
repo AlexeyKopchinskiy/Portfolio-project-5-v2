@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Welcome to InkWell{% endblock %}
+
+{% block content %}
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-4 fw-bold">Welcome to InkWell</h1>
+      <p class="col-md-8 fs-5">
+        A home for thoughtful creators and curious readers. 
+        Publish your voice. Discover others. Shape the narrative.
+      </p>
+      <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Publish Boldly</h5>
+          <p class="card-text">Write with ease. Craft longform essays, poetry, or micro-stories—and control your publishing flow.</p>
+          <a href="#" class="btn btn-outline-primary">Start Writing</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Discover Creators</h5>
+          <p class="card-text">Find voices that challenge, inspire, or soothe. InkWell learns your taste and brings them to you.</p>
+          <a href="#" class="btn btn-outline-primary">Explore Posts</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Support Premium Work</h5>
+          <p class="card-text">Subscribe to your favorite authors, unlock premium essays, and keep quality writing alive.</p>
+          <a href="#" class="btn btn-outline-primary">See Plans</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Latest Blog Posts -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Latest from the Blog</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in latest_posts %}
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text text-muted">
+              {{ post.created_at|date:"F j, Y" }} by {{ post.author.get_full_name|default:post.author.username }}
+            </p>
+            <p class="card-text">
+              {{ post.content|truncatewords:25 }}
+            </p>
+            {% comment %} <p>URL: {{ post.get_absolute_url }}</p>
+            <a href="{% url 'blog:post_detail' slug=post.slug %}" class="btn btn-outline-primary stretched-link">Read More</a> {% endcomment %}
+            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-primary stretched-link">Read More</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No blog posts yet—check back soon!</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
