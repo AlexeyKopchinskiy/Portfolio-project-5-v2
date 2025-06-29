@@ -68,5 +68,18 @@
     </script>
     <!-- Custom JS -->
     <script src="{% static 'js/scripts.js' %}"></script>
+
+
+    <footer class="bg-dark text-light py-4 mt-auto">
+        <div class="container text-center">
+          <p class="mb-1">&copy; {% now "Y" %} InkwellBlog</p>
+
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a class="text-light" href="{% url 'about' %}">About</a></li>
+            <li class="list-inline-item"><a class="text-light" href="{% url 'cookies' %}">Cookies</a></li>
+            <li class="list-inline-item"><a class="text-light" href="{% url 'privacy' %}">Privacy</a></li>
+          </ul>
+        </div>
+      </footer>
 </body>
 </html>
