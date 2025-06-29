@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
     integrity="sha384-z+Qdk9RYjpUCVFiImN69mH8zUIrvSAfF3OfNcZ4Ub/qztvI3yKc6Fqf69+z3YZG/"
     crossorigin="anonymous"
   >
+  <!-- Custom css -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
@@ -63,5 +66,7 @@
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" 
         crossorigin="anonymous">
     </script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 </html>
