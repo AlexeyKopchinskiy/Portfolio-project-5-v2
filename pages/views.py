@@ -17,3 +17,11 @@ def contact(request):
 
 def pricing(request):
     return render(request, "pages/pricing.html")
+
+
+def cookies(request):
+    return render(request, "pages/cookies.html")
+
+
+def privacy(request):
+    return render(request, "pages/privacy.html")
