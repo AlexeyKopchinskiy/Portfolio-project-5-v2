@@ -7,3 +7,30 @@ body {
 main {
     flex: 1;
 }
+
+/* Show dropdown on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    /* optional: removes jump effect */
+}
+
+/* Optional: animate dropdown */
+.dropdown-menu {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Optional: smooth fade-in on desktop only */
+@media (max-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: none;
+        /* keep click for mobile */
+    }
+}
