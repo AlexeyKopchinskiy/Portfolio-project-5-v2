@@ -1,6 +1,11 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% block title %}Welcome — InkwellBlog{% endblock %}
 {% block content %}
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home view rendered successfully 🎉</p>
+<div class="text-center py-5">
+  <h1 class="display-4">Welcome to InkwellBlog</h1>
+  <p class="lead">Craft, share, and engage with meaningful writing in a creative, moderated community.</p>
+  <hr class="my-4">
+  <p>Join as a Reader, Author, or Reviewer and shape your experience. Explore our stories, leave comments, or write your own chapters.</p>
+  <a class="btn btn-primary btn-lg mt-3" href="#" role="button">Become a Member</a>
+</div>
 {% endblock %}
