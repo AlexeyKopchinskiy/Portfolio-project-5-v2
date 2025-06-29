@@ -64,7 +64,9 @@ ROOT_URLCONF = "inkwellblog.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates"
+        ],  # Look here first for the default template
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
