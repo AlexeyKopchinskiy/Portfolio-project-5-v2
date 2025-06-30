@@ -1,5 +1,6 @@
 from django.urls import path
-from django.http import HttpResponse
+from django.views.generic import TemplateView
+from .views import CustomPasswordChangeView, PasswordChangeDoneView
 from . import views
 
 
@@ -21,4 +22,16 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     # Account settings
     path("settings/", views.account_settings, name="account_settings"),
+    # Password change views
+    path(
+        "change-password/",
+        CustomPasswordChangeView.as_view(),
+        name="change_password",
+    ),
+    # Password change done view
+    path(
+        "change-password/done/",
+        PasswordChangeDoneView.as_view(),
+        name="password_change_done",
+    ),
 ]
