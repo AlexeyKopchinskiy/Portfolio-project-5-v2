@@ -19,4 +19,6 @@ urlpatterns = [
     path("dashboard/admin/", views.dashboard_admin, name="dashboard_admin"),
     # Register a new user
     path("register/", views.register_view, name="register"),
+    # Account settings
+    path("settings/", views.account_settings, name="account_settings"),
 ]
