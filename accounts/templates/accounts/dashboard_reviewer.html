@@ -1,0 +1,14 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}Welcome Reviewer {{ user.username }}{% endblock %}
+{% block dashboard_description %}
+Your eyes make this blog shine—review pending content and keep quality high.
+{% endblock %}
+
+{% block dashboard_content %}
+  <ul class="list-group">
+    <li class="list-group-item">🕓 Pending Submissions (placeholder)</li>
+    <li class="list-group-item">✅ Reviewed Articles (placeholder)</li>
+    <li class="list-group-item">📌 Guidelines for Editors</li>
+  </ul>
+{% endblock %}

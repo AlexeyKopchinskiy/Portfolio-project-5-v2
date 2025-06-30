@@ -1,0 +1,14 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}Welcome, Reader {{ user.username }}{% endblock %}
+{% block dashboard_description %}
+Dive into fresh stories, save your favorites, and explore topics you love.
+{% endblock %}
+
+{% block dashboard_content %}
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{% url 'latest_posts' %}">📰 Browse New Posts</a></li>
+    <li class="list-group-item">💾 Saved Articles (feature coming soon)</li>
+    <li class="list-group-item">📖 Reading History</li>
+  </ul>
+{% endblock %}
