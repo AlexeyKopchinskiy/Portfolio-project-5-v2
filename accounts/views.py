@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
+from .forms import AccountSettingsForm, ProfileForm
 from django.http import HttpResponseForbidden
 
 
@@ -103,3 +104,29 @@ def dashboard_reviewer(request):
 @login_required
 def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
+
+
+# # Account settings view for logged-in users
+@login_required
+def account_settings(request):
+    user = request.user
+
+    if request.method == "POST":
+        user_form = AccountSettingsForm(request.POST, instance=user)
+        profile_form = ProfileForm(
+            request.POST, request.FILES, instance=user.profile
+        )
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect("dashboard")  # Or show a success message
+    else:
+        user_form = AccountSettingsForm(instance=user)
+        profile_form = ProfileForm(instance=user.profile)
+
+    context = {
+        "user_form": user_form,
+        "profile_form": profile_form,
+    }
+    return render(request, "accounts/settings.html", context)
