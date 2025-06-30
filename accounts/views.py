@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -27,6 +27,11 @@ def login_view(request):
             messages.error(request, "Invalid credentials")
 
     return render(request, "accounts/login.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")  # Or wherever you want to go after logout
 
 
 @login_required
