@@ -49,24 +49,6 @@ def logout_view(request):
     return redirect("home")  # Or wherever you want to go after logout
 
 
-@login_required
-def dashboard_redirect(request):
-    user = request.user
-
-    if user.is_superuser or user.groups.filter(name="Administrator").exists():
-        return redirect("dashboard_admin")
-    elif user.groups.filter(name="Reviewer").exists():
-        return redirect("dashboard_reviewer")
-    elif user.groups.filter(name="Author").exists():
-        return redirect("dashboard_author")
-    elif user.groups.filter(name="Reader").exists():
-        return redirect("dashboard_reader")
-    else:
-        return HttpResponseForbidden(
-            "You don't belong to any recognized group."
-        )
-
-
 # Register a new user and assign them to a default group
 def register_view(request):
     if request.user.is_authenticated:
