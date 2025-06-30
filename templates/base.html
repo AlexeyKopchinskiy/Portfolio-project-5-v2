@@ -19,46 +19,65 @@
 
   <!-- ✅ Site-wide navigation (you can customize later) -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">InkwellBlog</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <!-- Put general site links here -->
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav">
-        {% if user.is_authenticated %}
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">InkwellBlog</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        
+        <!-- LEFT SIDE MENU -->
+        <ul class="navbar-nav me-auto">
+          <!-- Dropdown: Main -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="mainDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Main
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="mainDropdown">
+              <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
+              <li><a class="dropdown-item" href="{% url 'cookies' %}">Cookies</a></li>
+              <li><a class="dropdown-item" href="{% url 'privacy' %}">Privacy</a></li>
+              <li><a class="dropdown-item" href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+          </li>
+        
+          <!-- Static pages -->
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
           <li class="nav-item">
-            <form method="POST" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit" class="btn nav-link border-0 bg-transparent">Logout</button>
-            </form>
+            <a class="nav-link" href="{% url 'pricing' %}">Pricing</a>
           </li>
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Register</a>
-          </li>
-        {% endif %}
-      </ul>
+        </ul>
+  
+        <!-- RIGHT SIDE USER MENU -->
+        <ul class="navbar-nav ms-auto">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <form method="POST" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn nav-link border-0 bg-transparent">Logout</button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+          {% endif %}
+        </ul>
+  
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <main class="container py-4">
     {% block content %}{% endblock %}
