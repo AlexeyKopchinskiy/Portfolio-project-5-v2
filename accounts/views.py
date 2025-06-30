@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
@@ -45,6 +45,38 @@ def dashboard_redirect(request):
         return HttpResponseForbidden(
             "You don't belong to any recognized group."
         )
+
+
+# Register a new user and assign them to a default group
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        confirm = request.POST["confirm_password"]
+
+        if password != confirm:
+            messages.error(request, "Passwords do not match.")
+            return render(request, "accounts/register.html")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken.")
+            return render(request, "accounts/register.html")
+
+        user = User.objects.create_user(
+            username=username, email=email, password=password
+        )
+
+        # 🔒 Assign default group
+        default_group = Group.objects.get(name="Reader")  # Or 'Author', etc.
+        user.groups.add(default_group)
+
+        login(request, user)
+        return redirect(
+            "dashboard"
+        )  # Will route to the correct page via dashboard_redirect
+
+    return render(request, "accounts/register.html")
 
 
 # # Dashboard views for different user roles
