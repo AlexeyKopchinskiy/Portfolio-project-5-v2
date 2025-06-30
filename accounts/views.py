@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from .forms import AccountSettingsForm, ProfileForm
-from django.http import HttpResponseForbidden
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 
 # Create your views here.
@@ -106,7 +107,6 @@ def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
 
 
-# # Account settings view for logged-in users
 @login_required
 def account_settings(request):
     user = request.user
@@ -130,3 +130,14 @@ def account_settings(request):
         "profile_form": profile_form,
     }
     return render(request, "accounts/settings.html", context)
+
+
+# Custom password change view
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = "accounts/change_password.html"
+    success_url = reverse_lazy("password_change_done")
+
+
+# Password change done view
+class PasswordChangeDoneView(TemplateView):
+    template_name = "accounts/password_change_done.html"
