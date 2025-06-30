@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="mb-3">{{ dashboard_title }}</h1>
+  <p class="lead">{{ dashboard_description }}</p>
+  <hr>
+  {% block dashboard_content %}{% endblock %}
+</div>
+{% endblock %}
