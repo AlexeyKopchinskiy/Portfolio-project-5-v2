@@ -10,8 +10,20 @@ from django.http import HttpResponseForbidden
 # Create your views here.
 
 
+@login_required
 def dashboard_redirect(request):
-    return HttpResponse("Redirecting user based on role...")
+    user = request.user
+
+    if user.is_superuser or user.groups.filter(name="Administrator").exists():
+        return redirect("dashboard_admin")
+    elif user.groups.filter(name="Author").exists():
+        return redirect("dashboard_author")
+    elif user.groups.filter(name="Reviewer").exists():
+        return redirect("dashboard_reviewer")
+    elif user.groups.filter(name="Reader").exists():
+        return redirect("dashboard_reader")
+    else:
+        return redirect("home")  # or some fallback
 
 
 def login_view(request):
