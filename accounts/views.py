@@ -141,3 +141,9 @@ class CustomPasswordChangeView(PasswordChangeView):
 # Password change done view
 class PasswordChangeDoneView(TemplateView):
     template_name = "accounts/password_change_done.html"
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You've been logged out. See you soon!")
+    return redirect("home")
