@@ -18,4 +18,6 @@ urlpatterns = [
         name="dashboard_reviewer",
     ),
     path("dashboard/admin/", views.dashboard_admin, name="dashboard_admin"),
+    # Register a new user
+    path("register/", views.register_view, name="register"),
 ]
