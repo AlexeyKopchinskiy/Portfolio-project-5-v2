@@ -1,0 +1,11 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}Welcome Author {{ user.username }}{% endblock %}
+{% block dashboard_description %}
+Time to share your next masterpiece. Draft, edit, and publish from here.
+{% endblock %}
+
+{% block dashboard_content %}
+  <a href="{% url 'create_post' %}" class="btn btn-primary">✏️ New Article</a>
+  <a href="{% url 'my_posts' %}" class="btn btn-outline-secondary">📚 My Articles</a>
+{% endblock %}
