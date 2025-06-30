@@ -1,0 +1,14 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}Welcome, Administrator {{ user.username }}{% endblock %}
+{% block dashboard_description %}
+Oversee the kingdom: manage users, monitor posts, and keep the system humming.
+{% endblock %}
+
+{% block dashboard_content %}
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{% url 'admin:index' %}">⚙️ Admin Site</a></li>
+    <li class="list-group-item">📊 Site analytics (coming soon)</li>
+    <li class="list-group-item">🧑‍💼 User management (future link)</li>
+  </ul>
+{% endblock %}
