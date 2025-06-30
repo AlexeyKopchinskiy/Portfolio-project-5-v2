@@ -27,6 +27,9 @@ def dashboard_redirect(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard")
+
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -66,6 +69,9 @@ def dashboard_redirect(request):
 
 # Register a new user and assign them to a default group
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect("dashboard")
+
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
