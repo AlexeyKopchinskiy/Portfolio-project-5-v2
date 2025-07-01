@@ -34,3 +34,16 @@ def create_post(request):
 def my_posts(request):
     posts = Post.objects.filter(author=request.user)
     return render(request, "blog/my_posts.html", {"posts": posts})
+
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("my_posts")
+    else:
+        form = PostForm(instance=post)
+    return render(request, "blog/edit_post.html", {"form": form, "post": post})
