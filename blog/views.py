@@ -38,7 +38,17 @@ def my_posts(request):
 
 @login_required
 def edit_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id, author=request.user)
+    user = request.user
+
+    # 🕵️ Reviewer check
+    is_reviewer = user.groups.filter(name="Reviewer").exists()
+
+    if is_reviewer:
+        post = get_object_or_404(Post, id=post_id)
+    else:
+        # Non-reviewers can only edit their own posts
+        post = get_object_or_404(Post, id=post_id, author=user)
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -46,6 +56,7 @@ def edit_post(request, post_id):
             return redirect("my_posts")
     else:
         form = PostForm(instance=post)
+
     return render(request, "blog/edit_post.html", {"form": form, "post": post})
 
 
