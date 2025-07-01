@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📚 My Posts</h2>
+  {% if posts %}
+    <ul class="list-group">
+      {% for post in posts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ post.title }}</span>
+          <small class="text-muted">{{ post.created|date:"M d, Y" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info mt-3">
+      You haven’t published anything yet.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
