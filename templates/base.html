@@ -80,11 +80,24 @@
         <!-- RIGHT SIDE USER MENU -->
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_settings' %}">Settings</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dashboardDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dashboardDropdown">
+              <li>
+                <a class="dropdown-item" href="{% url 'account_settings' %}">🔧 Settings</a>
+              <li>
+                <a class="dropdown-item" href="{% url 'dashboard' %}">📊 Dashboard</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="{% url 'dashboard' %}" class="nav-link text-warning fw-semibold">
