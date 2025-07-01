@@ -4,17 +4,12 @@
 <div class="text-center py-5">
   <h1 class="display-4">Welcome to InkwellBlog</h1>
   <p class="lead">Craft, share, and engage with meaningful writing in a creative, moderated community.</p>
-  <hr class="my-4">
-  <p>Join as a Reader, Author, or Reviewer and shape your experience. Explore our stories, leave comments, or write your own chapters.</p>
-  {% if not user.is_authenticated %}
-  <a href="{% url 'register' %}" class="btn btn-primary">Become a Member</a>
-  {% else %}
-    <a href="{% url 'dashboard' %}" class="btn btn-outline-success">Go to Dashboard</a>
-  {% endif %}
-</div>
+  </div>
 
 <section class="py-5 bg-white border-top">
   <div class="container text-center">
+    <h2 class="mb-4">Become a member and start sharing your feedback!</h2>
+    <p class="lead mb-5">Join as a Reader, Author, or Reviewer and shape your experience. Explore our stories, leave comments, or write your own chapters.</p>
     <h2 class="mb-4">Unlock More with a Subscription</h2>
     <p class="lead mb-5">Upgrade your membership and step into a world of premium tools, support, and creative freedom.</p>
 
@@ -26,7 +21,7 @@
             <h5 class="mb-0">🌟 Premium Access</h5>
           </div>
           <div class="card-body">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled text-start ps-3">
               <li>✅ Schedule posts for future publishing</li>
               <li>✅ Advanced dashboard features</li>
               <li>✅ Analytics & reader insights</li>
@@ -42,7 +37,7 @@
             <h5 class="mb-0">🛠️ Creator Toolkit</h5>
           </div>
           <div class="card-body">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled text-start ps-3">
               <li>✅ Enhanced content editor</li>
               <li>✅ Priority support</li>
               <li>✅ Access to exclusive themes</li>
@@ -58,7 +53,7 @@
             <h5 class="mb-0">🚀 Growth & Community</h5>
           </div>
           <div class="card-body">
-            <ul class="list-unstyled">
+            <ul class="list-unstyled text-start ps-3">
               <li>✅ Profile boosting</li>
               <li>✅ Featured author highlights</li>
               <li>✅ Invite-only events</li>
@@ -70,9 +65,11 @@
 
     <!-- CTA Button -->
     {% if not user.is_authenticated %}
-    <a href="{% url 'register' %}" class="btn btn-outline-dark btn-lg mt-4">
-      Join Now & Subscribe
-    </a>
+      <a href="{% url 'register' %}" class="btn btn-outline-dark btn-lg mt-4">
+        Join Now!
+      </a>
+    {% else %}
+      <a href="{% url 'dashboard' %}" class="btn btn-outline-success">Go to Dashboard</a>
     {% endif %}
   </div>
 </section>
