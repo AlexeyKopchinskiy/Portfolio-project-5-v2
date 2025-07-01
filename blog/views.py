@@ -47,3 +47,15 @@ def edit_post(request, post_id):
     else:
         form = PostForm(instance=post)
     return render(request, "blog/edit_post.html", {"form": form, "post": post})
+
+
+@login_required
+def dashboard(request):
+    latest_posts = Post.objects.filter(is_published=True).order_by(
+        "-published"
+    )[:5]
+    return render(
+        request,
+        "accounts/dashboard_author.html",
+        {"latest_posts": latest_posts},
+    )
