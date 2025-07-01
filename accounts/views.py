@@ -7,6 +7,8 @@ from .forms import AccountSettingsForm, ProfileForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from blog.models import Post
+import inspect
 
 
 # Create your views here.
@@ -98,11 +100,6 @@ def dashboard_author(request):
 
 
 @login_required
-def dashboard_reviewer(request):
-    return render(request, "accounts/dashboard_reviewer.html")
-
-
-@login_required
 def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
 
@@ -141,6 +138,20 @@ class CustomPasswordChangeView(PasswordChangeView):
 # Password change done view
 class PasswordChangeDoneView(TemplateView):
     template_name = "accounts/password_change_done.html"
+
+
+from blog.models import Post
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def dashboard_reviewer(request):
+    posts = Post.objects.all()
+    return render(
+        request,
+        "accounts/dashboard_reviewer.html",
+        {"posts": posts, "test_flag": "✅ Context works"},
+    )
 
 
 def logout_view(request):
