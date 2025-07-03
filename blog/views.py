@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+
 
 # Create your views here.
 
@@ -58,6 +60,45 @@ def edit_post(request, post_id):
         form = PostForm(instance=post)
 
     return render(request, "blog/edit_post.html", {"form": form, "post": post})
+
+
+@login_required
+def edit_user_post(request, post_id):
+    """
+    View for reviewers to edit any user's blog post.
+
+    Only accessible to authenticated users who belong to the 'Reviewer' group.
+    Fetches the post by its ID and renders a reviewer-specific editing template.
+    Allows review actions, post modification, and form submission handling.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request.
+        post_id (int): The ID of the post to be reviewed and potentially edited.
+
+    Returns:
+        HttpResponse: Renders the reviewer's editing page with the form and post data,
+                      or redirects upon successful update.
+        HttpResponseForbidden: If the user is not a reviewer.
+    """
+
+    user = request.user
+
+    # Ensure only reviewers access this view
+    if not user.groups.filter(name="Reviewer").exists():
+        return HttpResponseForbidden("Access denied.")
+
+    post = get_object_or_404(Post, id=post_id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect(
+            "reviewer_dashboard"
+        )  # Update this to your actual dashboard view name
+
+    return render(
+        request, "blog/edit_user_post.html", {"form": form, "post": post}
+    )
 
 
 @login_required

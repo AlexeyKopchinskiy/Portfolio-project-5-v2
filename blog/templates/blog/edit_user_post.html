@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">📝 Review Post: "{{ post.title }}"</h2>
+
+  <div class="mb-3">
+    <strong>Author:</strong> {{ post.author.username }}<br>
+    <strong>Created:</strong> {{ post.created_at|date:"F j, Y H:i" }}<br>
+    <strong>Status:</strong> {{ post.status|default:"—" }}
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-group mt-4">
+      <label for="review_status">Review Status</label>
+      <select id="review_status" name="review_status" class="form-control">
+        <option value="reviewed">✅ Reviewed</option>
+        <option value="needs_changes">⚠️ Needs Changes</option>
+        <option value="draft">🕗 Draft</option>
+      </select>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="reviewer_notes">Reviewer Notes</label>
+      <textarea id="reviewer_notes" name="reviewer_notes" rows="4" class="form-control" placeholder="Add internal notes or feedback here..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-4">💾 Save & Return</button>
+  </form>
+</div>
+{% endblock %}

@@ -140,10 +140,6 @@ class PasswordChangeDoneView(TemplateView):
     template_name = "accounts/password_change_done.html"
 
 
-from blog.models import Post
-from django.contrib.auth.decorators import login_required
-
-
 @login_required
 def dashboard_reviewer(request):
     posts = Post.objects.all()
