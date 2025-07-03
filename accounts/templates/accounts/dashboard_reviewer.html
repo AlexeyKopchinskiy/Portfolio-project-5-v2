@@ -21,7 +21,7 @@ Your eyes make this blog shine—review pending content and keep quality high.
     <div class="card-body">
       <h5>{{ post.title }}</h5>
       <p>By {{ post.author }}</p>
-      <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+      <a href="{% url 'edit_user_post' post.id %}" class="btn btn-sm btn-outline-success">Review Post</a>
     </div>
   </div>
 {% endfor %}
