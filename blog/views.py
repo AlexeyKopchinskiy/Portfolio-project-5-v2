@@ -93,7 +93,7 @@ def edit_user_post(request, post_id):
     if request.method == "POST" and form.is_valid():
         form.save()
         return redirect(
-            "reviewer_dashboard"
+            "dashboard_reviewer"
         )  # Update this to your actual dashboard view name
 
     return render(
