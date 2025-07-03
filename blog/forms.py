@@ -1,4 +1,5 @@
 from django import forms
+from django_summernote.widgets import SummernoteWidget
 from .models import Post
 
 
@@ -13,13 +14,7 @@ class PostForm(forms.ModelForm):
                     "placeholder": "Enter post title",
                 }
             ),
-            "content": forms.Textarea(
-                attrs={
-                    "class": "form-control",
-                    "rows": 6,
-                    "placeholder": "Write your post content here...",
-                }
-            ),
+            "content": SummernoteWidget(),
             "featured_image": forms.ClearableFileInput(
                 attrs={"class": "form-control"}
             ),
