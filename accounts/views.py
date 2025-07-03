@@ -50,6 +50,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, "You've been logged out. See you soon!")
     return redirect("home")  # Or wherever you want to go after logout
 
 
@@ -148,9 +149,3 @@ def dashboard_reviewer(request):
         "accounts/dashboard_reviewer.html",
         {"posts": posts, "test_flag": "✅ Context works"},
     )
-
-
-def logout_view(request):
-    logout(request)
-    messages.success(request, "You've been logged out. See you soon!")
-    return redirect("home")
