@@ -79,24 +79,30 @@
         <!-- RIGHT SIDE USER MENU -->
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dashboardDropdown" role="button"
+          <li class="nav-item d-none d-lg-block dropdown" id="account-nav-desktop">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dashboardDropdown">
-              <li>
-                <a class="dropdown-item" href="{% url 'account_settings' %}">🔧 Settings</a>
-              <li>
-                <a class="dropdown-item" href="{% url 'dashboard' %}">📊 Dashboard</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a>
-              </li>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+              <li><a class="dropdown-item" href="{% url 'account_settings' %}">🔧 Settings</a></li>
+              <li><a class="dropdown-item" href="{% url 'dashboard' %}">📊 Dashboard</a></li>
+              <li><a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a></li>
+              <li><a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a></li>
             </ul>
+          </li>
+          <!-- Mobile flat Account menu -->
+          <li class="nav-item d-lg-none">
+            <a class="nav-link" href="{% url 'account_settings' %}">🔧 Settings</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link" href="{% url 'dashboard' %}">📊 Dashboard</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link" href="{% url 'create_post' %}">✍️ Create Post</a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link" href="{% url 'my_posts' %}">📚 My Posts</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'dashboard' %}" class="nav-link text-warning fw-semibold">
