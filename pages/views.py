@@ -43,7 +43,9 @@ def contact_view(request):
     - If POST request, validate and save the message.
     - Display success message upon successful form submission.
     """
+
     if request.method == "POST":
+        print("Form submitted!")
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
