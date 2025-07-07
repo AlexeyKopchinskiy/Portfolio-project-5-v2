@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block title %}Contact — InkwellBlog{% endblock %}
 {% block content %}
 <div class="container py-4">
@@ -12,10 +13,35 @@
   </ul>
 
   <p class="mt-4">We’re especially excited to hear from future Authors and Reviewers. Join our growing platform—your voice matters!</p>
-  <form method="POST">
+  <form method="POST" class="mt-4">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+    <div class="row g-3">
+  
+      <div class="col-md-6">
+        <label for="id_name" class="form-label">Your Name</label>
+        {{ form.name|add_class:"form-control" }}
+      </div>
+  
+      <div class="col-md-6">
+        <label for="id_email" class="form-label">Email Address</label>
+        {{ form.email|add_class:"form-control" }}
+      </div>
+  
+      <div class="col-12">
+        <label for="id_subject" class="form-label">Subject</label>
+        {{ form.subject|add_class:"form-control" }}
+      </div>
+  
+      <div class="col-12">
+        <label for="id_message" class="form-label">Message</label>
+        {{ form.message|add_class:"form-control" }}
+      </div>
+  
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">📩 Send Message</button>
+      </div>
+  
+    </div>
   </form>
   
   {% if messages %}

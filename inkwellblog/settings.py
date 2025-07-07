@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "accounts",
     "blog",
     "django_summernote",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
