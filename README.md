@@ -48,6 +48,23 @@ Check out the full list of [user stories and issues here](#) ← *(you can link 
 - Bookmarking, commenting, and category filters
 - Facebook product page / promotional mockup
 - Newsletter signup and SEO features (meta tags, sitemap)
+- Functional contact form
+
+### 📮 Contact Form Feature
+
+The application includes a fully functional contact form accessible via /contact/. Visitors can submit their name, email, subject, and message directly through the form.
+
+- Submissions are stored in the database via the custom ContactMessage model.
+- Messages are timestamped and can be browsed via the Django admin interface.
+- User feedback is provided after successful form submission.
+- The form is styled with Bootstrap 5 for responsive and accessible design.
+- CSRF protection and validation are included.
+
+**This feature demonstrates:**
+
+- Form handling with validation (LO1.4)
+- Creation of a custom Django model (LO1.12)
+- Clean code with Bootstrap styling and UX considerations (LO2.1)
 
 ## 🛠 Technologies & Software Used
 
