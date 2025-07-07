@@ -2,52 +2,72 @@
 {% load widget_tweaks %}
 {% block title %}Contact — InkwellBlog{% endblock %}
 {% block content %}
-<div class="container py-4">
-  <h1>Get in Touch</h1>
-  <p>Have questions, feedback, or partnership ideas? We’d love to hear from you.</p>
+
+{% load widget_tweaks %}
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+    <div class="p-4 mb-4 text-center text-white" style="background: linear-gradient(to right, #007bff, #6610f2); border-radius: .5rem;">
+      <h1>Let’s Talk!</h1>
+      <p class="lead">We’d love to hear your thoughts, questions, or feedback.</p>
+    </div>
+    
+    <div class="col-lg-8">
+      <h1>Get in Touch</h1>
+      <p>Have questions, feedback, or partnership ideas? We’d love to hear from you.</p>
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">📬 Fill the Contact Form</h2>
+        </div>
+        
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_name" class="form-label">Your Name</label>
+              {{ form.name|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_email" class="form-label">Email Address</label>
+              {{ form.email|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_subject" class="form-label">Subject</label>
+              {{ form.subject|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_message" class="form-label">Message</label>
+              {{ form.message|add_class:"form-control" }}
+            </div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">
+                📤 Send Message
+              </button>
+            </div>
+          </form>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success mt-3">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
   <ul class="list-unstyled">
     <li><strong>Email:</strong> hello@inkwellblog.com</li>
     <li><strong>Twitter/X:</strong> <a href="#">@inkwellblog</a></li>
+    <li><strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61578100172311">Visit our exclusive Facebook page</a></li>
     <li><strong>Support Hours:</strong> Monday–Friday, 10am–6pm CET</li>
   </ul>
 
-  <p class="mt-4">We’re especially excited to hear from future Authors and Reviewers. Join our growing platform—your voice matters!</p>
-  <form method="POST" class="mt-4">
-    {% csrf_token %}
-    <div class="row g-3">
-  
-      <div class="col-md-6">
-        <label for="id_name" class="form-label">Your Name</label>
-        {{ form.name|add_class:"form-control" }}
-      </div>
-  
-      <div class="col-md-6">
-        <label for="id_email" class="form-label">Email Address</label>
-        {{ form.email|add_class:"form-control" }}
-      </div>
-  
-      <div class="col-12">
-        <label for="id_subject" class="form-label">Subject</label>
-        {{ form.subject|add_class:"form-control" }}
-      </div>
-  
-      <div class="col-12">
-        <label for="id_message" class="form-label">Message</label>
-        {{ form.message|add_class:"form-control" }}
-      </div>
-  
-      <div class="col-12 text-end">
-        <button type="submit" class="btn btn-primary">📩 Send Message</button>
-      </div>
-  
-    </div>
-  </form>
-  
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-success mt-3">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-</div>
 {% endblock %}
