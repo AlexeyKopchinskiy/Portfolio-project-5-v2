@@ -12,5 +12,16 @@
   </ul>
 
   <p class="mt-4">We’re especially excited to hear from future Authors and Reviewers. Join our growing platform—your voice matters!</p>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+  </form>
+  
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success mt-3">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
 </div>
 {% endblock %}
