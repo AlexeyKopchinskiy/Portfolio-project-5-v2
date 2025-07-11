@@ -45,7 +45,7 @@ def login_view(request):
         else:
             messages.error(request, "Invalid credentials")
 
-    return render(request, "accounts/login.html")
+    return render(request, "account/login.html")
 
 
 def logout_view(request):
@@ -67,11 +67,11 @@ def register_view(request):
 
         if password != confirm:
             messages.error(request, "Passwords do not match.")
-            return render(request, "accounts/register.html")
+            return render(request, "account/signup.html")
 
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already taken.")
-            return render(request, "accounts/register.html")
+            return render(request, "account/signup.html")
 
         user = User.objects.create_user(
             username=username, email=email, password=password
@@ -86,7 +86,7 @@ def register_view(request):
             "dashboard"
         )  # Will route to the correct page via dashboard_redirect
 
-    return render(request, "accounts/register.html")
+    return render(request, "account/signup.html")
 
 
 # # Dashboard views for different user roles

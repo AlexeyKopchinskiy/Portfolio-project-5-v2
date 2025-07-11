@@ -110,7 +110,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <form method="POST" action="{% url 'logout' %}" class="d-inline">
+            <form method="POST" action="{% url 'account_logout' %}" class="d-inline">
               {% csrf_token %}
               <button type="submit" class="btn nav-link border-0 bg-transparent">Logout</button>
             </form>
@@ -118,10 +118,10 @@
         {% else %}
           <!-- login/register -->
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">🔑 Login</a>
+            <a class="nav-link" href="{% url 'account_login' %}">🔑 Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">📝 Register</a>
+            <a class="nav-link" href="{% url 'account_signup' %}">📝 Register</a>
           </li>
         
         {% endif %}
