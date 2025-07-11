@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container py-5" style="max-width: 500px;">
-  <h2 class="mb-4 text-center">Login to InkwellBlog</h2>
+  <h2 class="mb-4 text-center">🔐 Login to InkwellBlog</h2>
 
   {% if messages %}
     {% for message in messages %}
@@ -11,14 +11,44 @@
     {% endfor %}
   {% endif %}
 
-  <form method="post" class="card shadow-sm p-4">
+  <form method="post" class="card shadow-sm p-4 border rounded bg-light">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- This renders login/email & password fields -->
-    <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    <div class="mb-3">
+      <label for="id_login" class="form-label">Username or Email</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+        {{ form.login }}
+      </div>
+      {% if form.login.errors %}
+        <div class="text-danger small mt-1">
+          {{ form.login.errors.0 }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_password" class="form-label">Password</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+        {{ form.password }}
+      </div>
+      {% if form.password.errors %}
+        <div class="text-danger small mt-1">
+          {{ form.password.errors.0 }}
+        </div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+
+    <div class="text-center mt-3">
+      <a href="{% url 'account_reset_password' %}">Forgot your password?</a>
+    </div>
   </form>
 
-  <p class="text-center mt-3">
-    Don’t have an account? <a href="{% url 'account_signup' %}">Sign up here</a>
+  <p class="text-center mt-4">
+    Don’t have an account yet? <a href="{% url 'account_signup' %}">Sign up here</a>
   </p>
 </div>
 {% endblock %}

@@ -40,3 +40,41 @@ main {
         /* keep click for mobile */
     }
 }
+
+/* Style Allauth form fields (login/password) */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 0.6em 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
+}
+
+/* Optional: space between fields */
+form .form-group,
+form p {
+    margin-bottom: 1.2em;
+}
+
+/* Align error messages neatly */
+.text-danger,
+.errorlist {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+}
+
+.input-group-text {
+    visibility: hidden;
+}
