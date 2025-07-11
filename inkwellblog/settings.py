@@ -49,9 +49,30 @@ INSTALLED_APPS = [
     "pages",
     "accounts",
     "blog",
+    "django.contrib.sites",  # required by allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "django_summernote",
     "widget_tweaks",
 ]
+
+# Django Allauth settings
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+# Custom user model
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_VERIFICATION = "optional"  # or 'mandatory'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -61,6 +82,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "inkwellblog.urls"
@@ -116,6 +138,8 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Summernode configuration
 # https://django-summernote.readthedocs.io/en/latest/configuration.html
