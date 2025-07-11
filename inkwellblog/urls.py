@@ -22,7 +22,11 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("admin/", admin.site.urls),
     # path("accounts/", include("accounts.urls")),
-    path("accounts/", include("allauth.urls")),
+    # path("accounts/", include("allauth.urls")),
+    path(
+        "accounts/", include("accounts.urls")
+    ),  # <-- This connects your settings page
+    path("accounts/", include("allauth.urls")),  # Allauth still lives here too
     path("blog/", include("blog.urls")),
     path("summernote/", include("django_summernote.urls")),
 ]
