@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "django_summernote",
     "widget_tweaks",
+    "newsletter",
 ]
 
 # Django Allauth settings
