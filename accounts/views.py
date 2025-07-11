@@ -30,22 +30,22 @@ def dashboard_redirect(request):
         return redirect("home")  # or some fallback
 
 
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect("dashboard")
+# def login_view(request):
+#     if request.user.is_authenticated:
+#         return redirect("dashboard")
 
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
+#     if request.method == "POST":
+#         username = request.POST["username"]
+#         password = request.POST["password"]
+#         user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect("dashboard")  # This will redirect based on group
-        else:
-            messages.error(request, "Invalid credentials")
+#         if user is not None:
+#             login(request, user)
+#             return redirect("dashboard")  # This will redirect based on group
+#         else:
+#             messages.error(request, "Invalid credentials")
 
-    return render(request, "account/login.html")
+#     return render(request, "account/login.html")
 
 
 def logout_view(request):

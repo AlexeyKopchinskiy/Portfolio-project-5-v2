@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
 {% block title %}Login — InkwellBlog{% endblock %}
 
 {% block content %}
@@ -14,7 +13,7 @@
 
   <form method="post" class="card shadow-sm p-4">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }}  <!-- This renders login/email & password fields -->
     <button type="submit" class="btn btn-primary w-100">Login</button>
   </form>
 
