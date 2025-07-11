@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login — InkwellBlog{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">Login to InkwellBlog</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" class="card shadow-sm p-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+  </form>
+
+  <p class="text-center mt-3">
+    Don’t have an account? <a href="{% url 'account_signup' %}">Sign up here</a>
+  </p>
+</div>
+{% endblock %}
