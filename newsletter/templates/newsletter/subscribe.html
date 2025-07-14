@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Get Inkwell Updates{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">📬 Get Inkwell Updates</h2>
+
+  <form method="post" class="card p-4 shadow-sm bg-light">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <div class="text-danger small">{{ field.errors.0 }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+  </form>
+</div>
+{% endblock %}
