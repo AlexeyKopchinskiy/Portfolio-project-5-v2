@@ -148,20 +148,22 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 # https://django-summernote.readthedocs.io/en/latest/configuration.html
 
 SUMMERNOTE_CONFIG = {
-    "toolbar": [
-        # Line 1
-        ["style", ["bold", "italic", "underline", "clear"]],
-        ["font", ["strikethrough", "superscript", "subscript"]],
-        ["fontsize", ["fontsize"]],
-        # Line 2
-        ["para", ["ul", "ol", "paragraph"]],
-        ["insert", ["link", "table"]],
-        ["view", ["fullscreen", "codeview"]],
-        # Optional Line 3
-        # ['misc', ['undo', 'redo']],
-    ],
-    "width": "100%",
-    "height": "250",  # adjust height if needed
+    "summernote": {
+        "toolbar": [
+            # Line 1
+            ["style", ["bold", "italic", "underline", "clear"]],
+            ["font", ["strikethrough", "superscript", "subscript"]],
+            ["fontsize", ["fontsize"]],
+            # Line 2
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "table"]],
+            ["view", ["fullscreen", "codeview"]],
+            # Optional Line 3
+            ["misc", ["undo", "redo"]],
+        ],
+        "width": "100%",
+        "height": "250",  # adjust height if needed
+    }
 }
 
 # Internationalization
