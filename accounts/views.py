@@ -8,6 +8,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from blog.models import Post
+from newsletter.models import Newsletter
 
 
 # Create your views here.
@@ -78,7 +79,18 @@ def dashboard_reader(request):
 
 @login_required
 def dashboard_author(request):
-    return render(request, "accounts/dashboard_author.html")
+    user = request.user
+    drafts = Newsletter.objects.filter(sent=False).order_by("-created_at")[:5]
+    published = Newsletter.objects.filter(sent=True).order_by(
+        "-scheduled_send"
+    )[:5]
+
+    context = {
+        "drafts": drafts,
+        "published": published,
+    }
+
+    return render(request, "accounts/dashboard_author.html", context)
 
 
 @login_required
