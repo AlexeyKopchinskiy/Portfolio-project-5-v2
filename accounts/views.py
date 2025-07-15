@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -8,7 +8,6 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from blog.models import Post
-import inspect
 
 
 # Create your views here.
@@ -28,24 +27,6 @@ def dashboard_redirect(request):
         return redirect("dashboard_reader")
     else:
         return redirect("home")  # or some fallback
-
-
-# def login_view(request):
-#     if request.user.is_authenticated:
-#         return redirect("dashboard")
-
-#     if request.method == "POST":
-#         username = request.POST["username"]
-#         password = request.POST["password"]
-#         user = authenticate(request, username=username, password=password)
-
-#         if user is not None:
-#             login(request, user)
-#             return redirect("dashboard")  # This will redirect based on group
-#         else:
-#             messages.error(request, "Invalid credentials")
-
-#     return render(request, "account/login.html")
 
 
 def logout_view(request):
