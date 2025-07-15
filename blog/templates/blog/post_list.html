@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h3>All Posts</h3>
+  <ul class="list-unstyled">
+    {% for post in posts %}
+      <li class="mb-4">
+        <h4>
+          <a href="{% url 'post_detail' slug=post.slug %}" class="text-decoration-none">
+            {{ post.title }}
+          </a>
+        </h4>
+        <p>{{ post.content|truncatewords:30 }}</p>
+        <small class="text-muted">
+          Posted by {{ post.author.username }} on {{ post.created_at|date:"F j, Y" }}
+        </small>
+      </li>
+    {% empty %}
+      <li>No posts available.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
