@@ -10,6 +10,7 @@ urlpatterns = [
     # Redirect to dashboard based on user group
     path("", views.dashboard_redirect, name="dashboard"),
     # redirect to specific dashboards based on user group
+    path("redirect/", views.dashboard_redirect, name="role_redirect"),
     path("dashboard/reader/", views.dashboard_reader, name="dashboard_reader"),
     path("dashboard/author/", views.dashboard_author, name="dashboard_author"),
     path(

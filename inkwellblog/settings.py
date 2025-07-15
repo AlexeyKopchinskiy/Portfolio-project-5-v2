@@ -68,7 +68,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Custom user model
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/accounts/redirect/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_VERIFICATION = "optional"  # or 'mandatory'
 
