@@ -29,7 +29,18 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ["content"]
         widgets = {
-            "content": forms.Textarea(
-                attrs={"rows": 3, "placeholder": "Leave a comment..."}
+            "content": SummernoteWidget(
+                attrs={
+                    "summernote": {
+                        "toolbar": [
+                            ["style", ["bold", "italic"]],
+                            ["para", ["ul", "ol"]],
+                            ["insert", ["link"]],
+                            ["view", ["fullscreen", "codeview"]],
+                        ],
+                        "height": 120,
+                        "disableResizeEditor": True,
+                    }
+                }
             ),
         }

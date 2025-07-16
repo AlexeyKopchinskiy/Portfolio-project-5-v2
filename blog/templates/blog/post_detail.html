@@ -16,7 +16,7 @@
     {% for comment in comments %}
       <li class="mb-3">
         <strong>{{ comment.author.username }}</strong> said:<br>
-        {{ comment.content }}<br>
+        {{ comment.content|safe }}<br>
         <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
       </li>
     {% empty %}
