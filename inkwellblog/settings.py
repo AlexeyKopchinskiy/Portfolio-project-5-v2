@@ -70,7 +70,10 @@ AUTHENTICATION_BACKENDS = [
 # Custom user model
 LOGIN_REDIRECT_URL = "/accounts/redirect/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
-ACCOUNT_EMAIL_VERIFICATION = "optional"  # or 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 

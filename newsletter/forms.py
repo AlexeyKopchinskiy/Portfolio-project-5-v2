@@ -37,7 +37,7 @@ class NewsletterForm(forms.ModelForm):
                         "toolbar": [
                             ["style", ["bold", "italic", "underline"]],
                             ["para", ["ul", "ol"]],
-                            ["insert", ["link"]],
+                            ["insert", ["link", "picture"]],
                             ["view", ["fullscreen", "codeview"]],
                         ],
                     }
