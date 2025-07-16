@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
 
@@ -130,4 +130,14 @@ def dashboard(request):
         request,
         "accounts/dashboard_author.html",
         {"latest_posts": latest_posts},
+    )
+
+
+@login_required
+def my_comments(request):
+    user_comments = Comment.objects.filter(author=request.user).order_by(
+        "-created_at"
+    )
+    return render(
+        request, "blog/my_comments.html", {"comments": user_comments}
     )

@@ -1,7 +1,10 @@
 from django.urls import path
 from . import views
+from .views import my_comments
+
 
 urlpatterns = [
+    path("my-comments/", my_comments, name="my_comments"),
     path("create/", views.create_post, name="create_post"),
     path("my-posts/", views.my_posts, name="my_posts"),
     path("", views.post_list, name="post_list"),
