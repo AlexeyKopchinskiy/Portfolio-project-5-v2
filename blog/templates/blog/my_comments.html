@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>My Comments</h2>
+  <ul class="list-unstyled">
+    {% for comment in comments %}
+      <li class="mb-3">
+        <p><strong>On:</strong> <a href="{% url 'post_detail' slug=comment.post.slug %}">{{ comment.post.title }}</a></p>
+        <p>{{ comment.content|safe }}</p>
+        <small class="text-muted">Posted on {{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+      </li>
+    {% empty %}
+      <li>No comments yet. Start a conversation!</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
