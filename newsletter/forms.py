@@ -1,5 +1,7 @@
 from django import forms
 from .models import Subscriber
+from .models import Newsletter
+from django_summernote.widgets import SummernoteWidget
 
 
 class SubscriberForm(forms.ModelForm):
@@ -20,4 +22,25 @@ class SubscriberForm(forms.ModelForm):
                     "placeholder": "Your name (optional)",
                 }
             ),
+        }
+
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = Newsletter
+        fields = ["subject", "content"]
+        widgets = {
+            "content": SummernoteWidget(
+                attrs={
+                    "summernote": {
+                        "height": 300,
+                        "toolbar": [
+                            ["style", ["bold", "italic", "underline"]],
+                            ["para", ["ul", "ol"]],
+                            ["insert", ["link"]],
+                            ["view", ["fullscreen", "codeview"]],
+                        ],
+                    }
+                }
+            )
         }

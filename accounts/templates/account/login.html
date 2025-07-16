@@ -15,8 +15,8 @@
     {% csrf_token %}
 
     <div class="mb-3">
-      <label for="id_login" class="form-label">Username or Email</label>
       <div class="input-group">
+        <label for="id_login" class="form-label">Username or Email</label>
         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
         {{ form.login }}
       </div>
@@ -28,8 +28,8 @@
     </div>
 
     <div class="mb-3">
-      <label for="id_password" class="form-label">Password</label>
       <div class="input-group">
+        <label for="id_password" class="form-label">Password</label>
         <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
         {{ form.password }}
       </div>

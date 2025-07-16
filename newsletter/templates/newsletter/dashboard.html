@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h2>📨 Newsletter Dashboard</h2>
+  <a href="{% url 'create_newsletter' %}" class="btn btn-success mb-3">Create New Newsletter</a>
+  
+  <ul class="list-group">
+    {% for newsletter in newsletters %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <h5>{{ newsletter.subject }}</h5>
+          <small class="text-muted">Created {{ newsletter.created_at|date:"F j, Y" }}</small>
+        </div>
+        <div>
+          <a href="{% url 'edit_newsletter' pk=newsletter.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+          <a href="{% url 'view_newsletter' pk=newsletter.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
+        </div>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No newsletters yet. Start writing!</li>
+    {% endfor %}
+  </ul>
+</div>
