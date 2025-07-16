@@ -25,7 +25,7 @@ def post_detail(request, slug):
             comment.post = post
             comment.author = request.user
             comment.save()
-            return redirect("post_detail", pk=pk)
+            return redirect("post_detail", slug=post.slug)
 
     return render(
         request,
