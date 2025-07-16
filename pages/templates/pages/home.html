@@ -90,5 +90,31 @@
   {% endfor %}
 {% endif %}
 
+{% if latest_posts %}
+<div class="container mt-5">
+  <h2 class="mb-4">📰 Latest Blog Posts</h2>
+  <div class="row">
+    {% for post in latest_posts %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'post_detail' slug=post.slug %}" class="text-decoration-none">
+              {{ post.title }}
+            </a>
+          </h5>
+          <p class="card-text">
+            {{ post.content|truncatewords_html:30|safe }}
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+          Published {{ post.created_at|date:"F j, Y" }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
+from blog.models import Post
 
 
 # Create your views here.
@@ -8,7 +9,11 @@ from .forms import ContactForm
 
 def home(request):
     """Render the home page."""
-    return render(request, "pages/home.html")
+    # return render(request, "pages/home.html")
+    latest_posts = Post.objects.order_by("-created")[
+        :3
+    ]  # adjust count as needed
+    return render(request, "pages/home.html", {"latest_posts": latest_posts})
 
 
 def about(request):
