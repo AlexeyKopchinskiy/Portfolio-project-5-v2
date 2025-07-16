@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">🛠️ Edit Newsletter</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="card shadow-sm">
+      <div class="card-body">
+        {{ form.as_p }}
+      </div>
+      <div class="card-footer text-end">
+        <button type="submit" class="btn btn-primary">Update Newsletter</button>
+        <a href="{% url 'newsletter_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+{% endblock %}

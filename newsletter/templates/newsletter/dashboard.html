@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}About Us — InkwellBlog{% endblock %}
+{% block content %}
 <div class="container mt-4">
   <h2>📨 Newsletter Dashboard</h2>
   <a href="{% url 'create_newsletter' %}" class="btn btn-success mb-3">Create New Newsletter</a>
@@ -19,3 +22,4 @@
     {% endfor %}
   </ul>
 </div>
+{% endblock %}
