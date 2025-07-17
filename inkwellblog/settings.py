@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+import stripe
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,6 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = (
     "django-insecure-c9u-b48m314_yv)7x&edh2k19j&lritq$moeq1alv971lxn8(4"
 )
+
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
+stripe.api_key = STRIPE_SECRET_KEY
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
