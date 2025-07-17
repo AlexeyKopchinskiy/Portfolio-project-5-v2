@@ -42,17 +42,31 @@ def register_view(request):
         return redirect("dashboard")
 
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
+        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip()
         password = request.POST["password"]
         confirm = request.POST["confirm_password"]
 
+        # Validate email format
+        if User.objects.filter(email=email).exists():
+            messages.error(
+                request, "An account with this email already exists."
+            )
+            return render(request, "account/signup.html")
+
+        # Validate password confirmation
         if password != confirm:
             messages.error(request, "Passwords do not match.")
             return render(request, "account/signup.html")
 
+        # Check if username is already taken
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already taken.")
+            return render(request, "account/signup.html")
+
+        # guard against blank form data
+        if not username or not email or not password or not confirm:
+            messages.error(request, "Please fill in all required fields.")
             return render(request, "account/signup.html")
 
         user = User.objects.create_user(
@@ -60,8 +74,16 @@ def register_view(request):
         )
 
         # 🔒 Assign default group
-        default_group = Group.objects.get(name="Reader")  # Or 'Author', etc.
-        user.groups.add(default_group)
+        try:
+            default_group = Group.objects.get(name="Reader")
+        except Group.DoesNotExist:
+            messages.warning(
+                request,
+                "Reader group is missing. Please contact support or an admin to fix this.",
+            )
+            return redirect("home")  # or a fallback page
+        else:
+            user.groups.add(default_group)
 
         login(request, user)
         return redirect(
