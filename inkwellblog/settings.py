@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "django_summernote",
     "widget_tweaks",
     "newsletter",
+    "billing",
 ]
 
 # Django Allauth settings
