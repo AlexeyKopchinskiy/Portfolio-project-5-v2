@@ -4,7 +4,7 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from yourapp.models import Profile
+from accounts.models import Profile
 
 
 # Create your views here.
