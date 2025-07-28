@@ -39,27 +39,49 @@ def payment_cancel(request):
     return render(request, "billing/cancel.html")
 
 
+import stripe
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.contrib.auth.models import (
+    User,
+)  # adjust if using custom user model
+
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
-    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
-    endpoint_secret = "your-endpoint-secret"
+    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
+    endpoint_secret = "your-endpoint-secret"  # replace with your actual Stripe webhook secret
 
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
+    except ValueError:
+        # Invalid payload
+        return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError:
+        # Invalid signature
         return HttpResponse(status=400)
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-        user_id = session["metadata"].get("user_id")
+        user_id = session.get("metadata", {}).get("user_id")
 
-        if user_id:
+        if not user_id:
+            return HttpResponse(status=400)
+
+        try:
             user = User.objects.get(id=user_id)
-            profile = user.profile  # Or however your user model stores roles
-            profile.role = "author"
-            profile.save()
+        except User.DoesNotExist:
+            return HttpResponse(status=404)
+
+        profile = user.profile  # adjust if you store roles elsewhere
+        profile.role = "author"
+        profile.save()
+
+        # Optional: email or logging
+        # send_mail("Account upgraded", "Your account now has author access.", "noreply@yourapp.com", [user.email])
+        # logging.info(f"Upgraded user {user.id} to author role")
 
     return HttpResponse(status=200)
