@@ -18,19 +18,19 @@ def create_checkout_session(request):
         payment_method_types=["card"],
         line_items=[
             {
-                "price_data": {
-                    "currency": "usd",
-                    "product_data": {"name": "Demo Product"},
-                    "unit_amount": 1200,  # $12.00
-                },
+                "price": "your_stripe_price_id",
                 "quantity": 1,
             }
         ],
         mode="payment",
-        success_url="http://localhost:8000/billing/success/",
-        cancel_url="http://localhost:8000/billing/cancel/",
+        success_url=request.build_absolute_uri("/billing/success/"),
+        cancel_url=request.build_absolute_uri("/billing/cancel/"),
+        metadata={
+            "user_id": request.user.id  # 👈 So you can identify the user in the webhook
+        },
     )
-    return redirect(session.url)
+
+    return redirect(session.url, code=303)
 
 
 def payment_success(request):
