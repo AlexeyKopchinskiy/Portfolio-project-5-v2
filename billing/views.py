@@ -5,18 +5,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from accounts.models import Profile
 
 
 # Create your views here.
-stripe.api_key = config("STRIPE_SECRET_KEY")
-
-
-import stripe
-from django.conf import settings
-from django.shortcuts import redirect
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -51,11 +44,13 @@ def payment_cancel(request):
     return render(request, "billing/cancel.html")
 
 
+from django.contrib.auth.models import User, Group
+
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
-    event = None
 
     try:
         event = stripe.Webhook.construct_event(
@@ -64,19 +59,16 @@ def stripe_webhook(request):
     except (ValueError, stripe.error.SignatureVerificationError):
         return HttpResponse(status=400)
 
-    # ✅ Process only successful checkout
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
         user_id = session["metadata"]["user_id"]
 
-        # 🔧 Lookup user and upgrade role
         try:
             user = User.objects.get(id=user_id)
-            user.profile.role = (
-                "paid_user"  # Or whatever field you're updating
-            )
-            user.profile.save()
-        except User.DoesNotExist:
-            pass  # Handle error appropriately
+            paid_group = Group.objects.get(name="Paid")
+            user.groups.add(paid_group)
+        except (User.DoesNotExist, Group.DoesNotExist) as e:
+            # You can log this error or create the group dynamically if needed
+            pass
 
     return HttpResponse(status=200)
