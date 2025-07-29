@@ -55,25 +55,28 @@ def payment_cancel(request):
 def stripe_webhook(request):
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
-    endpoint_secret = (
-        settings.STRIPE_WEBHOOK_SECRET
-    )  # add this to your config vars!
+    event = None
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
         )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponseBadRequest()
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
+    except (ValueError, stripe.error.SignatureVerificationError):
         return HttpResponse(status=400)
 
-    # ✅ Now process the event
+    # ✅ Process only successful checkout
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-        # handle successful checkout — e.g. activate subscription
-        print("Checkout complete:", session)
+        user_id = session["metadata"]["user_id"]
+
+        # 🔧 Lookup user and upgrade role
+        try:
+            user = User.objects.get(id=user_id)
+            user.profile.role = (
+                "paid_user"  # Or whatever field you're updating
+            )
+            user.profile.save()
+        except User.DoesNotExist:
+            pass  # Handle error appropriately
 
     return HttpResponse(status=200)
