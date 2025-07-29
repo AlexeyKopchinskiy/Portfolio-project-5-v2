@@ -1,2 +1,32 @@
-<h2>Payment successful!</h2>
-<p>Thank you for your purchase 🎉</p>
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}
+🎉 Payment Successful!
+{% endblock %}
+
+{% block dashboard_description %}
+Thank you, {{ user.username }} — your account has been upgraded to Premium! Enjoy full access to all features.
+{% endblock %}
+
+{% block dashboard_content %}
+<div class="alert alert-success text-center mb-4">
+    <h4 class="alert-heading">🎉 Thank you for your purchase!</h4>
+    <p class="mb-0">Your upgrade is now active. Let's dive in!</p>
+</div>
+
+<ul class="list-group mb-4">
+    <li class="list-group-item"><a href="/dashboard/">🏠 Go to Your Dashboard</a></li>
+    <li class="list-group-item"><a href="/account/">⚙️ Manage Your Account Settings</a></li>
+    <li class="list-group-item"><a href="/content/">🧠 Explore Premium Content</a></li>
+</ul>
+
+<div class="border border-primary bg-light rounded p-4 text-center">
+    <h5 class="mb-3">🚀 What’s New with Premium?</h5>
+    <ul class="list-unstyled">
+        <li>✅ Full access to creation tools</li>
+        <li>📊 Premium analytics & insights</li>
+        <li>💬 Direct feedback & community perks</li>
+        <li>🧪 Early access to beta features</li>
+    </ul>
+</div>
+{% endblock %}

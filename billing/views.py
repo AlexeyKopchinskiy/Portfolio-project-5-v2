@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from decouple import config
 import stripe
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from django.contrib.auth.models import User
 from accounts.models import Profile
 
@@ -39,49 +41,29 @@ def payment_cancel(request):
     return render(request, "billing/cancel.html")
 
 
-import stripe
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
-from django.contrib.auth.models import (
-    User,
-)  # adjust if using custom user model
-
-
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
-    sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
-    endpoint_secret = "your-endpoint-secret"  # replace with your actual Stripe webhook secret
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    endpoint_secret = (
+        settings.STRIPE_WEBHOOK_SECRET
+    )  # add this to your config vars!
 
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-    except ValueError:
+    except ValueError as e:
         # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError:
+        return HttpResponseBadRequest()
+    except stripe.error.SignatureVerificationError as e:
         # Invalid signature
         return HttpResponse(status=400)
 
+    # ✅ Now process the event
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-        user_id = session.get("metadata", {}).get("user_id")
-
-        if not user_id:
-            return HttpResponse(status=400)
-
-        try:
-            user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            return HttpResponse(status=404)
-
-        profile = user.profile  # adjust if you store roles elsewhere
-        profile.role = "author"
-        profile.save()
-
-        # Optional: email or logging
-        # send_mail("Account upgraded", "Your account now has author access.", "noreply@yourapp.com", [user.email])
-        # logging.info(f"Upgraded user {user.id} to author role")
+        # handle successful checkout — e.g. activate subscription
+        print("Checkout complete:", session)
 
     return HttpResponse(status=200)
