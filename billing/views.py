@@ -13,23 +13,33 @@ from accounts.models import Profile
 stripe.api_key = config("STRIPE_SECRET_KEY")
 
 
+import stripe
+from django.conf import settings
+from django.shortcuts import redirect
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
 def create_checkout_session(request):
     session = stripe.checkout.Session.create(
         payment_method_types=["card"],
         line_items=[
             {
-                "price": "your_stripe_price_id",
+                "price_data": {
+                    "currency": "usd",
+                    "product_data": {"name": "Demo Product"},
+                    "unit_amount": 1200,  # $12.00
+                },
                 "quantity": 1,
             }
         ],
         mode="payment",
-        success_url=request.build_absolute_uri("/billing/success/"),
-        cancel_url=request.build_absolute_uri("/billing/cancel/"),
+        success_url="http://localhost:8000/billing/success/",
+        cancel_url="http://localhost:8000/billing/cancel/",
         metadata={
-            "user_id": request.user.id  # 👈 So you can identify the user in the webhook
+            "user_id": request.user.id  # 👈 Include user ID for webhook linking
         },
     )
-
     return redirect(session.url, code=303)
 
 
