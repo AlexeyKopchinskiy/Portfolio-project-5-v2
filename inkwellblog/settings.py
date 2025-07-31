@@ -129,9 +129,8 @@ WSGI_APPLICATION = "inkwellblog.wsgi.application"
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
-        ssl_require=False,  # Avoid issues locally
+        ssl_require=True,  # Set to True for remote DBs over HTTPS
     )
 }
 
