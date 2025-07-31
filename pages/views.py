@@ -10,7 +10,7 @@ from blog.models import Post
 def home(request):
     """Render the home page."""
     # return render(request, "pages/home.html")
-    latest_posts = Post.objects.order_by("-created")[
+    latest_posts = Post.objects.order_by("-created_on")[
         :3
     ]  # adjust count as needed
     return render(request, "pages/home.html", {"latest_posts": latest_posts})
