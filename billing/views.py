@@ -44,9 +44,6 @@ def payment_cancel(request):
     return render(request, "billing/cancel.html")
 
 
-from django.contrib.auth.models import User, Group
-
-
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
@@ -65,10 +62,12 @@ def stripe_webhook(request):
 
         try:
             user = User.objects.get(id=user_id)
-            paid_group = Group.objects.get(name="Paid")
-            user.groups.add(paid_group)
-        except (User.DoesNotExist, Group.DoesNotExist) as e:
-            # You can log this error or create the group dynamically if needed
-            pass
+            author_group = Group.objects.get(
+                name="Author"
+            )  # ✅ your existing group
+            user.groups.add(author_group)
+            logger.info(f"User {user.username} added to Author group.")
+        except (User.DoesNotExist, Group.DoesNotExist):
+            logger.warning("Could not find user or group to apply upgrade.")
 
     return HttpResponse(status=200)
