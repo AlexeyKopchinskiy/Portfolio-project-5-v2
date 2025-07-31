@@ -15,7 +15,7 @@ class Post(models.Model):
     featured_image = models.ImageField(
         upload_to="blog_images/", blank=True, null=True
     )
-    created = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
 
