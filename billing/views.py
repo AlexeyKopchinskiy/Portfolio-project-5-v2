@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 from accounts.models import Profile
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -54,7 +55,27 @@ def create_checkout_session(request):
         return redirect("billing:error")  # Or show a friendly error page
 
 
+@login_required
 def payment_success(request):
+    user = request.user
+    author_group, _ = Group.objects.get_or_create(name="Author")
+    reader_group = Group.objects.get(name="Reader")
+
+    if not user.has_paid_author:
+        user.has_paid_author = True
+        user.save()
+
+        if user.groups.filter(name="Reader").exists():
+            user.groups.remove(reader_group)
+            user.groups.add(author_group)
+            logger.info(
+                f"User {user.username} promoted to Author via success view."
+            )
+        else:
+            logger.info(
+                f"User {user.username} already upgraded or not in Reader group."
+            )
+
     return render(request, "billing/success.html")
 
 
