@@ -36,10 +36,15 @@ def create_checkout_session(request):
                 }
             ],
             mode="payment",
-            success_url="http://localhost:8000/billing/success/",
+            success_url="http://localhost:8000/billing/success/?session_id={CHECKOUT_SESSION_ID}",
             cancel_url="http://localhost:8000/billing/cancel/",
+            client_reference_id=str(
+                request.user.id
+            ),  # ✅ Stripe will send this in webhook
             metadata={
-                "user_id": str(request.user.id)  # 👈 Make sure it's a string
+                "user_id": str(
+                    request.user.id
+                )  # Optional, but useful for debugging
             },
         )
         return redirect(session.url, code=303)
