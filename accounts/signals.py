@@ -27,20 +27,15 @@ def assign_reviewer_permissions(sender, instance, action, pk_set, **kwargs):
             instance.user_permissions.add(change_perm, view_perm)
 
 
-from django.contrib.auth.signals import user_logged_in
+@receiver(user_logged_in)
+def promote_reader_to_author(sender, request, user, **kwargs):
+    try:
+        profile = user.profile  # Access the related Profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
 
-
-# @receiver(user_logged_in)
-# def promote_reader_to_author(sender, request, user, **kwargs):
-#     reader_group = Group.objects.get(name="Reader")
-#     author_group, _ = Group.objects.get_or_create(name="Author")
-
-#     # If user is in Reader group, promote to Author
-#     if user.groups.filter(name="Reader").exists():
-#         user.groups.remove(reader_group)
-#         user.groups.add(author_group)
-#         print(f"User {user.username} promoted from Reader to Author.")
-#     else:
-#         print(
-#             f"User {user.username} is already an Author or not in Reader group."
-#         )
+    if profile.has_paid_author and user.groups.filter(name="Reader").exists():
+        reader_group = Group.objects.get(name="Reader")
+        author_group, _ = Group.objects.get_or_create(name="Author")
+        user.groups.remove(reader_group)
+        user.groups.add(author_group)
