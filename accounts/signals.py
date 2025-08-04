@@ -5,6 +5,8 @@ from django.dispatch import receiver
 from django.conf import settings
 from blog.models import Post
 from django.contrib.auth import get_user_model
+from django.contrib.auth.signals import user_logged_in
+
 
 User = get_user_model()
 
@@ -29,8 +31,10 @@ from django.contrib.auth.signals import user_logged_in
 
 
 @receiver(user_logged_in)
-def upgrade_user_role_on_login(sender, request, user, **kwargs):
-    if user.role == "reader":
-        user.role = "editor"
-        user.save()
-        print(f"User {user.username} upgraded to editor after login.")
+def upgrade_user_group_on_login(sender, request, user, **kwargs):
+    editor_group, created = Group.objects.get_or_create(name="Editor")
+
+    # Only add if not already in the group
+    if not user.groups.filter(name="Editor").exists():
+        user.groups.add(editor_group)
+        print(f"User {user.username} added to Editor group after login.")
