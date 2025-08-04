@@ -11,6 +11,8 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True)
     newsletter_opt_in = models.BooleanField(default=False)
+    has_paid_author = models.BooleanField(default=False)
+    has_paid_reviewer = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
