@@ -64,27 +64,31 @@ def payment_cancel(request):
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
-    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    sig_header = request.headers.get("Stripe-Signature")
+    event = None
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+            payload, sig_header, STRIPE_WEBHOOK_SECRET
         )
     except (ValueError, stripe.error.SignatureVerificationError):
         return HttpResponse(status=400)
 
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-        user_id = session["metadata"]["user_id"]
+        user_id = session.get("client_reference_id")
 
-        try:
-            user = User.objects.get(id=user_id)
-            author_group = Group.objects.get(
-                name="Author"
-            )  # ✅ your existing group
-            user.groups.add(author_group)
-            logger.info(f"User {user.username} added to Author group.")
-        except (User.DoesNotExist, Group.DoesNotExist):
-            logger.warning("Could not find user or group to apply upgrade.")
+        if user_id:
+            try:
+                user = User.objects.get(id=user_id)
+                author_group = Group.objects.get(name="author")
+                user.groups.add(author_group)
+                logger.info(f"Upgraded user {user.username} to author.")
+            except User.DoesNotExist:
+                logger.warning(f"User with ID {user_id} not found.")
+            except Group.DoesNotExist:
+                logger.error("Author group does not exist.")
+        else:
+            logger.warning("No client_reference_id found in session.")
 
     return HttpResponse(status=200)
