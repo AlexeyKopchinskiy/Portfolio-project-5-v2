@@ -15,13 +15,6 @@ from django.contrib.auth.decorators import login_required
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-import stripe
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
 @login_required
 def create_checkout_session(request):
     try:
@@ -55,15 +48,24 @@ def create_checkout_session(request):
         return redirect("billing:error")  # Or show a friendly error page
 
 
+logger = logging.getLogger(__name__)
+
+
 @login_required
 def payment_success(request):
     user = request.user
     author_group, _ = Group.objects.get_or_create(name="Author")
     reader_group = Group.objects.get(name="Reader")
 
-    if not user.has_paid_author:
-        user.has_paid_author = True
-        user.save()
+    # Ensure the user has a profile
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
+
+    if not profile.has_paid_author:
+        profile.has_paid_author = True
+        profile.save()
 
         if user.groups.filter(name="Reader").exists():
             user.groups.remove(reader_group)
@@ -83,49 +85,49 @@ def payment_cancel(request):
     return render(request, "billing/cancel.html")
 
 
-logger = logging.getLogger(__name__)
-stripe.api_key = settings.STRIPE_SECRET_KEY
+# logger = logging.getLogger(__name__)
+# stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-@csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.headers.get("Stripe-Signature")
-    event = None
+# @csrf_exempt
+# def stripe_webhook(request):
+#     payload = request.body
+#     sig_header = request.headers.get("Stripe-Signature")
+#     event = None
 
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, STRIPE_WEBHOOK_SECRET
-        )
-    except (ValueError, stripe.error.SignatureVerificationError) as e:
-        logger.error(f"Webhook signature verification failed: {str(e)}")
-        return HttpResponse(status=400)
+#     try:
+#         event = stripe.Webhook.construct_event(
+#             payload, sig_header, STRIPE_WEBHOOK_SECRET
+#         )
+#     except (ValueError, stripe.error.SignatureVerificationError) as e:
+#         logger.error(f"Webhook signature verification failed: {str(e)}")
+#         return HttpResponse(status=400)
 
-    if event["type"] == "checkout.session.completed":
-        session = event["data"]["object"]
-        user_id = session.get("client_reference_id")
+#     if event["type"] == "checkout.session.completed":
+#         session = event["data"]["object"]
+#         user_id = session.get("client_reference_id")
 
-        if user_id:
-            try:
-                user = User.objects.get(id=user_id)
-                reader_group = Group.objects.get(name="Reader")
-                author_group, _ = Group.objects.get_or_create(name="Author")
+#         if user_id:
+#             try:
+#                 user = User.objects.get(id=user_id)
+#                 reader_group = Group.objects.get(name="Reader")
+#                 author_group, _ = Group.objects.get_or_create(name="Author")
 
-                if user.groups.filter(name="Reader").exists():
-                    user.groups.remove(reader_group)
-                    user.groups.add(author_group)
-                    logger.info(
-                        f"User {user.username} promoted from Reader to Author via Stripe."
-                    )
-                else:
-                    logger.info(
-                        f"User {user.username} is not in Reader group; no promotion applied."
-                    )
-            except User.DoesNotExist:
-                logger.warning(f"User with ID {user_id} not found.")
-            except Group.DoesNotExist as e:
-                logger.error(f"Group lookup failed: {str(e)}")
-        else:
-            logger.warning("No client_reference_id found in session.")
+#                 if user.groups.filter(name="Reader").exists():
+#                     user.groups.remove(reader_group)
+#                     user.groups.add(author_group)
+#                     logger.info(
+#                         f"User {user.username} promoted from Reader to Author via Stripe."
+#                     )
+#                 else:
+#                     logger.info(
+#                         f"User {user.username} is not in Reader group; no promotion applied."
+#                     )
+#             except User.DoesNotExist:
+#                 logger.warning(f"User with ID {user_id} not found.")
+#             except Group.DoesNotExist as e:
+#                 logger.error(f"Group lookup failed: {str(e)}")
+#         else:
+#             logger.warning("No client_reference_id found in session.")
 
-    return HttpResponse(status=200)
+#     return HttpResponse(status=200)
