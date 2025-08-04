@@ -30,17 +30,17 @@ def assign_reviewer_permissions(sender, instance, action, pk_set, **kwargs):
 from django.contrib.auth.signals import user_logged_in
 
 
-@receiver(user_logged_in)
-def promote_reader_to_author(sender, request, user, **kwargs):
-    reader_group = Group.objects.get(name="Reader")
-    author_group, _ = Group.objects.get_or_create(name="Author")
+# @receiver(user_logged_in)
+# def promote_reader_to_author(sender, request, user, **kwargs):
+#     reader_group = Group.objects.get(name="Reader")
+#     author_group, _ = Group.objects.get_or_create(name="Author")
 
-    # If user is in Reader group, promote to Author
-    if user.groups.filter(name="Reader").exists():
-        user.groups.remove(reader_group)
-        user.groups.add(author_group)
-        print(f"User {user.username} promoted from Reader to Author.")
-    else:
-        print(
-            f"User {user.username} is already an Author or not in Reader group."
-        )
+#     # If user is in Reader group, promote to Author
+#     if user.groups.filter(name="Reader").exists():
+#         user.groups.remove(reader_group)
+#         user.groups.add(author_group)
+#         print(f"User {user.username} promoted from Reader to Author.")
+#     else:
+#         print(
+#             f"User {user.username} is already an Author or not in Reader group."
+#         )
