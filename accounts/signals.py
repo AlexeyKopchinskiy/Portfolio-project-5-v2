@@ -31,10 +31,16 @@ from django.contrib.auth.signals import user_logged_in
 
 
 @receiver(user_logged_in)
-def upgrade_user_group_on_login(sender, request, user, **kwargs):
-    editor_group, created = Group.objects.get_or_create(name="Editor")
+def promote_reader_to_author(sender, request, user, **kwargs):
+    reader_group = Group.objects.get(name="Reader")
+    author_group, _ = Group.objects.get_or_create(name="Author")
 
-    # Only add if not already in the group
-    if not user.groups.filter(name="Editor").exists():
-        user.groups.add(editor_group)
-        print(f"User {user.username} added to Editor group after login.")
+    # If user is in Reader group, promote to Author
+    if user.groups.filter(name="Reader").exists():
+        user.groups.remove(reader_group)
+        user.groups.add(author_group)
+        print(f"User {user.username} promoted from Reader to Author.")
+    else:
+        print(
+            f"User {user.username} is already an Author or not in Reader group."
+        )
