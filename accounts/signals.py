@@ -23,3 +23,14 @@ def assign_reviewer_permissions(sender, instance, action, pk_set, **kwargs):
             )
 
             instance.user_permissions.add(change_perm, view_perm)
+
+
+from django.contrib.auth.signals import user_logged_in
+
+
+@receiver(user_logged_in)
+def upgrade_user_role_on_login(sender, request, user, **kwargs):
+    if user.role == "reader":
+        user.role = "editor"
+        user.save()
+        print(f"User {user.username} upgraded to editor after login.")
