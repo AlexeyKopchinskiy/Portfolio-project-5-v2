@@ -6,6 +6,9 @@ from django.conf import settings
 from blog.models import Post
 from django.contrib.auth import get_user_model
 from django.contrib.auth.signals import user_logged_in
+from allauth.account.signals import user_signed_up
+
+from .models import Profile
 
 
 User = get_user_model()
@@ -27,7 +30,8 @@ def assign_reviewer_permissions(sender, instance, action, pk_set, **kwargs):
             instance.user_permissions.add(change_perm, view_perm)
 
 
-@receiver(user_logged_in)
+# @receiver(user_logged_in)
+@receiver(user_signed_up)
 def promote_reader_to_author(sender, request, user, **kwargs):
     try:
         profile = user.profile  # Access the related Profile
