@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from blog.models import Post
 from newsletter.models import Newsletter
+from .forms import SignUpForm
 
 
 # Create your views here.
@@ -36,7 +37,6 @@ def logout_view(request):
     return redirect("home")  # Or wherever you want to go after logout
 
 
-# Register a new user and assign them to a default group
 def register_view(request):
     if request.user.is_authenticated:
         return redirect("dashboard")
@@ -44,31 +44,40 @@ def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
         email = request.POST.get("email", "").strip()
-        password = request.POST["password"]
-        confirm = request.POST["confirm_password"]
+        password = request.POST.get("password", "")
+        confirm = request.POST.get("confirm_password", "")
+
+        # Guard against blank form data
+        if not username or not email or not password or not confirm:
+            messages.error(request, "Please fill in all required fields.")
+            return render(
+                request, "account/signup.html", {"form_data": request.POST}
+            )
+
+        # Check if username is already taken
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken.")
+            return render(
+                request, "account/signup.html", {"form_data": request.POST}
+            )
 
         # Validate email format
         if User.objects.filter(email=email).exists():
             messages.error(
                 request, "An account with this email already exists."
             )
-            return render(request, "account/signup.html")
+            return render(
+                request, "account/signup.html", {"form_data": request.POST}
+            )
 
         # Validate password confirmation
         if password != confirm:
             messages.error(request, "Passwords do not match.")
-            return render(request, "account/signup.html")
+            return render(
+                request, "account/signup.html", {"form_data": request.POST}
+            )
 
-        # Check if username is already taken
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already taken.")
-            return render(request, "account/signup.html")
-
-        # guard against blank form data
-        if not username or not email or not password or not confirm:
-            messages.error(request, "Please fill in all required fields.")
-            return render(request, "account/signup.html")
-
+        # Create the user
         user = User.objects.create_user(
             username=username, email=email, password=password
         )
@@ -76,19 +85,16 @@ def register_view(request):
         # 🔒 Assign default group
         try:
             default_group = Group.objects.get(name="Reader")
+            user.groups.add(default_group)
         except Group.DoesNotExist:
             messages.warning(
                 request,
                 "Reader group is missing. Please contact support or an admin to fix this.",
             )
-            return redirect("home")  # or a fallback page
-        else:
-            user.groups.add(default_group)
+            return redirect("home")
 
         login(request, user)
-        return redirect(
-            "dashboard"
-        )  # Will route to the correct page via dashboard_redirect
+        return redirect("dashboard")
 
     return render(request, "account/signup.html")
 
