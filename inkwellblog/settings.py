@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "inkwell-blog-8edefa7bcffe.herokuapp.com",
-    "c1f9b31a27ff.ngrok-free.app",
 ]
 
 
@@ -94,8 +93,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
-
-CSRF_TRUSTED_ORIGINS = ["https://c1f9b31a27ff.ngrok-free.app"]
 
 ROOT_URLCONF = "inkwellblog.urls"
 
