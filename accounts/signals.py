@@ -7,7 +7,6 @@ from blog.models import Post
 from django.contrib.auth import get_user_model
 from django.contrib.auth.signals import user_logged_in
 from allauth.account.signals import user_signed_up
-
 from .models import Profile
 
 
@@ -28,6 +27,15 @@ def assign_reviewer_permissions(sender, instance, action, pk_set, **kwargs):
             )
 
             instance.user_permissions.add(change_perm, view_perm)
+
+
+@receiver(user_signed_up)
+def assign_reader_group(sender, request, user, **kwargs):
+    reader_group, _ = Group.objects.get_or_create(name="Reader")
+    user.groups.add(reader_group)
+
+    # Ensure profile exists
+    Profile.objects.get_or_create(user=user)
 
 
 # @receiver(user_logged_in)
