@@ -7,3 +7,4 @@ Disallow: /blog/create/
 Disallow: /blog/review/
 Allow: /blog/
 Allow: /
+Sitemap: https://inkwell-blog-8edefa7bcffe.herokuapp.com/sitemap.xml
