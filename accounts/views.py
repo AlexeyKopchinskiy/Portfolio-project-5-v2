@@ -105,17 +105,30 @@ def dashboard_reader(request):
     return render(request, "accounts/dashboard_reader.html")
 
 
+from blog.models import Post  # import from blog app
+
+
 @login_required
 def dashboard_author(request):
     user = request.user
+
     drafts = Newsletter.objects.filter(sent=False).order_by("-created_at")[:5]
     published = Newsletter.objects.filter(sent=True).order_by(
         "-scheduled_send"
     )[:5]
 
+    # recent_posts = Post.objects.filter(author=user).order_by("-created_at")[:5]
+    recent_posts = Post.objects.filter(author__id=request.user.id).order_by(
+        "-created_on"
+    )[:5]
+    # recent_posts = Post.objects.filter(
+    #     author__username=request.user.username
+    # ).order_by("-created_on")[:5]
+
     context = {
         "drafts": drafts,
         "published": published,
+        "recent_posts": recent_posts,
     }
 
     return render(request, "accounts/dashboard_author.html", context)

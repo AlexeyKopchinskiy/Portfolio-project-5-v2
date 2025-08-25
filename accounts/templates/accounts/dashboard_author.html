@@ -23,7 +23,7 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
           <ul class="list-unstyled mb-0">
             {% for post in recent_posts %}
               <li>
-                <a href="{% url 'post_detail' post.id %}" class="text-decoration-none fw-bold">{{ post.title }}</a><br>
+                <a href="{% url 'edit_post' post.id %}" class="text-decoration-none fw-bold">{{ post.title }}</a><br>
                 <small class="text-muted">Last updated on {{ post.updated_at|date:"F j, Y" }}</small>
               </li>
             {% empty %}
