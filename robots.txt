@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /dashboard/
+Disallow: /blog/edit/
+Disallow: /blog/create/
+Disallow: /blog/review/
+Allow: /blog/
+Allow: /
