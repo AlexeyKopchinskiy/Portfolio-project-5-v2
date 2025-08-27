@@ -15,7 +15,7 @@ def post_list(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    comments = post.comments.order_by("-created_on")
+    comments = post.comments.order_by("-created_at")
     form = CommentForm()
 
     if request.method == "POST":
@@ -136,7 +136,7 @@ def dashboard(request):
 @login_required
 def my_comments(request):
     user_comments = Comment.objects.filter(author=request.user).order_by(
-        "-created_on"
+        "-created_at"
     )
     return render(
         request, "blog/my_comments.html", {"comments": user_comments}

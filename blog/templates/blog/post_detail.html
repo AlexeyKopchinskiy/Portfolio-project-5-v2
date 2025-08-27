@@ -4,7 +4,7 @@
 
   <!-- Blog Post Content -->
   <h1>{{ post.title }}</h1>
-  <p class="text-muted">Published on {{ post.created_at|date:"F j, Y" }}{% if post.author %} by {{ post.author.username }}{% endif %}</p>
+  <p class="text-muted">Published on {{ post.created_on|date:"F j, Y" }}{% if post.author %} by {{ post.author.username }}{% endif %}</p>
   <hr>
   <div class="mb-5">
     {{ post.content|safe }}
