@@ -4,6 +4,9 @@
 
   <!-- Blog Post Content -->
   <h1>{{ post.title }}</h1>
+  {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" style="max-width:100%; height:auto;">
+  {% endif %}
   <p class="text-muted">Published on {{ post.created_on|date:"F j, Y" }}{% if post.author %} by {{ post.author.username }}{% endif %}</p>
   <hr>
   <div class="mb-5">
