@@ -15,10 +15,13 @@
             </h6>
             <p class="card-text">{{ comment.content|safe }}</p>
           </div>
-          <div class="card-footer bg-transparent border-top-0">
+          <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center">
             <small class="text-muted">
               Posted on {{ comment.created_at|date:"F j, Y, g:i a" }}
             </small>
+            <a href="{% url 'edit_comment' pk=comment.pk %}" class="btn btn-sm btn-outline-primary">
+              Edit
+            </a>
           </div>
         </div>
       </div>
