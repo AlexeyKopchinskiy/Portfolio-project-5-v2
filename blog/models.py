@@ -9,7 +9,8 @@ from django_summernote.fields import SummernoteTextField
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
     content = SummernoteTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     featured_image = models.ImageField(
