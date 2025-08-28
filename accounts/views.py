@@ -7,7 +7,7 @@ from .forms import AccountSettingsForm, ProfileForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from blog.models import Post
+from blog.models import Post, Comment
 from newsletter.models import Newsletter
 from .forms import SignUpForm
 
@@ -121,14 +121,15 @@ def dashboard_author(request):
     recent_posts = Post.objects.filter(author__id=request.user.id).order_by(
         "-created_on"
     )[:5]
-    # recent_posts = Post.objects.filter(
-    #     author__username=request.user.username
-    # ).order_by("-created_on")[:5]
+    recent_comments = Comment.objects.filter(author=request.user).order_by(
+        "-created_at"
+    )[:5]
 
     context = {
         "drafts": drafts,
         "published": published,
         "recent_posts": recent_posts,
+        "recent_comments": recent_comments,
     }
 
     return render(request, "accounts/dashboard_author.html", context)
