@@ -141,3 +141,22 @@ def my_comments(request):
     return render(
         request, "blog/my_comments.html", {"comments": user_comments}
     )
+
+
+@login_required
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk, author=request.user)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect("my_comments")  # or wherever you list comments
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(
+        request,
+        "blog/edit_my_comments.html",
+        {"form": form, "comment": comment},
+    )
