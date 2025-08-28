@@ -83,6 +83,14 @@ def edit_post(request, post_id):
 
 
 @login_required
+def delete_post(request, id):
+    post = get_object_or_404(Post, id=id, author=request.user)
+    if request.method == "POST":
+        post.delete()
+        return redirect("my_posts")
+
+
+@login_required
 def edit_user_post(request, post_id):
     """
     View for reviewers to edit any user's blog post.
