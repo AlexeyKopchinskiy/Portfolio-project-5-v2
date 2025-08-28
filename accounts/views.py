@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import AccountSettingsForm, ProfileForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
@@ -13,6 +13,41 @@ from .forms import SignUpForm
 
 
 # Create your views here.
+# admin views
+def is_admin(user):
+    return user.is_staff
+
+
+@user_passes_test(is_admin)
+def dashboard_admin(request):
+    return render(request, "accounts/dashboard_admin.html")
+
+
+@user_passes_test(is_admin)
+def admin_update_users(request):
+    users = User.objects.all()
+    return render(
+        request, "accounts/admin_update_users.html", {"users": users}
+    )
+
+
+@user_passes_test(is_admin)
+def admin_delete_users(request):
+    users = User.objects.all()
+    return render(
+        request, "accounts/admin_delete_users.html", {"users": users}
+    )
+
+
+@user_passes_test(is_admin)
+def admin_change_user_type(request):
+    users = User.objects.all()
+    return render(
+        request, "accounts/admin_change_user_type.html", {"users": users}
+    )
+
+
+# end of admin views
 
 
 @login_required

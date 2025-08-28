@@ -1,0 +1,29 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}📝 Update Users{% endblock %}
+{% block dashboard_description %}Modify user details like name, email, or profile settings.{% endblock %}
+
+{% block dashboard_content %}
+<div class="container mt-4">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="userSelect" class="form-label">Select User</label>
+      <select class="form-select" id="userSelect" name="user_id">
+        {% for user in users %}
+          <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="emailUpdate" class="form-label">New Email</label>
+      <input type="email" class="form-control" id="emailUpdate" name="new_email">
+    </div>
+    <div class="mb-3">
+      <label for="nameUpdate" class="form-label">New Name</label>
+      <input type="text" class="form-control" id="nameUpdate" name="new_name">
+    </div>
+    <button type="submit" class="btn btn-primary">Update User</button>
+  </form>
+</div>
+{% endblock %}

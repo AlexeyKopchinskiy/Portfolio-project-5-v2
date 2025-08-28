@@ -1,14 +1,60 @@
 {% extends 'accounts/dashboard_base.html' %}
 
-{% block dashboard_title %}Welcome, Administrator {{ user.username }}{% endblock %}
+{% block dashboard_title %}
+  Welcome, Administrator {{ user.username }}
+{% endblock %}
+
 {% block dashboard_description %}
-Oversee the kingdom: manage users, monitor posts, and keep the system humming.
+  Oversee the kingdom: manage users, monitor posts, and keep the system humming.
 {% endblock %}
 
 {% block dashboard_content %}
-  <ul class="list-group">
-    <li class="list-group-item"><a href="{% url 'admin:index' %}">⚙️ Admin Site</a></li>
-    <li class="list-group-item">📊 Site analytics (coming soon)</li>
-    <li class="list-group-item">🧑‍💼 User management (future link)</li>
-  </ul>
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+
+    <!-- Admin Site Access -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-dark text-white">
+          ⚙️ Admin Site
+        </div>
+        <div class="card-body">
+          <p>Access Django’s built-in admin interface for advanced control.</p>
+          <a href="{% url 'admin:index' %}" class="btn btn-outline-light btn-sm">Open Admin Site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Placeholder -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-warning text-dark">
+          📊 Site Analytics
+        </div>
+        <div class="card-body">
+          <p>Coming soon: traffic stats, user engagement, and performance insights.</p>
+          <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          🧑‍💼 User Management
+        </div>
+        <div class="card-body">
+          <p>Manage registered users, update roles, and keep the community healthy.</p>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'admin_update_users' %}" class="btn btn-sm btn-outline-primary mb-2">📝 Update Users</a></li>
+            <li><a href="{% url 'admin_delete_users' %}" class="btn btn-sm btn-outline-danger mb-2">🗑️ Delete Users</a></li>
+            <li><a href="{% url 'admin_change_user_type' %}" class="btn btn-sm btn-outline-info">🔄 Change User Type</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}

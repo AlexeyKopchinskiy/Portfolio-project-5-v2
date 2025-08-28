@@ -19,6 +19,21 @@ urlpatterns = [
         name="dashboard_reviewer",
     ),
     path("dashboard/admin/", views.dashboard_admin, name="dashboard_admin"),
+    path(
+        "dashboard/admin/update-users/",
+        views.admin_update_users,
+        name="admin_update_users",
+    ),
+    path(
+        "dashboard/admin/delete-users/",
+        views.admin_delete_users,
+        name="admin_delete_users",
+    ),
+    path(
+        "dashboard/admin/change-user-type/",
+        views.admin_change_user_type,
+        name="admin_change_user_type",
+    ),
     # Register a new user
     path("register/", views.register_view, name="register"),
     # Account settings
