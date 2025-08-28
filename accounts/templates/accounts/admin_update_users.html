@@ -1,29 +1,89 @@
 {% extends 'accounts/dashboard_base.html' %}
 
 {% block dashboard_title %}📝 Update Users{% endblock %}
-{% block dashboard_description %}Modify user details like name, email, or profile settings.{% endblock %}
+{% block dashboard_description %}Edit user details and toggle account status.{% endblock %}
 
 {% block dashboard_content %}
 <div class="container mt-4">
-  <form method="post">
+  <!-- Alert Box -->
+  <div id="warningAlert" class="alert alert-danger d-none" role="alert">
+    ⚠️ All fields are required. Please complete the form before saving.
+  </div>
+
+  <form method="post" id="updateUserForm" novalidate>
     {% csrf_token %}
+
+    <!-- User Selection -->
     <div class="mb-3">
       <label for="userSelect" class="form-label">Select User</label>
-      <select class="form-select" id="userSelect" name="user_id">
+      <select class="form-select form-select-sm" id="userSelect" name="user_id" required>
+        <option value="" disabled selected>Choose a user...</option>
         {% for user in users %}
           <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
         {% endfor %}
       </select>
     </div>
-    <div class="mb-3">
-      <label for="emailUpdate" class="form-label">New Email</label>
-      <input type="email" class="form-control" id="emailUpdate" name="new_email">
+
+    <!-- First & Last Name -->
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" class="form-control form-control-sm" id="firstName" name="first_name" required>
+      </div>
+      <div class="col-md-6">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control form-control-sm" id="lastName" name="last_name" required>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="nameUpdate" class="form-label">New Name</label>
-      <input type="text" class="form-control" id="nameUpdate" name="new_name">
+
+    <!-- Email -->
+    <div class="mb-2">
+      <label for="emailUpdate" class="form-label">Email</label>
+      <input type="email" class="form-control form-control-sm" id="emailUpdate" name="email" required>
     </div>
-    <button type="submit" class="btn btn-primary">Update User</button>
+
+    <!-- Status Toggles -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="isActive" class="form-label">Active Status</label>
+        <select class="form-select form-select-sm" id="isActive" name="is_active" required>
+          <option value="" disabled selected>Select status...</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="isStaff" class="form-label">Staff Status</label>
+        <select class="form-select form-select-sm" id="isStaff" name="is_staff" required>
+          <option value="" disabled selected>Select status...</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'dashboard_admin' %}" class="btn btn-secondary btn-sm">❌ Cancel</a>
+      <button type="submit" class="btn btn-primary btn-sm">💾 Save Changes</button>
+    </div>
   </form>
 </div>
+
+<!-- JavaScript for Validation -->
+<script>
+  document.getElementById('updateUserForm').addEventListener('submit', function (e) {
+    const form = e.target;
+    const alertBox = document.getElementById('warningAlert');
+
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      alertBox.classList.remove('d-none');
+      form.classList.add('was-validated');
+    } else {
+      alertBox.classList.add('d-none');
+      form.classList.remove('was-validated');
+    }
+  });
+</script>
 {% endblock %}
