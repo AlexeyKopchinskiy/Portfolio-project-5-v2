@@ -19,8 +19,40 @@ def is_admin(user):
 
 
 @user_passes_test(is_admin)
-def dashboard_admin(request):
-    return render(request, "accounts/dashboard_admin.html")
+def admin_update_users(request):
+    users = User.objects.all()
+
+    if request.method == "POST":
+        user_id = request.POST.get("user_id")
+        if not user_id:
+            messages.error(request, "⚠️ Please select a user to update.")
+            return redirect("admin_update_users")
+
+        user = get_object_or_404(User, pk=user_id)
+
+        # Extract and validate form data
+        first_name = request.POST.get("first_name", "").strip()
+        last_name = request.POST.get("last_name", "").strip()
+        email = request.POST.get("email", "").strip()
+        is_active = request.POST.get("is_active") == "true"
+        is_staff = request.POST.get("is_staff") == "true"
+
+        # Update user fields
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.is_active = is_active
+        user.is_staff = is_staff
+        user.save()
+
+        messages.success(
+            request, f"✅ User '{user.username}' updated successfully."
+        )
+        return redirect("dashboard_admin")
+
+    return render(
+        request, "accounts/admin_update_users.html", {"users": users}
+    )
 
 
 @user_passes_test(is_admin)

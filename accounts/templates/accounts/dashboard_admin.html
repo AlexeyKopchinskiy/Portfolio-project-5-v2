@@ -1,5 +1,14 @@
 {% extends 'accounts/dashboard_base.html' %}
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+
 {% block dashboard_title %}
   Welcome, Administrator {{ user.username }}
 {% endblock %}
