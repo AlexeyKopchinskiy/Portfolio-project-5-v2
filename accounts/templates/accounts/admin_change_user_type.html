@@ -1,0 +1,28 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}🔄 Change User Type{% endblock %}
+{% block dashboard_description %}Promote users to admin or revert them to regular status.{% endblock %}
+
+{% block dashboard_content %}
+<div class="container mt-4">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="userTypeSelect" class="form-label">Select User</label>
+      <select class="form-select" id="userTypeSelect" name="user_id">
+        {% for user in users %}
+          <option value="{{ user.id }}">{{ user.username }} ({{ user.user_type }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="newType" class="form-label">New Role</label>
+      <select class="form-select" id="newType" name="new_type">
+        <option value="admin">Administrator</option>
+        <option value="regular">Regular User</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-info">Change Role</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'accounts/dashboard_base.html' %}
+
+{% block dashboard_title %}🗑️ Delete Users{% endblock %}
+{% block dashboard_description %}Permanently remove users from the system.{% endblock %}
+
+{% block dashboard_content %}
+<div class="container mt-4">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="userDeleteSelect" class="form-label">Select User to Delete</label>
+      <select class="form-select" id="userDeleteSelect" name="user_id">
+        {% for user in users %}
+          <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="alert alert-danger">
+      ⚠️ This action is irreversible. Proceed with caution.
+    </div>
+    <button type="submit" class="btn btn-danger">Delete User</button>
+  </form>
+</div>
+{% endblock %}
