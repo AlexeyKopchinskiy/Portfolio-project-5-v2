@@ -7,9 +7,13 @@
       {% for post in posts %}
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <span>{{ post.title }}</span>
-        <div>
-          <small class="text-muted">{{ post.created|date:"M d, Y" }}</small>
-          <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-outline-primary ms-2">Edit</a>
+        <div class="d-flex align-items-center">
+          <small class="text-muted me-2">{{ post.created|date:"M d, Y" }}</small>
+          <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+          <form action="{% url 'delete_post' post.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
+          </form>
         </div>
       </li>
       {% endfor %}
