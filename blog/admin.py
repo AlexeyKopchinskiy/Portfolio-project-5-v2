@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 # Register your models here.
 
@@ -11,3 +11,10 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ("title", "content")
     list_filter = ("is_published", "created_on")
     ordering = ("-created_on",)
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("author", "post", "created_at", "content")
+    search_fields = ("author__username", "content")
+    list_filter = ("created_at", "post")
