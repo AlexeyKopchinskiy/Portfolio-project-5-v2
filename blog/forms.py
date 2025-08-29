@@ -6,7 +6,13 @@ from .models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "content", "featured_image", "is_published"]
+        fields = [
+            "title",
+            "content",
+            "featured_image",
+            "is_published",
+            "reviewer_notes",
+        ]
         widgets = {
             "title": forms.TextInput(
                 attrs={
