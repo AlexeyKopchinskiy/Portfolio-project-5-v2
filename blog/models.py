@@ -21,6 +21,20 @@ class Post(models.Model):
     is_published = models.BooleanField(default=False)
     reviewer_notes = models.TextField(blank=True, null=True)
 
+    REVIEW_STATUS_CHOICES = [
+        ("reviewed", "✅ Reviewed"),
+        ("needs_changes", "⚠️ Needs Changes"),
+        ("draft", "🕗 Draft"),
+    ]
+
+    review_status = models.CharField(
+        max_length=20,
+        choices=REVIEW_STATUS_CHOICES,
+        default="draft",
+        blank=False,
+        null=False,
+    )
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)

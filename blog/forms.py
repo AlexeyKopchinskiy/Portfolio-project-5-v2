@@ -12,6 +12,7 @@ class PostForm(forms.ModelForm):
             "featured_image",
             "is_published",
             "reviewer_notes",
+            "review_status",
         ]
         widgets = {
             "title": forms.TextInput(
