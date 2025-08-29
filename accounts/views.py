@@ -299,11 +299,24 @@ class PasswordChangeDoneView(TemplateView):
     template_name = "accounts/password_change_done.html"
 
 
+# @login_required
+# def dashboard_reviewer(request):
+#     posts = Post.objects.all()
+
+#     return render(
+#         request,
+#         "accounts/dashboard_reviewer.html",
+#         {"posts": posts, "test_flag": "✅ Context works"},
+#     )
+
+
 @login_required
 def dashboard_reviewer(request):
-    posts = Post.objects.all()
+    unpublished_posts = Post.objects.filter(is_published=False)
     return render(
         request,
         "accounts/dashboard_reviewer.html",
-        {"posts": posts, "test_flag": "✅ Context works"},
+        {
+            "posts": unpublished_posts,
+        },
     )

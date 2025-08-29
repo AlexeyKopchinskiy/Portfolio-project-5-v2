@@ -8,7 +8,7 @@ Your eyes make this blog shine—review pending content and keep quality high.
 {% block dashboard_content %}
 
   <ul class="list-group">
-    <li class="list-group-item">🕓 Pending Submissions (placeholder)</li>
+    <li class="list-group-item">🕓 Pending Submissions: {{ posts|length }}</li>
     <li class="list-group-item">✅ Reviewed Articles (placeholder)</li>
     <li class="list-group-item">📌 Guidelines for Editors</li>
   </ul>
@@ -16,21 +16,32 @@ Your eyes make this blog shine—review pending content and keep quality high.
   <h2 class="h2 text-primary mt-5 mb-4">
     What’s on the Desk Today
   </h2>
-  {% for post in posts %}
-  <div class="card mb-3">
+
+  {% if posts %}
+    {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5>{{ post.title }}</h5>
+          <p>By {{ post.author }}</p>
+          <a href="{% url 'edit_user_post' post.id %}" class="btn btn-sm btn-outline-success">Review Post</a>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="card text-center mb-3">
+      <div class="card-body">
+        <h5 class="card-title">🎉 Everything is taken care of. No pending posts to review.</h5>
+      </div>
+    </div>
+    
+  {% endif %}
+
+  <div class="card text-center mb-3">
     <div class="card-body">
-      <h5>{{ post.title }}</h5>
-      <p>By {{ post.author }}</p>
-      <a href="{% url 'edit_user_post' post.id %}" class="btn btn-sm btn-outline-success">Review Post</a>
+      <h5 class="card-title">Newsletter Hub</h5>
+      <p class="card-text">Create, edit, and preview newsletters.</p>
+      <a href="{% url 'newsletter_dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
     </div>
   </div>
-{% endfor %}
 
-<div class="card text-center mb-3">
-  <div class="card-body">
-    <h5 class="card-title">Newsletter Hub</h5>
-    <p class="card-text">Create, edit, and preview newsletters.</p>
-    <a href="{% url 'newsletter_dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
-  </div>
-</div>
 {% endblock %}
