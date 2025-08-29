@@ -10,6 +10,9 @@ from django.views.generic import TemplateView
 from blog.models import Post, Comment
 from newsletter.models import Newsletter
 from .forms import SignUpForm
+from django.core.serializers.json import DjangoJSONEncoder
+from django.views.decorators.http import require_http_methods
+import json
 
 
 # Create your views here.
@@ -22,44 +25,51 @@ def is_admin(user):
 def admin_update_users(request):
     users = User.objects.all()
 
+    # Build user data dictionary
+    user_data = {
+        str(user.id): {
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+            "is_active": user.is_active,
+            "is_staff": user.is_staff,
+        }
+        for user in users
+    }
+
+    # Convert to JSON string
+    user_data_json = json.dumps(user_data, cls=DjangoJSONEncoder)
+
     if request.method == "POST":
         user_id = request.POST.get("user_id")
-        if not user_id:
-            messages.error(request, "⚠️ Please select a user to update.")
-            return redirect("admin_update_users")
-
-        user = get_object_or_404(User, pk=user_id)
-
-        # Extract and validate form data
-        first_name = request.POST.get("first_name", "").strip()
-        last_name = request.POST.get("last_name", "").strip()
-        email = request.POST.get("email", "").strip()
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
         is_active = request.POST.get("is_active") == "true"
         is_staff = request.POST.get("is_staff") == "true"
 
-        # Update user fields
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
-        user.is_active = is_active
-        user.is_staff = is_staff
-        user.save()
-
-        messages.success(
-            request, f"✅ User '{user.username}' updated successfully."
-        )
-        return redirect("dashboard_admin")
+        if not all([user_id, first_name, last_name, email]):
+            messages.error(request, "⚠️ All fields are required.")
+        else:
+            user = get_object_or_404(User, pk=user_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.is_active = is_active
+            user.is_staff = is_staff
+            user.save()
+            messages.success(
+                request, f"✅ User '{user.username}' updated successfully."
+            )
+            return redirect("admin_update_users")
 
     return render(
-        request, "accounts/admin_update_users.html", {"users": users}
-    )
-
-
-@user_passes_test(is_admin)
-def admin_update_users(request):
-    users = User.objects.all()
-    return render(
-        request, "accounts/admin_update_users.html", {"users": users}
+        request,
+        "accounts/admin_update_users.html",
+        {
+            "users": users,
+            "user_data_json": user_data_json,
+        },
     )
 
 

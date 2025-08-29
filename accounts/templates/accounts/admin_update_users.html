@@ -70,6 +70,11 @@
   </form>
 </div>
 
+<!-- ✅ Embed JSON safely -->
+<script id="userDataJson" type="application/json">
+  {{ user_data_json|safe }}
+</script>
+
 <!-- JavaScript for Validation -->
 <script>
   document.getElementById('updateUserForm').addEventListener('submit', function (e) {
@@ -84,6 +89,38 @@
       alertBox.classList.add('d-none');
       form.classList.remove('was-validated');
     }
+  });
+</script>
+
+<!-- ✅ JavaScript for dynamic population -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const rawJson = document.getElementById('userDataJson').textContent.trim();
+    let userData = {};
+
+    try {
+      userData = JSON.parse(rawJson);
+    } catch (error) {
+      console.error("❌ Failed to parse user data JSON:", error);
+      return;
+    }
+
+    const userSelect = document.getElementById('userSelect');
+    userSelect.addEventListener('change', function () {
+      const selectedId = this.value;
+      const data = userData[selectedId];
+
+      console.log("Selected ID:", selectedId);
+      console.log("User Data:", data);
+
+      if (data) {
+        document.getElementById('firstName').value = data.first_name || '';
+        document.getElementById('lastName').value = data.last_name || '';
+        document.getElementById('emailUpdate').value = data.email || '';
+        document.getElementById('isActive').value = data.is_active ? 'true' : 'false';
+        document.getElementById('isStaff').value = data.is_staff ? 'true' : 'false';
+      }
+    });
   });
 </script>
 {% endblock %}
