@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
@@ -118,6 +118,23 @@ def edit_user_post(request, post_id):
 
     return render(
         request, "blog/edit_user_post.html", {"form": form, "post": post}
+    )
+
+
+def is_reviewer(user):
+    return user.groups.filter(name="Reviewer").exists()
+
+
+@login_required
+@user_passes_test(is_reviewer)
+def review_user_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    form = ReviewerPostForm(request.POST or None, instance=post)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("reviewer_dashboard")
+    return render(
+        request, "review_user_post.html", {"form": form, "post": post}
     )
 
 
