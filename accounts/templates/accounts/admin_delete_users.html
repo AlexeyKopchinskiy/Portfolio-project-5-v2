@@ -5,6 +5,7 @@
 
 {% block dashboard_content %}
 <div class="container mt-4">
+  <h2 class="mb-4">Delete User Account</h2>
   <form method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -18,7 +19,12 @@
     <div class="alert alert-danger">
       ⚠️ This action is irreversible. Proceed with caution.
     </div>
-    <button type="submit" class="btn btn-danger">Delete User</button>
+
+    <!-- ✅ Button Row -->
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'dashboard_admin' %}" class="btn btn-secondary">❌ Cancel</a>
+      <button type="submit" class="btn btn-danger">🗑️ Delete User</button>
+    </div>
   </form>
 </div>
 {% endblock %}
