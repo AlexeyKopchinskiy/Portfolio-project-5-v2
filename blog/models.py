@@ -19,6 +19,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
+    reviewer_notes = models.TextField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
