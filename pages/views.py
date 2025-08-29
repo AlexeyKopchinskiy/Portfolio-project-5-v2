@@ -8,11 +8,10 @@ from blog.models import Post
 
 
 def home(request):
-    """Render the home page."""
-    # return render(request, "pages/home.html")
-    latest_posts = Post.objects.order_by("-created_on")[
-        :6
-    ]  # adjust count as needed
+    """Render the home page with only published posts."""
+    latest_posts = Post.objects.filter(is_published=True).order_by(
+        "-created_on"
+    )[:6]
     return render(request, "pages/home.html", {"latest_posts": latest_posts})
 
 
