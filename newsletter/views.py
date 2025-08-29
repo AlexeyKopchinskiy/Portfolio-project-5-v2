@@ -29,7 +29,7 @@ def thank_you(request):
 
 @login_required
 def newsletter_dashboard(request):
-    newsletters = Newsletter.objects.order_by("-created_on")[:5]
+    newsletters = Newsletter.objects.order_by("-created_at")[:5]
     return render(
         request, "newsletter/dashboard.html", {"newsletters": newsletters}
     )
