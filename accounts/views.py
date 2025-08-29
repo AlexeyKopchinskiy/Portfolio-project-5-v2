@@ -76,6 +76,22 @@ def admin_update_users(request):
 @user_passes_test(is_admin)
 def admin_delete_users(request):
     users = User.objects.all()
+
+    if request.method == "POST":
+        user_id = request.POST.get("user_id")
+        user = get_object_or_404(User, pk=user_id)
+
+        if user == request.user:
+            messages.error(request, "⚠️ You cannot delete your own account.")
+            return redirect("dashboard_admin")
+
+        username = user.username
+        user.delete()
+        messages.success(
+            request, f"🗑️ User '{username}' has been permanently deleted."
+        )
+        return redirect("dashboard_admin")
+
     return render(
         request, "accounts/admin_delete_users.html", {"users": users}
     )
