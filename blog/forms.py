@@ -28,6 +28,18 @@ class PostForm(forms.ModelForm):
             "is_published": forms.CheckboxInput(
                 attrs={"class": "form-check-input"}
             ),
+            "reviewer_notes": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 6,
+                    "placeholder": "Add internal notes or feedback here...",
+                }
+            ),
+            "review_status": forms.Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
         }
 
 
