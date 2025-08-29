@@ -92,37 +92,29 @@ def delete_post(request, id):
 
 @login_required
 def edit_user_post(request, post_id):
-    """
-    View for reviewers to edit any user's blog post.
-
-    Only accessible to authenticated users who belong to the 'Reviewer' group.
-    Fetches the post by its ID and renders a reviewer-specific editing template.
-    Allows review actions, post modification, and form submission handling.
-
-    Args:
-        request (HttpRequest): The incoming HTTP request.
-        post_id (int): The ID of the post to be reviewed and potentially edited.
-
-    Returns:
-        HttpResponse: Renders the reviewer's editing page with the form and post data,
-                      or redirects upon successful update.
-        HttpResponseForbidden: If the user is not a reviewer.
-    """
-
     user = request.user
+
+    post = get_object_or_404(Post, id=post_id)
 
     # Ensure only reviewers access this view
     if not user.groups.filter(name="Reviewer").exists():
         return HttpResponseForbidden("Access denied.")
 
-    post = get_object_or_404(Post, id=post_id)
     form = PostForm(request.POST or None, request.FILES or None, instance=post)
 
+    # Disable reviewer-only fields if the user is the author
+    if user == post.author:
+        form.fields["review_status"].disabled = True
+        form.fields["reviewer_notes"].disabled = True
+
     if request.method == "POST" and form.is_valid():
+        # Prevent authors from modifying reviewer-only fields
+        if user == post.author:
+            form.cleaned_data["review_status"] = post.review_status
+            form.cleaned_data["reviewer_notes"] = post.reviewer_notes
+
         form.save()
-        return redirect(
-            "dashboard_reviewer"
-        )  # Update this to your actual dashboard view name
+        return redirect("dashboard_reviewer")
 
     return render(
         request, "blog/edit_user_post.html", {"form": form, "post": post}
