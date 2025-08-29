@@ -5,24 +5,40 @@
 
 {% block dashboard_content %}
 <div class="container mt-4">
+    <h2 class="mb-4">Change User Role</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
   <form method="post">
     {% csrf_token %}
     <div class="mb-3">
       <label for="userTypeSelect" class="form-label">Select User</label>
       <select class="form-select" id="userTypeSelect" name="user_id">
         {% for user in users %}
-          <option value="{{ user.id }}">{{ user.username }} ({{ user.user_type }})</option>
+          {% comment %} <option value="{{ user.id }}">{{ user.username }} ({{ user.user_type }})</option> {% endcomment %}
+          <option value="{{ user.id }}">
+            {{ user.username }} ({{ user.is_staff|yesno:"Admin,Regular" }})
+          </option>
         {% endfor %}
       </select>
     </div>
     <div class="mb-3">
       <label for="newType" class="form-label">New Role</label>
       <select class="form-select" id="newType" name="new_type">
-        <option value="admin">Administrator</option>
-        <option value="regular">Regular User</option>
+        {% for group in groups %}
+            <option value="{{ group.id }}">{{ group.name }}</option>
+        {% endfor %}
       </select>
     </div>
-    <button type="submit" class="btn btn-info">Change Role</button>
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'dashboard_admin' %}" class="btn btn-secondary">❌ Cancel</a>
+        <button type="submit" class="btn btn-info">Change Role</button>
+    </div>
   </form>
 </div>
 {% endblock %}

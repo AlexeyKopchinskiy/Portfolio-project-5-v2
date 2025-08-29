@@ -100,8 +100,38 @@ def admin_delete_users(request):
 @user_passes_test(is_admin)
 def admin_change_user_type(request):
     users = User.objects.all()
+    groups = Group.objects.all()
+
+    if request.method == "POST":
+        user_id = request.POST.get("user_id")
+        new_group_id = request.POST.get("new_type")
+
+        try:
+            user = User.objects.get(id=user_id)
+            new_group = Group.objects.get(id=new_group_id)
+
+            # Clear existing groups and assign new one
+            user.groups.clear()
+            user.groups.add(new_group)
+
+            messages.success(
+                request,
+                f"{user.username} has been assigned to the '{new_group.name}' role.",
+            )
+        except (User.DoesNotExist, Group.DoesNotExist):
+            messages.error(request, "Invalid user or role selection.")
+
+        return redirect(
+            "dashboard_admin"
+        )  # Replace with your actual dashboard URL name
+
     return render(
-        request, "accounts/admin_change_user_type.html", {"users": users}
+        request,
+        "accounts/admin_change_user_type.html",
+        {
+            "users": users,
+            "groups": groups,
+        },
     )
 
 
