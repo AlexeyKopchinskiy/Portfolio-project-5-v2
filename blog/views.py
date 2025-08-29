@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, AuthorForm, ReviewerForm
 
 
 # Create your views here.
@@ -58,28 +58,62 @@ def my_posts(request):
     return render(request, "blog/my_posts.html", {"posts": posts})
 
 
+# @login_required
+# def edit_post(request, post_id):
+#     user = request.user
+
+#     # 🕵️ Reviewer check
+#     is_reviewer = user.groups.filter(name="Reviewer").exists()
+
+#     if is_reviewer:
+#         post = get_object_or_404(Post, id=post_id)
+#     else:
+#         # Non-reviewers can only edit their own posts
+#         post = get_object_or_404(Post, id=post_id, author=user)
+
+#     if request.method == "POST":
+#         form = PostForm(request.POST, request.FILES, instance=post)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("my_posts")
+#     else:
+#         form = PostForm(instance=post)
+
+#     return render(request, "blog/edit_post.html", {"form": form, "post": post})
+
+
 @login_required
 def edit_post(request, post_id):
-    user = request.user
+    post = get_object_or_404(Post, id=post_id)
 
-    # 🕵️ Reviewer check
-    is_reviewer = user.groups.filter(name="Reviewer").exists()
-
-    if is_reviewer:
-        post = get_object_or_404(Post, id=post_id)
+    if request.user == post.author:
+        form_class = AuthorForm
+    elif (
+        request.user.is_staff
+        or request.user.groups.filter(name="Reviewers").exists()
+    ):
+        form_class = ReviewerForm
     else:
-        # Non-reviewers can only edit their own posts
-        post = get_object_or_404(Post, id=post_id, author=user)
+        return HttpResponseForbidden(
+            "You don't have permission to edit this post."
+        )
 
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES, instance=post)
-        if form.is_valid():
-            form.save()
-            return redirect("my_posts")
-    else:
-        form = PostForm(instance=post)
+    form = form_class(
+        request.POST or None, request.FILES or None, instance=post
+    )
 
-    return render(request, "blog/edit_post.html", {"form": form, "post": post})
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("dashboard")
+
+    return render(
+        request,
+        "blog/edit_user_post.html",
+        {
+            "form": form,
+            "post": post,
+        },
+    )
 
 
 @login_required
@@ -92,32 +126,37 @@ def delete_post(request, id):
 
 @login_required
 def edit_user_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
     user = request.user
 
-    post = get_object_or_404(Post, id=post_id)
-
-    # Ensure only reviewers access this view
-    if not user.groups.filter(name="Reviewer").exists():
-        return HttpResponseForbidden("Access denied.")
-
-    form = PostForm(request.POST or None, request.FILES or None, instance=post)
-
-    # Disable reviewer-only fields if the user is the author
+    # Determine which form to use
     if user == post.author:
-        form.fields["review_status"].disabled = True
-        form.fields["reviewer_notes"].disabled = True
+        form_class = AuthorForm
+    elif user.groups.filter(name="Reviewer").exists():
+        form_class = ReviewerForm
+    else:
+        return HttpResponseForbidden(
+            "You don't have permission to edit this post."
+        )
+
+    form = form_class(
+        request.POST or None, request.FILES or None, instance=post
+    )
 
     if request.method == "POST" and form.is_valid():
-        # Prevent authors from modifying reviewer-only fields
-        if user == post.author:
-            form.cleaned_data["review_status"] = post.review_status
-            form.cleaned_data["reviewer_notes"] = post.reviewer_notes
-
         form.save()
-        return redirect("dashboard_reviewer")
+        return redirect(
+            "dashboard_author" if user == post.author else "dashboard_reviewer"
+        )
 
     return render(
-        request, "blog/edit_user_post.html", {"form": form, "post": post}
+        request,
+        "blog/edit_user_post.html",
+        {
+            "form": form,
+            "post": post,
+            "user": user,
+        },
     )
 
 
