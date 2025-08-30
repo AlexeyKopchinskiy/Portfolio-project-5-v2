@@ -6,73 +6,76 @@
   <p class="lead">Craft, share, and engage with meaningful writing in a creative, moderated community.</p>
   </div>
 
-<section class="py-5 bg-white border-top">
-  <div class="container text-center">
-    <h2 class="mb-4">Become a member and start sharing your feedback!</h2>
-    <p class="lead mb-5">Join as a Reader, Author, or Reviewer and shape your experience. Explore our stories, leave comments, or write your own chapters.</p>
-    <h2 class="mb-4">Unlock More with a Subscription</h2>
-    <p class="lead mb-5">Upgrade your membership and step into a world of premium tools, support, and creative freedom.</p>
+{% if not user.is_authenticated %}
+  <!-- Show subscription section for guests -->
+  <section class="py-5 bg-white border-top">
+    <div class="container text-center">
+      <h2 class="mb-4">Become a member and start sharing your feedback!</h2>
+      <p class="lead mb-5">Join as a Reader, Author, or Reviewer and shape your experience. Explore our stories, leave comments, or write your own chapters.</p>
+      <h2 class="mb-4">Unlock More with a Subscription</h2>
+      <p class="lead mb-5">Upgrade your membership and step into a world of premium tools, support, and creative freedom.</p>
 
-    <div class="row justify-content-center">
-      <!-- Subscription Card 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100 border-primary">
-          <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">🌟 Premium Access</h5>
+      <div class="row justify-content-center">
+        <!-- Subscription Card 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100 border-primary">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">🌟 Premium Access</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled text-start ps-3">
+                <li>✅ Schedule posts for future publishing</li>
+                <li>✅ Advanced dashboard features</li>
+                <li>✅ Analytics & reader insights</li>
+              </ul>
+            </div>
           </div>
-          <div class="card-body">
-            <ul class="list-unstyled text-start ps-3">
-              <li>✅ Schedule posts for future publishing</li>
-              <li>✅ Advanced dashboard features</li>
-              <li>✅ Analytics & reader insights</li>
-            </ul>
+        </div>
+
+        <!-- Subscription Card 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100 border-success">
+            <div class="card-header bg-success text-white">
+              <h5 class="mb-0">🛠️ Creator Toolkit</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled text-start ps-3">
+                <li>✅ Enhanced content editor</li>
+                <li>✅ Priority support</li>
+                <li>✅ Access to exclusive themes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription Card 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm h-100 border-warning">
+            <div class="card-header bg-warning text-white">
+              <h5 class="mb-0">🚀 Growth & Community</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled text-start ps-3">
+                <li>✅ Profile boosting</li>
+                <li>✅ Featured author highlights</li>
+                <li>✅ Invite-only events</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Subscription Card 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100 border-success">
-          <div class="card-header bg-success text-white">
-            <h5 class="mb-0">🛠️ Creator Toolkit</h5>
-          </div>
-          <div class="card-body">
-            <ul class="list-unstyled text-start ps-3">
-              <li>✅ Enhanced content editor</li>
-              <li>✅ Priority support</li>
-              <li>✅ Access to exclusive themes</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Subscription Card 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100 border-warning">
-          <div class="card-header bg-warning text-white">
-            <h5 class="mb-0">🚀 Growth & Community</h5>
-          </div>
-          <div class="card-body">
-            <ul class="list-unstyled text-start ps-3">
-              <li>✅ Profile boosting</li>
-              <li>✅ Featured author highlights</li>
-              <li>✅ Invite-only events</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <!-- CTA Button -->
+      {% if not user.is_authenticated %}
+        <a href="{% url 'account_signup' %}" class="btn btn-outline-dark btn-lg mt-4">
+          Join Now!
+        </a>
+      {% else %}
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-success">Go to Dashboard</a>
+      {% endif %}
     </div>
-
-    <!-- CTA Button -->
-    {% if not user.is_authenticated %}
-      <a href="{% url 'account_signup' %}" class="btn btn-outline-dark btn-lg mt-4">
-        Join Now!
-      </a>
-    {% else %}
-      <a href="{% url 'dashboard' %}" class="btn btn-outline-success">Go to Dashboard</a>
-    {% endif %}
-  </div>
-</section>
+  </section>
+{% endif %}
 
 {% if user.is_authenticated %}
   {% for group in user.groups.all %}
