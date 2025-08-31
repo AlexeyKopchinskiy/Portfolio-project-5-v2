@@ -117,8 +117,30 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
               <li><a class="dropdown-item" href="{% url 'account_settings' %}">🔧 Settings</a></li>
               <li><a class="dropdown-item" href="{% url 'dashboard' %}">📊 Dashboard</a></li>
-              <li><a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a></li>
-              <li><a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a></li>
+              {% comment %} <li><a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a></li> {% endcomment %}
+              {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                  {% if group.name == "Reader" %}
+                    {% comment %} User is a Reader, don't show the button {% endcomment %}
+                  {% else %}
+                    <a href="{% url 'create_post' %}" class="btn btn-primary">✍️ Create Post</a>
+                  {% endif %}
+                {% empty %}
+                  <a href="{% url 'create_post' %}" class="btn btn-primary">✍️ Create Post</a>
+                {% endfor %}
+              {% endif %}
+              {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                  {% if group.name == "Reader" %}
+                    {% comment %} User is a Reader, don't show the button {% endcomment %}
+                  {% else %}
+                    <a href="{% url 'my_posts' %}" class="btn btn-primary">📚 My Posts</a>
+                  {% endif %}
+                {% empty %}
+                  <a href="{% url 'my_posts' %}" class="btn btn-primary">📚 My Posts</a>
+                {% endfor %}
+              {% endif %}
+              {% comment %} <li><a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a></li> {% endcomment %}
               <li><a class="dropdown-item" href="{% url 'my_comments' %}">📄 My Comments</a></li>
             </ul>
           </li>
