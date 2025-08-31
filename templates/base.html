@@ -123,10 +123,10 @@
                   {% if group.name == "Reader" %}
                     {% comment %} User is a Reader, don't show the button {% endcomment %}
                   {% else %}
-                    <a href="{% url 'create_post' %}" class="btn btn-primary">✍️ Create Post</a>
+                    <a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a>
                   {% endif %}
                 {% empty %}
-                  <a href="{% url 'create_post' %}" class="btn btn-primary">✍️ Create Post</a>
+                  <a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a>
                 {% endfor %}
               {% endif %}
               {% if user.is_authenticated %}
@@ -134,10 +134,10 @@
                   {% if group.name == "Reader" %}
                     {% comment %} User is a Reader, don't show the button {% endcomment %}
                   {% else %}
-                    <a href="{% url 'my_posts' %}" class="btn btn-primary">📚 My Posts</a>
+                    <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
                   {% endif %}
                 {% empty %}
-                  <a href="{% url 'my_posts' %}" class="btn btn-primary">📚 My Posts</a>
+                  <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
                 {% endfor %}
               {% endif %}
               {% comment %} <li><a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a></li> {% endcomment %}

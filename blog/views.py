@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
@@ -42,9 +43,10 @@ def post_detail(request, slug):
 def create_post(request):
     # Restrict access for users in the "Reader" group
     if request.user.groups.filter(name="Reader").exists():
-        return HttpResponseForbidden(
-            "Readers are not allowed to create posts."
+        messages.warning(
+            request, "Readers are not allowed to create blog posts."
         )
+        return redirect("home")
 
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
