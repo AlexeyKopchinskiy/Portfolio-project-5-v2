@@ -18,6 +18,23 @@
 {% endblock %}
 
 {% block dashboard_content %}
+  <div class="d-flex align-items-center gap-3 mb-4">
+    {% if user.profile.avatar %}
+      <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}'s avatar"
+           class="rounded-circle border shadow-sm"
+           style="width: 64px; height: 64px; object-fit: cover;">
+    {% else %}
+      <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+           style="width: 64px; height: 64px; font-size: 24px;">
+        {{ user.username|slice:":1"|upper }}
+      </div>
+    {% endif %}
+    <div>
+      <h2 class="mb-0">Welcome, {{ user.username }}</h2>
+      <small class="text-muted">Glad to have you back!</small>
+    </div>
+  </div>
+
 <div class="container mt-4">
   <div class="row row-cols-1 row-cols-md-2 g-4">
 
