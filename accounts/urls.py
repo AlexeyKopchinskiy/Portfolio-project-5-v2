@@ -42,7 +42,7 @@ urlpatterns = [
     path(
         "change-password/",
         CustomPasswordChangeView.as_view(),
-        name="change_password",
+        name="password_change",
     ),
     # Password change done view
     path(

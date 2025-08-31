@@ -290,24 +290,13 @@ def account_settings(request):
 
 # Custom password change view
 class CustomPasswordChangeView(PasswordChangeView):
-    template_name = "accounts/change_password.html"
+    template_name = "account/password_reset.html"
     success_url = reverse_lazy("password_change_done")
 
 
 # Password change done view
 class PasswordChangeDoneView(TemplateView):
-    template_name = "accounts/password_change_done.html"
-
-
-# @login_required
-# def dashboard_reviewer(request):
-#     posts = Post.objects.all()
-
-#     return render(
-#         request,
-#         "accounts/dashboard_reviewer.html",
-#         {"posts": posts, "test_flag": "✅ Context works"},
-#     )
+    template_name = "account/password_reset_done.html"
 
 
 @login_required
