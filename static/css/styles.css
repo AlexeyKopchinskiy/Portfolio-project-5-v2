@@ -76,3 +76,33 @@ form p {
 .input-group-text {
     visibility: hidden;
 }
+
+/* Sitemap styles */
+#top {
+    font-size: 16px;
+    padding-bottom: 40px;
+}
+
+#footer {
+    padding: 10px;
+    text-align: center;
+}
+
+.lhead {
+    background: #ddd;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.lcount {
+    padding: 0px 10px;
+}
+
+.lpage {
+    border-bottom: #ddd 1px solid;
+    padding: 5px;
+}
+
+.last-page {
+    border: none;
+}
