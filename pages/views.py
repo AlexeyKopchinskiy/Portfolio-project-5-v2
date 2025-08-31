@@ -40,6 +40,11 @@ def privacy(request):
     return render(request, "pages/privacy.html")
 
 
+def sitemap(request):
+    """Render the sitemap page for easy navigation."""
+    return render(request, "pages/sitemap.html")
+
+
 def contact_view(request):
     """
     Handle contact form submissions.
