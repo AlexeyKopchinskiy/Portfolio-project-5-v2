@@ -290,13 +290,13 @@ def account_settings(request):
 
 # Custom password change view
 class CustomPasswordChangeView(PasswordChangeView):
-    template_name = "account/password_reset.html"
+    template_name = "account/password_change.html"
     success_url = reverse_lazy("password_change_done")
 
 
 # Password change done view
 class PasswordChangeDoneView(TemplateView):
-    template_name = "account/password_reset_done.html"
+    template_name = "account/password_change_done.html"
 
 
 @login_required
