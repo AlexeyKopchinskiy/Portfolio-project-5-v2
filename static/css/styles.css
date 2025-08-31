@@ -2,107 +2,123 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 main {
     flex: 1;
+    padding: 2rem 1rem;
 }
 
-/* Show dropdown on hover */
+/* Cards */
+.card {
+    background-color: #1f1f1f;
+    border: none;
+    color: #ccc;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* Links */
+a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #00ffff;
+    border: none;
+    color: #000;
+}
+
+.btn-outline-primary {
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #00ffff;
+    color: #000;
+}
+
+/* Header */
+.navbar {
+    background-color: #111;
+    border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+    color: #00ffff !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+/* Footer */
+#footer {
+    background-color: #111;
+    color: #888;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+}
+
+/* Dropdowns */
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
-    /* optional: removes jump effect */
+    opacity: 1;
+    pointer-events: auto;
+    background-color: #222;
+    border: 1px solid #444;
 }
 
-/* Optional: animate dropdown */
 .dropdown-menu {
     transition: opacity 0.2s ease-in-out;
     opacity: 0;
     pointer-events: none;
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Optional: smooth fade-in on desktop only */
-@media (max-width: 992px) {
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: none;
-        /* keep click for mobile */
-    }
-}
-
-/* Style Allauth form fields (login/password) */
+/* Form Fields */
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
-    width: 100%;
-    padding: 0.6em 0.75em;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease-in-out;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #eee;
 }
 
 form input[type="text"]:focus,
 form input[type="email"]:focus,
 form input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
+    border-color: #00ffff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 255, 255, 0.25);
 }
 
-/* Optional: space between fields */
-form .form-group,
-form p {
-    margin-bottom: 1.2em;
-}
-
-/* Align error messages neatly */
+/* Error Messages */
 .text-danger,
 .errorlist {
-    color: #dc3545;
-    font-size: 0.9em;
-    margin-top: 0.4em;
+    color: #ff4d4d;
 }
 
-.input-group-text {
-    visibility: hidden;
-}
-
-/* Sitemap styles */
-#top {
-    font-size: 16px;
-    padding-bottom: 40px;
-}
-
-#footer {
-    padding: 10px;
-    text-align: center;
-}
-
+/* Sitemap Elements */
 .lhead {
-    background: #ddd;
-    padding: 10px;
-    margin: 10px 0px;
-}
-
-.lcount {
-    padding: 0px 10px;
+    background: #333;
+    color: #ccc;
 }
 
 .lpage {
-    border-bottom: #ddd 1px solid;
-    padding: 5px;
-}
-
-.last-page {
-    border: none;
+    border-bottom: 1px solid #444;
 }

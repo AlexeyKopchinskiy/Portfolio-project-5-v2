@@ -32,7 +32,6 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
 
       <div class="container mt-5">
         <h2 class="mb-4">📰 Recent Articles</h2>
-        
         <div class="row">
             {% for post in recent_posts %}
               <div class="col-md-4 mb-4">
@@ -57,43 +56,35 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
               <div class="alert alert-info mb-0">No articles yet.</div>
             {% endfor %}
         </div>
-
-
-
-
       </div>
 
     <div class="container mt-5">
-  <h2 class="mb-4">💬 Recent Comments</h2>
-
-  <div class="row">
-    {% for comment in recent_comments %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h6 class="card-title mb-1">
-              <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none fw-bold">
-                {{ comment.post.title }}
-              </a>
-            </h6>
-            <p class="card-subtitle text-muted mb-2">
-              Commented on {{ comment.created_at|date:"F j, Y" }}
-            </p>
-            <p class="card-text text-muted" style="font-size: 0.95rem;">
-              {{ comment.content|safe|truncatewords:20 }}
-            </p>
-            <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
-          </div>
+      <h2 class="mb-4">💬 Recent Comments</h2>
+        <div class="row">
+          {% for comment in recent_comments %}
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h6 class="card-title mb-1">
+                    <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none fw-bold">
+                      {{ comment.post.title }}
+                    </a>
+                  </h6>
+                  <p class="card-subtitle text-muted mb-2">
+                    Commented on {{ comment.created_at|date:"F j, Y" }}
+                  </p>
+                  <p class="card-text text-muted" style="font-size: 0.95rem;">
+                    {{ comment.content|safe|truncatewords:20 }}
+                  </p>
+                  <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="alert alert-info mb-0">No comments yet.</div>
+          {% endfor %}
         </div>
-      </div>
-    {% empty %}
-      <div class="alert alert-info mb-0">No comments yet.</div>
-    {% endfor %}
-  </div>
-</div>
-
-
-</div>
+    </div>
 
 {% endblock %}
 
