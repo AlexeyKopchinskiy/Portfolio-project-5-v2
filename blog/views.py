@@ -40,6 +40,12 @@ def post_detail(request, slug):
 
 @login_required
 def create_post(request):
+    # Restrict access for users in the "Reader" group
+    if request.user.groups.filter(name="Reader").exists():
+        return HttpResponseForbidden(
+            "Readers are not allowed to create posts."
+        )
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -49,6 +55,7 @@ def create_post(request):
             return redirect("my_posts")
     else:
         form = PostForm()
+
     return render(request, "blog/create_post.html", {"form": form})
 
 
@@ -56,30 +63,6 @@ def create_post(request):
 def my_posts(request):
     posts = Post.objects.filter(author=request.user)
     return render(request, "blog/my_posts.html", {"posts": posts})
-
-
-# @login_required
-# def edit_post(request, post_id):
-#     user = request.user
-
-#     # 🕵️ Reviewer check
-#     is_reviewer = user.groups.filter(name="Reviewer").exists()
-
-#     if is_reviewer:
-#         post = get_object_or_404(Post, id=post_id)
-#     else:
-#         # Non-reviewers can only edit their own posts
-#         post = get_object_or_404(Post, id=post_id, author=user)
-
-#     if request.method == "POST":
-#         form = PostForm(request.POST, request.FILES, instance=post)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("my_posts")
-#     else:
-#         form = PostForm(instance=post)
-
-#     return render(request, "blog/edit_post.html", {"form": form, "post": post})
 
 
 @login_required
