@@ -63,30 +63,34 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
 
       </div>
 
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-header bg-info text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
-            <path d="M2 2a2 2 0 0 0-2 2v9.586a1 1 0 0 0 1.707.707L4.414 12H14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
-            <path d="M3 5h10v1H3V5zm0 2h7v1H3V7zm0 2h5v1H3V9z"/>
-          </svg> Recent Comments
-        </div>
-        <div class="card-body">
-          <ul class="list-unstyled mb-0">
-            {% for comment in recent_comments %}
-              <li class="mb-2">
-                <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none fw-bold">
-                  {{ comment.post.title }}
-                </a><br>
-                <small class="text-muted">{{ comment.content|safe|truncatewords:10 }} on {{ comment.created_at|date:"F j, Y" }}</small>
-              </li>
-            {% empty %}
-              <li>No comments yet.</li>
-            {% endfor %}
-          </ul>
+    <div class="container mt-5">
+  <h2 class="mb-4">💬 Recent Comments</h2>
+
+  <div class="row">
+    {% for comment in recent_comments %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h6 class="card-title mb-1">
+              <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none fw-bold">
+                {{ comment.post.title }}
+              </a>
+            </h6>
+            <p class="card-subtitle text-muted mb-2">
+              Commented on {{ comment.created_at|date:"F j, Y" }}
+            </p>
+            <p class="card-text text-muted" style="font-size: 0.95rem;">
+              {{ comment.content|safe|truncatewords:20 }}
+            </p>
+            <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
+          </div>
         </div>
       </div>
-    </div>
+    {% empty %}
+      <div class="alert alert-info mb-0">No comments yet.</div>
+    {% endfor %}
+  </div>
+</div>
 
 
 </div>
