@@ -91,6 +91,34 @@ a:hover {
     pointer-events: none;
 }
 
+.dropdown-item {
+    color: #ffffff !important;
+    background-color: transparent;
+    text-shadow: 0 0 4px rgba(0, 255, 255, 0.3);
+}
+
+.dropdown-item:hover {
+    color: #00ffff !important;
+    background-color: #333 !important;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Social links */
+.social-link {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* End of Social links */
+
+
 /* Form Fields */
 form input[type="text"],
 form input[type="email"],
