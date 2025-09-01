@@ -23,3 +23,29 @@ document.addEventListener('click', function (event) {
         bsCollapse.hide();
     }
 });
+
+// Cookies consent banner
+document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+
+    const consent = localStorage.getItem("cookieConsent");
+
+    if (!consent) {
+        banner.style.display = "block";
+    }
+
+    acceptBtn.addEventListener("click", function () {
+        localStorage.setItem("cookieConsent", "accepted");
+        banner.style.display = "none";
+        // Optional: enable analytics
+    });
+
+    rejectBtn.addEventListener("click", function () {
+        localStorage.setItem("cookieConsent", "rejected");
+        banner.style.display = "none";
+        // Optional: disable analytics
+        window["ga-disable-UA-XXXXXXX-Y"] = true; // Replace with your GA ID
+    });
+});
