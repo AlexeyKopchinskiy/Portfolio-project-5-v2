@@ -1,12 +1,45 @@
 {% extends "base.html" %}
 {% block title %}Cookies Policy — InkwellBlog{% endblock %}
 {% block content %}
-  <h1>Cookie Policy</h1>
-  <p>We use cookies to improve your experience, deliver personalized content, and analyze our traffic. By continuing to use our site, you consent to our cookie policy.</p>
-  <ul>
-    <li><strong>Essential Cookies:</strong> Necessary for site functionality.</li>
-    <li><strong>Analytics Cookies:</strong> Help us understand usage patterns.</li>
-    <li><strong>Marketing Cookies:</strong> May be used by third-party partners.</li>
-  </ul>
-  <p>You can manage or disable cookies in your browser settings at any time.</p>
+  <div class="container py-5" style="max-width: 800px;">
+    <h1 class="mb-4">🍪 Cookie Policy</h1>
+
+    <p class="lead mb-4">
+      This Cookie Policy explains how InkwellBlog uses cookies and similar technologies to recognize you when you visit our website. It also explains what these technologies are and why we use them, as well as your rights to control their use.
+    </p>
+
+    <h4 class="mt-4">1. What Are Cookies?</h4>
+    <p>
+      Cookies are small data files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently, as well as to provide reporting information and personalized experiences.
+    </p>
+
+    <h4 class="mt-4">2. Why We Use Cookies</h4>
+    <ul>
+      <li><strong>Essential Cookies:</strong> These are necessary for the website to function and cannot be switched off. They include things like login authentication and security.</li>
+      <li><strong>Performance Cookies:</strong> These help us understand how visitors interact with our site, allowing us to improve usability and content.</li>
+      <li><strong>Functionality Cookies:</strong> These remember your preferences, such as language or region, to enhance your experience.</li>
+      <li><strong>Analytics Cookies:</strong> We use tools like Google Analytics to gather anonymous usage data and trends.</li>
+      <li><strong>Marketing Cookies:</strong> These may be used to deliver relevant ads or track engagement with our promotional content.</li>
+    </ul>
+
+    <h4 class="mt-4">3. Managing Your Cookie Preferences</h4>
+    <p>
+      You can set your browser to refuse all or some cookies, or to alert you when websites set or access cookies. However, disabling cookies may affect the functionality of certain parts of our site.
+    </p>
+
+    <h4 class="mt-4">4. Third-Party Cookies</h4>
+    <p>
+      Some cookies may be set by third-party services that appear on our pages, such as embedded videos, social media buttons, or analytics providers. We do not control these cookies directly.
+    </p>
+
+    <h4 class="mt-4">5. Updates to This Policy</h4>
+    <p>
+      We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. The latest version will always be available on this page.
+    </p>
+
+    <h4 class="mt-4">6. Contact Us</h4>
+    <p>
+      If you have any questions about our use of cookies, feel free to <a href="{% url 'contact' %}" class="text-decoration-underline">contact us</a>.
+    </p>
+</div>
 {% endblock %}
