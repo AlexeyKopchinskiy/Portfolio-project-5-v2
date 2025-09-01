@@ -42,10 +42,10 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
                         {{ post.title }}
                       </a>
                     </h5>
-                    <p class="card-subtitle text-muted mb-2">
+                    <p class="card-subtitle mb-2">
                       Created on {{ post.created_on|date:"F j, Y" }}
                     </p>
-                    <p class="card-text text-muted" style="font-size: 0.95rem;">
+                    <p class="card-text" style="font-size: 0.95rem;">
                       {{ post.content|striptags|truncatewords:50 }}
                     </p>
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-outline-primary">Edit Post</a>
@@ -70,10 +70,10 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
                       {{ comment.post.title }}
                     </a>
                   </h6>
-                  <p class="card-subtitle text-muted mb-2">
+                  <p class="card-subtitle mb-2">
                     Commented on {{ comment.created_at|date:"F j, Y" }}
                   </p>
-                  <p class="card-text text-muted" style="font-size: 0.95rem;">
+                  <p class="card-text" style="font-size: 0.95rem;">
                     {{ comment.content|safe|truncatewords:20 }}
                   </p>
                   <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
