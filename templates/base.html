@@ -209,8 +209,22 @@
         </ul>
       </div>
     </footer>
-      <!-- Custom JS -->
-      <script src="{% static 'js/scripts.js' %}"></script>
+      
 
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-banner-content">
+      <p class="cookie-banner-text">
+        We use cookies to improve your experience. By clicking “Accept”, you agree to our use of cookies.
+        <a href="{% url 'cookies' %}" class="cookie-banner-link">Learn more</a>.
+      </p>
+      <div class="cookie-banner-buttons">
+        <button id="cookie-accept" class="btn btn-success">Accept</button>
+        <button id="cookie-reject" class="btn btn-secondary">Reject</button>
+      </div>
+    </div>
+  </div> 
+  <!-- Custom JS -->
+  <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 </html>
