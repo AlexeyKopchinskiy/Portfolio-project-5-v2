@@ -31,6 +31,48 @@ main {
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
+/* Promo section on the start page */
+.promo-section {
+    background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.promo-section h2 {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.promo-section p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.promo-section .btn-primary {
+    background-color: #00ffff;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.promo-section .btn-primary:hover {
+    background-color: #00e5e5;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.promo-section .btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
 /* End of cards */
 
 /* Input groups */
