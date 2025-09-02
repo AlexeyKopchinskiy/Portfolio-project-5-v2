@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SubscriberForm, NewsletterForm
 from django.contrib import messages
-from .models import Newsletter
+from .models import Newsletter, Subscriber
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
@@ -29,9 +29,15 @@ def thank_you(request):
 
 @login_required
 def newsletter_dashboard(request):
-    newsletters = Newsletter.objects.order_by("-created_at")[:5]
+    newsletters = Newsletter.objects.all().order_by("-created_at")
+    subscribers = Subscriber.objects.all()
     return render(
-        request, "newsletter/dashboard.html", {"newsletters": newsletters}
+        request,
+        "newsletter/dashboard.html",
+        {
+            "newsletters": newsletters,
+            "subscribers": subscribers,
+        },
     )
 
 
