@@ -81,6 +81,22 @@
       </div>
     </div>
 
+    <!-- Newsletter Management -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          📰 Newsletter Management
+        </div>
+        <div class="card-body">
+          <p class="card-title">Newsletter Hub: csreate, edit, and preview newsletters.</p>
+          <ul>
+            <li><a href="{% url 'newsletter_dashboard' %}" class="btn btn-sm btn-outline-primary mb-2">Go to Dashboard</a></li>
+            <li><a href="{% url 'create_newsletter' %}" class="btn btn-sm btn-outline-info">Create New Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock %}
