@@ -4,6 +4,11 @@
 <div class="container mt-4">
   <h2>📨 Newsletter Dashboard</h2>
   <a href="{% url 'create_newsletter' %}" class="btn btn-success mb-3">Create New Newsletter</a>
+  {% if request.user.is_staff %}
+    <a href="/admin/newsletter/newsletter/" class="btn btn-outline-secondary mb-3 ms-2">
+      🔧 Open Newsletter Admin
+    </a>
+  {% endif %}
   
   <ul class="list-group">
     {% for newsletter in newsletters %}
