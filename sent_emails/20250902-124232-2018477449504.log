@@ -1,0 +1,11 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Test Email
+From: alexey@example.com
+To: recipient@example.com
+Date: Tue, 02 Sep 2025 10:42:32 -0000
+Message-ID: <175680975225.72716.6513846032383468912@Lenovo-Main.fritz.box>
+
+This is a test email.
+-------------------------------------------------------------------------------
