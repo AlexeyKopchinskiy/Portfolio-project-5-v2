@@ -38,7 +38,6 @@ def assign_reader_group(sender, request, user, **kwargs):
     Profile.objects.get_or_create(user=user)
 
 
-# @receiver(user_logged_in)
 @receiver(user_signed_up)
 def promote_reader_to_author(sender, request, user, **kwargs):
     try:

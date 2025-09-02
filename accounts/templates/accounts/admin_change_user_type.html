@@ -20,7 +20,6 @@
       <label for="userTypeSelect" class="form-label">Select User</label>
       <select class="form-select" id="userTypeSelect" name="user_id">
         {% for user in users %}
-          {% comment %} <option value="{{ user.id }}">{{ user.username }} ({{ user.user_type }})</option> {% endcomment %}
           <option value="{{ user.id }}">
             {{ user.username }} ({{ user.is_staff|yesno:"Admin,Regular" }})
           </option>

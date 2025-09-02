@@ -118,11 +118,9 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
               <li><a class="dropdown-item" href="{% url 'account_settings' %}">🔧 Settings</a></li>
               <li><a class="dropdown-item" href="{% url 'dashboard' %}">📊 Dashboard</a></li>
-              {% comment %} <li><a class="dropdown-item" href="{% url 'create_post' %}">✍️ Create Post</a></li> {% endcomment %}
               {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
                   {% if group.name == "Reader" %}
-                    {% comment %} User is a Reader, don't show the button {% endcomment %}
                   {% else %}
                     <a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a>
                   {% endif %}
@@ -133,7 +131,6 @@
               {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
                   {% if group.name == "Reader" %}
-                    {% comment %} User is a Reader, don't show the button {% endcomment %}
                   {% else %}
                     <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
                   {% endif %}
@@ -141,7 +138,6 @@
                   <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
                 {% endfor %}
               {% endif %}
-              {% comment %} <li><a class="dropdown-item" href="{% url 'my_posts' %}">📚 My Posts</a></li> {% endcomment %}
               <li><a class="dropdown-item" href="{% url 'my_comments' %}">📄 My Comments</a></li>
             </ul>
           </li>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.mail import send_mail
 from .models import Newsletter, Subscriber
-from django_summernote.admin import SummernoteModelAdmin  # ← Add this import
+from django_summernote.admin import SummernoteModelAdmin
 
 
 # Register your models here.

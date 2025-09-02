@@ -228,9 +228,6 @@ def dashboard_reader(request):
     return render(request, "accounts/dashboard_reader.html")
 
 
-from blog.models import Post  # import from blog app
-
-
 @login_required
 def dashboard_author(request):
     user = request.user
