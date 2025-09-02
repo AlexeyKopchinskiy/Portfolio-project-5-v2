@@ -42,6 +42,10 @@ main {
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
+.promo-section .btn-close {
+    background-color: #00ffff;
+}
+
 .promo-section h2 {
     color: #00ffff;
     text-shadow: 0 0 5px #00ffff;
