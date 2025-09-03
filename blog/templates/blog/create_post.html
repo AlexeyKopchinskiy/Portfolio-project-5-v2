@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block meta_description %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new blog post">  
+    <meta name="keywords" content=" blog, create post, article, inkwellblog, alexey, web development, programming, tutorials">
+    <meta name="author" content="Alexey">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+{% endblock %}
+{% block title %}Create Post — InkwellBlog{% endblock %}
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
