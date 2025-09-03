@@ -8,10 +8,11 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseForbidden
 from blog.models import Post, Comment
 from newsletter.models import Newsletter
 from .forms import AccountSettingsForm, ProfileForm
-from django.http import HttpResponseForbidden
+from functools import wraps
 
 
 # Create your views here.
@@ -22,18 +23,20 @@ def is_admin(user):
     return user.is_staff
 
 
-def role_required(required_role):
-    """Decorator to restrict access to users with a specific role."""
+def role_required(required_group):
+    """Decorator to restrict access to users in a specific group."""
 
     def decorator(view_func):
+        @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
+            user = request.user
+
             if (
-                not request.user.is_authenticated
-                or request.user.role != required_role
+                not user.is_authenticated
+                or not user.groups.filter(name=required_group).exists()
             ):
-                return HttpResponseForbidden(
-                    "You do not have permission to access this page."
-                )
+                return render(request, "pages/access_denied.html", status=403)
+
             return view_func(request, *args, **kwargs)
 
         return _wrapped_view
@@ -276,6 +279,7 @@ def dashboard_author(request):
 
 
 @login_required
+@role_required("admin")
 def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
 
