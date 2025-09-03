@@ -7,6 +7,8 @@ from .models import Page, ContactMessage
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
+    """Admin view for the Page model."""
+
     list_display = ("title", "is_published", "updated")
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ("title", "content")
@@ -14,6 +16,8 @@ class PageAdmin(admin.ModelAdmin):
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
+    """Admin view for the ContactMessage model."""
+
     list_display = ("name", "email", "subject", "timestamp")
     search_fields = ("name", "email", "subject", "message")
     ordering = ("-timestamp",)

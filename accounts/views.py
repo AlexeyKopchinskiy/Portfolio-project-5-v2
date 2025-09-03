@@ -2,13 +2,12 @@ import json
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseForbidden
 from blog.models import Post, Comment
 from newsletter.models import Newsletter
 from .forms import AccountSettingsForm, ProfileForm
@@ -44,14 +43,14 @@ def role_required(required_group):
     return decorator
 
 
-# @user_passes_test(is_admin)
 @role_required("Administrator")
 def admin_update_users(request):
+    """View to update user details by admin."""
     users = User.objects.all()
 
     # Build user data dictionary
     user_data = {
-        str(user.id): {
+        str(user.pk): {
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
@@ -97,9 +96,9 @@ def admin_update_users(request):
     )
 
 
-# @user_passes_test(is_admin)
 @role_required("Administrator")
 def admin_delete_users(request):
+    """View to delete users by admin."""
     users = User.objects.all()
 
     if request.method == "POST":
@@ -122,9 +121,9 @@ def admin_delete_users(request):
     )
 
 
-# @user_passes_test(is_admin)
 @role_required("Administrator")
 def admin_change_user_type(request):
+    """View to change user roles by admin."""
     users = User.objects.all()
     groups = Group.objects.all()
 
@@ -142,7 +141,8 @@ def admin_change_user_type(request):
 
             messages.success(
                 request,
-                f"{user.username} has been assigned to the '{new_group.name}' role.",
+                f"{user.username} has been assigned"
+                "to the '{new_group.name}' role.",
             )
         except (User.DoesNotExist, Group.DoesNotExist):
             messages.error(request, "Invalid user or role selection.")
@@ -166,6 +166,7 @@ def admin_change_user_type(request):
 
 @login_required
 def dashboard_redirect(request):
+    """Redirect users to their respective dashboards based on roles."""
     user = request.user
 
     if user.is_superuser or user.groups.filter(name="Administrator").exists():
@@ -181,12 +182,14 @@ def dashboard_redirect(request):
 
 
 def logout_view(request):
+    """Log out the user and redirect to home."""
     logout(request)
     messages.success(request, "You've been logged out. See you soon!")
     return redirect("home")  # Or wherever you want to go after logout
 
 
 def register_view(request):
+    """Handle user registration."""
     if request.user.is_authenticated:
         return redirect("dashboard")
 
@@ -238,7 +241,8 @@ def register_view(request):
         except Group.DoesNotExist:
             messages.warning(
                 request,
-                "Reader group is missing. Please contact support or an admin to fix this.",
+                "Reader group is missing."
+                "Please contact support or an admin to fix this.",
             )
             return redirect("home")
 
@@ -248,14 +252,16 @@ def register_view(request):
     return render(request, "account/signup.html")
 
 
-# # Dashboard views for different user roles
+# Dashboard views for different user roles
 @login_required
 def dashboard_reader(request):
+    """Dashboard view for Reader role."""
     return render(request, "accounts/dashboard_reader.html")
 
 
 @role_required("Author")
 def dashboard_author(request):
+    """Dashboard view for Author role."""
     user = request.user
 
     drafts = Newsletter.objects.filter(sent=False).order_by("-created_at")[:5]
@@ -263,11 +269,10 @@ def dashboard_author(request):
         "-scheduled_send"
     )[:5]
 
-    # recent_posts = Post.objects.filter(author=user).order_by("-created_at")[:5]
-    recent_posts = Post.objects.filter(author__id=request.user.id).order_by(
+    recent_posts = Post.objects.filter(author__id=user.id).order_by(
         "-created_on"
     )[:5]
-    recent_comments = Comment.objects.filter(author=request.user).order_by(
+    recent_comments = Comment.objects.filter(author=user).order_by(
         "-created_at"
     )[:5]
 
@@ -283,11 +288,13 @@ def dashboard_author(request):
 
 @role_required("Administrator")
 def dashboard_admin(request):
+    """Dashboard view for Admin role."""
     return render(request, "accounts/dashboard_admin.html")
 
 
 @login_required
 def account_settings(request):
+    """View to handle account settings and profile updates."""
     user = request.user
 
     if request.method == "POST":
@@ -313,17 +320,22 @@ def account_settings(request):
 
 # Custom password change view
 class CustomPasswordChangeView(PasswordChangeView):
+    """View to handle password change."""
+
     template_name = "account/password_change.html"
     success_url = reverse_lazy("password_change_done")
 
 
 # Password change done view
 class PasswordChangeDoneView(TemplateView):
+    """View to confirm password change."""
+
     template_name = "account/password_change_done.html"
 
 
 @role_required("Reviewer")
 def dashboard_reviewer(request):
+    """Dashboard view for Reviewer role."""
     unpublished_posts = Post.objects.filter(is_published=False)
     return render(
         request,
