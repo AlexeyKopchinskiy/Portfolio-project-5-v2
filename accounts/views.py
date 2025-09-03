@@ -1,24 +1,44 @@
-from django.shortcuts import render, redirect, get_object_or_404
+import json
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms import AccountSettingsForm, ProfileForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.core.serializers.json import DjangoJSONEncoder
+from django.shortcuts import render, redirect, get_object_or_404
 from blog.models import Post, Comment
 from newsletter.models import Newsletter
-from .forms import SignUpForm
-from django.core.serializers.json import DjangoJSONEncoder
-from django.views.decorators.http import require_http_methods
-import json
+from .forms import AccountSettingsForm, ProfileForm
+from django.http import HttpResponseForbidden
 
 
 # Create your views here.
+
+
 # admin views
 def is_admin(user):
     return user.is_staff
+
+
+def role_required(required_role):
+    """Decorator to restrict access to users with a specific role."""
+
+    def decorator(view_func):
+        def _wrapped_view(request, *args, **kwargs):
+            if (
+                not request.user.is_authenticated
+                or request.user.role != required_role
+            ):
+                return HttpResponseForbidden(
+                    "You do not have permission to access this page."
+                )
+            return view_func(request, *args, **kwargs)
+
+        return _wrapped_view
+
+    return decorator
 
 
 @user_passes_test(is_admin)
