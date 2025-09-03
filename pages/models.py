@@ -4,6 +4,8 @@ from django.db import models
 
 
 class Page(models.Model):
+    """Models for the pages app."""
+
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     content = models.TextField()
@@ -16,6 +18,8 @@ class Page(models.Model):
 
 
 class ContactMessage(models.Model):
+    """Model for contact messages."""
+
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=150)

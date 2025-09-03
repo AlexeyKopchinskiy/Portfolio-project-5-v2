@@ -10,11 +10,13 @@ from .forms import PostForm, CommentForm, AuthorForm, ReviewerForm
 
 
 def post_list(request):
+    """View to list all published blog posts."""
     posts = Post.objects.filter(is_published=True).order_by("-published")
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
 def post_detail(request, slug):
+    """View to display a single blog post and its comments."""
     post = get_object_or_404(Post, slug=slug)
     comments = post.comments.order_by("-created_at")
     form = CommentForm()
@@ -41,6 +43,7 @@ def post_detail(request, slug):
 
 @login_required
 def create_post(request):
+    """View to create a new blog post."""
     # Restrict access for users in the "Reader" group
     if request.user.groups.filter(name="Reader").exists():
         messages.warning(
@@ -63,12 +66,14 @@ def create_post(request):
 
 @login_required
 def my_posts(request):
+    """View to list posts created by the logged-in user."""
     posts = Post.objects.filter(author=request.user)
     return render(request, "blog/my_posts.html", {"posts": posts})
 
 
 @login_required
 def edit_post(request, post_id):
+    """View to edit a blog post."""
     post = get_object_or_404(Post, id=post_id)
 
     if request.user == post.author:
@@ -103,6 +108,7 @@ def edit_post(request, post_id):
 
 @login_required
 def delete_post(request, id):
+    """View to delete a blog post."""
     post = get_object_or_404(Post, id=id, author=request.user)
     if request.method == "POST":
         post.delete()
@@ -111,6 +117,7 @@ def delete_post(request, id):
 
 @login_required
 def edit_user_post(request, post_id):
+    """View to edit a blog post by its author or a reviewer."""
     post = get_object_or_404(Post, id=post_id)
     user = request.user
 
@@ -146,12 +153,14 @@ def edit_user_post(request, post_id):
 
 
 def is_reviewer(user):
+    """Check if the user belongs to the 'Reviewer' group."""
     return user.groups.filter(name="Reviewer").exists()
 
 
 @login_required
 @user_passes_test(is_reviewer)
 def review_user_post(request, post_id):
+    """View for reviewers to edit and approve blog posts."""
     post = get_object_or_404(Post, id=post_id)
     form = ReviewerPostForm(request.POST or None, instance=post)
     if request.method == "POST" and form.is_valid():
@@ -164,6 +173,7 @@ def review_user_post(request, post_id):
 
 @login_required
 def dashboard(request):
+    """View to display the dashboard for authors and reviewers."""
     latest_posts = Post.objects.filter(is_published=True).order_by(
         "-published"
     )[:5]
@@ -176,6 +186,7 @@ def dashboard(request):
 
 @login_required
 def my_comments(request):
+    """View to list comments made by the logged-in user."""
     user_comments = Comment.objects.filter(author=request.user).order_by(
         "-created_at"
     )
@@ -186,13 +197,14 @@ def my_comments(request):
 
 @login_required
 def edit_comment(request, pk):
+    """View to edit a comment made by the logged-in user."""
     comment = get_object_or_404(Comment, pk=pk, author=request.user)
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect("my_comments")  # or wherever you list comments
+            return redirect("my_comments")
     else:
         form = CommentForm(instance=comment)
 
@@ -205,6 +217,7 @@ def edit_comment(request, pk):
 
 @login_required
 def delete_comment(request, pk):
+    """View to delete a comment made by the logged-in user."""
     comment = get_object_or_404(Comment, pk=pk)
     if comment.author != request.user:
         return HttpResponseForbidden(

@@ -4,6 +4,8 @@ from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
+    """Form for creating and editing blog posts."""
+
     class Meta:
         model = Post
         fields = [
@@ -47,6 +49,8 @@ class PostForm(forms.ModelForm):
 
 
 class AuthorForm(forms.ModelForm):
+    """Form for authors to create and edit their blog posts."""
+
     class Meta:
         model = Post
         fields = ["title", "content", "featured_image"]
@@ -60,6 +64,8 @@ class AuthorForm(forms.ModelForm):
 
 
 class ReviewerForm(forms.ModelForm):
+    """Form for reviewers to update review status and notes."""
+
     class Meta:
         model = Post
         fields = ["review_status", "reviewer_notes", "is_published"]
@@ -75,6 +81,8 @@ class ReviewerForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """Form for adding comments to blog posts."""
+
     class Meta:
         model = Comment
         fields = ["content"]
