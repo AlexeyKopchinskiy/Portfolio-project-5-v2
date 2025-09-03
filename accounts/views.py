@@ -44,7 +44,8 @@ def role_required(required_group):
     return decorator
 
 
-@user_passes_test(is_admin)
+# @user_passes_test(is_admin)
+@role_required("Administrator")
 def admin_update_users(request):
     users = User.objects.all()
 
@@ -96,7 +97,8 @@ def admin_update_users(request):
     )
 
 
-@user_passes_test(is_admin)
+# @user_passes_test(is_admin)
+@role_required("Administrator")
 def admin_delete_users(request):
     users = User.objects.all()
 
@@ -120,7 +122,8 @@ def admin_delete_users(request):
     )
 
 
-@user_passes_test(is_admin)
+# @user_passes_test(is_admin)
+@role_required("Administrator")
 def admin_change_user_type(request):
     users = User.objects.all()
     groups = Group.objects.all()
@@ -251,7 +254,7 @@ def dashboard_reader(request):
     return render(request, "accounts/dashboard_reader.html")
 
 
-@login_required
+@role_required("Author")
 def dashboard_author(request):
     user = request.user
 
@@ -278,8 +281,7 @@ def dashboard_author(request):
     return render(request, "accounts/dashboard_author.html", context)
 
 
-@login_required
-@role_required("admin")
+@role_required("Administrator")
 def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
 
@@ -320,7 +322,7 @@ class PasswordChangeDoneView(TemplateView):
     template_name = "account/password_change_done.html"
 
 
-@login_required
+@role_required("Reviewer")
 def dashboard_reviewer(request):
     unpublished_posts = Post.objects.filter(is_published=False)
     return render(
