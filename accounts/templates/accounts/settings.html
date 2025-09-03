@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block meta_description %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block title %}Account Settings{% endblock %}
 
 {% block content %}
-<div class="promo-section py-4" style="max-width: 700px; margin: 10px auto;">
+<div class="container py-4" style="max-width: 700px;">
   <h2 class="mb-4">⚙️ Account Settings</h2>
 
   <form method="POST" enctype="multipart/form-data">

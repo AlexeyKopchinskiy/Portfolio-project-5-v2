@@ -1,5 +1,7 @@
 {% extends 'accounts/dashboard_base.html' %}
-
+{% block meta_description %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block dashboard_title %}Welcome, Reader {{ user.username }}{% endblock %}
 {% block dashboard_description %}
 Dive into fresh stories, save your favorites, and explore topics you love.

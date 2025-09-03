@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block meta_description %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block title %}Dashboard — {{ user.username }}{% endblock %}
 
 {% block content %}
