@@ -196,7 +196,7 @@ SUMMERNOTE_CONFIG = {
             ["misc", ["undo", "redo"]],
         ],
         "width": "100%",
-        "height": "250",  # adjust height if needed
+        "height": "450",  # adjust height if needed
     }
 }
 

@@ -96,7 +96,7 @@ class CommentForm(forms.ModelForm):
                             ["insert", ["link"]],
                             ["view", ["fullscreen", "codeview"]],
                         ],
-                        "height": 120,
+                        "height": 300,
                         "disableResizeEditor": True,
                     }
                 }
