@@ -297,6 +297,7 @@ form input[type="password"]:focus {
 /* Bookstrap classes modifires */
 .text-muted {
     color: #888 !important;
+    margin-bottom: 4px !important;
 }
 
 /* End of Bookstrap classes modifires */
