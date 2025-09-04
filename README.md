@@ -25,6 +25,90 @@ Portfolio Project 5 - E-commerce Applications
 
 This platform allows authors to manage and monetize content while providing a premium experience for paid subscribers. The goal is to provide a clean, SEO-optimized, and secure blogging space with real e-commerce functionality.
 
+## 🎯 Project Purpose & Rationale
+
+This web application was developed to support a multi-role content platform that facilitates publishing, reviewing, and engaging with written content. It is designed with four distinct user roles — **Readers**, **Authors**, **Reviewers**, and **Administrators** — each with tailored access, responsibilities, and interfaces.
+
+The rationale behind the project is grounded in real-world user needs and is shaped by the following user stories and personas:
+
+---
+
+### 👤 Reader
+
+**Persona:** Casual or subscribed users who consume published content and engage through comments.
+
+**Needs:**
+- Discover and read the latest published posts.
+- View and manage their own comment history.
+- Navigate the platform easily across devices.
+
+**Dashboard Features:**
+- Recent comments panel.
+- Sidebar with latest published posts.
+- Mobile-responsive layout for reading on the go.
+
+---
+
+### ✍️ Author
+
+**Persona:** Content creators who write and submit posts or newsletters.
+
+**Needs:**
+- Draft and edit posts before submission.
+- Track published content and engagement.
+- View recent feedback or comments on their work.
+
+**Dashboard Features:**
+- Drafts and published newsletters.
+- Recent authored posts.
+- Comment activity related to their content.
+
+---
+
+### 🕵️ Reviewer
+
+**Persona:** Editorial staff or moderators responsible for content quality control.
+
+**Needs:**
+- Access to submitted drafts awaiting review.
+- Approve or reject content based on editorial standards.
+- Communicate feedback to authors.
+
+**Dashboard Features:**
+- Review queue with pending submissions.
+- Tools to approve, reject, or request revisions.
+- History of reviewed content.
+
+---
+
+### 🛠️ Administrator
+
+**Persona:** Platform managers overseeing user activity, content flow, and system health.
+
+**Needs:**
+- Monitor platform-wide activity.
+- Manage user roles and permissions.
+- Ensure content visibility and operational integrity.
+
+**Dashboard Features:**
+- Overview of latest published content.
+- Access to all user dashboards and settings.
+- System-level controls and analytics.
+
+---
+
+## 🧠 Why This Matters
+
+By clearly defining and implementing role-based access and dashboards, the application ensures that each user interacts with the platform in a way that aligns with their goals. This structure promotes:
+
+- ✅ **Security**: Users only access what they’re authorized to see.
+- ✅ **Usability**: Dashboards are tailored to each role’s workflow.
+- ✅ **Scalability**: New roles or features can be added without disrupting existing flows.
+- ✅ **Maintainability**: Clean separation of concerns across views and templates.
+
+The project demonstrates a thoughtful approach to user-centered design, with each feature grounded in a specific user story. It’s not just a technical build — it’s a solution to real communication and content management needs.
+
+
 ## 👥 User Types & User Stories
 
 ### Site Owner
