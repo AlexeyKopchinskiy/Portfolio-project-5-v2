@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block meta_description %}
+  {{ block.super }}
   <meta name="robots" content="noindex, nofollow">
 {% endblock %}
 {% block title %}Dashboard — {{ user.username }}{% endblock %}
