@@ -21,14 +21,11 @@ Dive into fresh stories, save your favorites, and explore topics you love.
     {% endif %}
     <div>
       <h2 class="mb-0">Welcome, {{ user.username }}</h2>
-      <small class="text-muted">Glad to have you back!</small>
+      <small>Glad to have you back!</small>
     </div>
   </div>
 
-  <ul class="list-group mb-4">
-    <li class="list-group-item">💾 Saved Articles (feature coming soon)</li>
-    <li class="list-group-item">📖 Reading History</li>
-  </ul>
+   <a href="{% url 'my_comments' %}" class="btn btn-outline-secondary mb-4">💬 My Comments</a>
 
   <div class="promo-section position-relative">
     <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
@@ -45,4 +42,32 @@ Dive into fresh stories, save your favorites, and explore topics you love.
     </ul>
     <a href="/billing/checkout/" class="btn btn-primary">Upgrade Now</a>
   </div>
+
+  <div class="container mt-5">
+      <h2 class="mb-4">💬 Recent Comments</h2>
+        <div class="row">
+          {% for comment in recent_comments %}
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h6 class="card-title mb-1">
+                    <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none fw-bold">
+                      {{ comment.post.title }}
+                    </a>
+                  </h6>
+                  <p class="card-subtitle mb-2">
+                    Commented on {{ comment.created_at|date:"F j, Y" }}
+                  </p>
+                  <p class="card-text" style="font-size: 0.95rem;">
+                    {{ comment.content|safe|truncatewords:20 }}
+                  </p>
+                  <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="alert alert-info mb-0">No comments yet.</div>
+          {% endfor %}
+        </div>
+    </div>
 {% endblock %}
