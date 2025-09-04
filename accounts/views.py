@@ -256,7 +256,16 @@ def register_view(request):
 @login_required
 def dashboard_reader(request):
     """Dashboard view for Reader role."""
-    return render(request, "accounts/dashboard_reader.html")
+    user = request.user
+    recent_comments = Comment.objects.filter(author=user).order_by(
+        "-created_at"
+    )[:5]
+
+    context = {
+        "recent_comments": recent_comments,
+    }
+
+    return render(request, "accounts/dashboard_reader.html", context)
 
 
 @role_required("Author")
