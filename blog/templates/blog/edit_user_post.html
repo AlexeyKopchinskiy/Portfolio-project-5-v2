@@ -11,7 +11,9 @@
   <div class="mb-3">
     <strong>Author:</strong> {{ post.author.username }}<br>
     <strong>Created:</strong> {{ post.created_on|date:"F j, Y H:i" }}<br>
-    <strong>Status:</strong> {{ post.review_status|default:"—" }}
+    <strong>Status:</strong> {{ post.review_status|default:"—" }}<hr>
+    <h3 class="mb-4">post text:</h3> {{ post.content|safe }}
+    <hr>
   </div>
 
   <form method="post" enctype="multipart/form-data">
