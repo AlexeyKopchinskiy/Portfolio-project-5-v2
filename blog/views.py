@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, AuthorForm, ReviewerForm
 
-
 # Create your views here.
 
 
@@ -127,9 +126,7 @@ def edit_user_post(request, post_id):
     elif user.groups.filter(name="Reviewer").exists():
         form_class = ReviewerForm
     else:
-        return HttpResponseForbidden(
-            "You don't have permission to edit this post."
-        )
+        return render(request, "pages/access_denied.html", status=403)
 
     form = form_class(
         request.POST or None, request.FILES or None, instance=post
