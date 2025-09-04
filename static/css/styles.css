@@ -293,3 +293,10 @@ form input[type="password"]:focus {
 .lpage {
     border-bottom: 1px solid #444;
 }
+
+/* Bookstrap classes modifires */
+.text-muted {
+    color: #888 !important;
+}
+
+/* End of Bookstrap classes modifires */
