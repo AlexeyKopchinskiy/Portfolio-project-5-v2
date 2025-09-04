@@ -7,6 +7,11 @@ from blog.models import Post
 # Create your views here.
 
 
+def custom_404(request, exception):
+    """Render a custom 404 error page."""
+    return render(request, "pages/404.html", status=404)
+
+
 def home(request):
     """Render the home page with only published posts."""
     latest_posts = Post.objects.filter(is_published=True).order_by(
