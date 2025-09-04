@@ -11,7 +11,7 @@
       <div class="col">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">
+            <h6 class="card-subtitle mb-2">
               On: <a href="{% url 'post_detail' slug=comment.post.slug %}" class="text-decoration-none">
                 {{ comment.post.title }}
               </a>
@@ -19,7 +19,7 @@
             <p class="card-text">{{ comment.content|safe }}</p>
           </div>
           <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between align-items-center flex-wrap">
-            <small class="text-muted">
+            <small>
               Posted on {{ comment.created_at|date:"F j, Y, g:i a" }}
             </small>
             {% if comment.author == request.user %}
