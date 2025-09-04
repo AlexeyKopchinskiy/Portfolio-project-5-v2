@@ -261,9 +261,9 @@ def dashboard_reader(request):
     recent_comments = Comment.objects.filter(author=user).order_by(
         "-created_at"
     )[:5]
-    latest_posts = Post.objects.order_by("-published")[
-        :5
-    ]  # Adjust limit as needed
+    latest_posts = Post.objects.filter(is_published="True").order_by(
+        "-created_on"
+    )[:5]
 
     context = {
         "recent_comments": recent_comments,
@@ -306,6 +306,19 @@ def dashboard_admin(request):
     return render(request, "accounts/dashboard_admin.html")
 
 
+@role_required("Reviewer")
+def dashboard_reviewer(request):
+    """Dashboard view for Reviewer role."""
+    unpublished_posts = Post.objects.filter(is_published=False)
+    return render(
+        request,
+        "accounts/dashboard_reviewer.html",
+        {
+            "posts": unpublished_posts,
+        },
+    )
+
+
 @login_required
 def account_settings(request):
     """View to handle account settings and profile updates."""
@@ -345,16 +358,3 @@ class PasswordChangeDoneView(TemplateView):
     """View to confirm password change."""
 
     template_name = "account/password_change_done.html"
-
-
-@role_required("Reviewer")
-def dashboard_reviewer(request):
-    """Dashboard view for Reviewer role."""
-    unpublished_posts = Post.objects.filter(is_published=False)
-    return render(
-        request,
-        "accounts/dashboard_reviewer.html",
-        {
-            "posts": unpublished_posts,
-        },
-    )
