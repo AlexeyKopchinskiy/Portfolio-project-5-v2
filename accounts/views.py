@@ -257,12 +257,17 @@ def register_view(request):
 def dashboard_reader(request):
     """Dashboard view for Reader role."""
     user = request.user
+
     recent_comments = Comment.objects.filter(author=user).order_by(
         "-created_at"
     )[:5]
+    latest_posts = Post.objects.order_by("-published")[
+        :5
+    ]  # Adjust limit as needed
 
     context = {
         "recent_comments": recent_comments,
+        "latest_posts": latest_posts,
     }
 
     return render(request, "accounts/dashboard_reader.html", context)
