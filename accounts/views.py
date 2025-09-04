@@ -307,7 +307,7 @@ def dashboard_admin(request):
 
     latest_posts = Post.objects.filter(is_published="True").order_by(
         "-created_on"
-    )[:5]
+    )[:2]
 
     context = {
         "latest_posts": latest_posts,
