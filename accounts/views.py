@@ -310,11 +310,18 @@ def dashboard_admin(request):
 def dashboard_reviewer(request):
     """Dashboard view for Reviewer role."""
     unpublished_posts = Post.objects.filter(is_published=False)
+    latest_posts = Post.objects.filter(is_published=True).order_by(
+        "-created_on"
+    )[:5]
+
     return render(
         request,
         "accounts/dashboard_reviewer.html",
         {
             "posts": unpublished_posts,
+            "latest_posts": latest_posts,
+            "dashboard_title": "Reviewer Dashboard",
+            "dashboard_description": "Review pending articles and stay updated with recent publications.",
         },
     )
 
