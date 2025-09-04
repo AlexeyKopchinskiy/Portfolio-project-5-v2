@@ -59,7 +59,7 @@ Dive into fresh stories, save your favorites, and explore topics you love.
                     Commented on {{ comment.created_at|date:"F j, Y" }}
                   </p>
                   <p class="card-text" style="font-size: 0.95rem;">
-                    {{ comment.content|safe|truncatewords:20 }}
+                    {{ comment.content|safe|truncatewords:50 }}
                   </p>
                   <a href="{% url 'post_detail' slug=comment.post.slug %}" class="btn btn-sm btn-outline-info">View Post</a>
                 </div>
