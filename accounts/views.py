@@ -303,7 +303,16 @@ def dashboard_author(request):
 @role_required("Administrator")
 def dashboard_admin(request):
     """Dashboard view for Admin role."""
-    return render(request, "accounts/dashboard_admin.html")
+    recent_posts = Post.objects.filter(author__id=user.id).order_by(
+        "-created_on"
+    )[:5]
+    context = {
+        "drafts": drafts,
+        "published": published,
+        "recent_posts": recent_posts,
+        "recent_comments": recent_comments,
+    }
+    return render(request, "accounts/dashboard_admin.html", context)
 
 
 @role_required("Reviewer")
