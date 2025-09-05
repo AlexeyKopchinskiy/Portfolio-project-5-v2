@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
 from blog.models import Post
-from django.core.mail import send_mail
-from django.conf import settings
 
 
 # Create your views here.
@@ -30,11 +28,6 @@ def home(request):
 def about(request):
     """Render the about page with general site information."""
     return render(request, "pages/about.html")
-
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import ContactForm
 
 
 def contact(request):

@@ -1,18 +1,33 @@
 {% extends 'accounts/dashboard_base.html' %}
 {% block dashboard_title %}📬 Contact Messages{% endblock %}
 {% block dashboard_description %}View messages sent via the contact form.{% endblock %}
+
 {% block content %}
-  <h2>📬 Contact Messages</h2>
-  <ul>
-    {% for msg in messages %}
-      <li>
-        <strong>{{ msg.name }}</strong> ({{ msg.email }})<br>
-        <em>{{ msg.created_at }}</em><br>
-        {{ msg.message }}
-      </li>
-      <hr>
-    {% empty %}
-      <p>No messages yet.</p>
-    {% endfor %}
-  </ul>
+  <div class="container mt-4">
+  <h2 class="mb-4">📬 Contact Messages</h2>
+
+  {% if messages %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+      {% for msg in messages %}
+        <div class="col">
+          <div class="card shadow-sm h-100 border-success">
+            <div class="card-header bg-success text-white">
+              <strong>{{ msg.name }}</strong> <small class="text-light">({{ msg.email }})</small>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ msg.message|linebreaks }}</p>
+            </div>
+            <div class="card-footer text-muted small">
+              Sent on {{ msg.created_at|date:"M d, Y H:i" }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+      No messages yet.
+    </div>
+  {% endif %}
+</div>
 {% endblock %}
