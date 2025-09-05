@@ -32,24 +32,20 @@ def about(request):
     return render(request, "pages/about.html")
 
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ContactForm
+
+
 def contact(request):
-    """Handle contact form submission: save to DB and send email."""
+    """Handle contact form submission: save to DB only."""
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            contact_message = form.save()  # Save to DB
-
-            # Send email notification
-            send_mail(
-                subject=f"[Contact] {contact_message.subject}",
-                message=contact_message.message,
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=["kopchinskiy@gmail.com"],
-                fail_silently=False,
-            )
-
+            form.save()  # Save the message to the database
             messages.success(
-                request, "Thanks for reaching out! We'll get back to you soon."
+                request,
+                "Thanks for reaching out! Your message has been saved.",
             )
             return redirect("contact")
     else:
