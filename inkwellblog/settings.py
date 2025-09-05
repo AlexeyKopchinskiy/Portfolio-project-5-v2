@@ -119,9 +119,9 @@ TEMPLATES = [
 
 
 # Do not sent email but save them as files insteads
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "mail.kopchinskiy.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")

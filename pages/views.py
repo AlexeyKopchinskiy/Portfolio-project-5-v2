@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
 from blog.models import Post
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -31,8 +33,28 @@ def about(request):
 
 
 def contact(request):
-    """Render the static contact page (non-functional version)."""
-    return render(request, "pages/contact.html")
+    """Handle contact form submission: save to DB and send email."""
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact_message = form.save()  # Save to DB
+
+            # Send email notification
+            send_mail(
+                subject=f"[Contact] {contact_message.subject}",
+                message=contact_message.message,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=["kopchinskiy@gmail.com"],
+                fail_silently=False,
+            )
+
+            messages.success(
+                request, "Thanks for reaching out! We'll get back to you soon."
+            )
+            return redirect("contact")
+    else:
+        form = ContactForm()
+    return render(request, "pages/contact.html", {"form": form})
 
 
 def pricing(request):
