@@ -33,6 +33,11 @@ urlpatterns = [
         views.admin_change_user_type,
         name="admin_change_user_type",
     ),
+    path(
+        "dashboard/admin/contact-messages/",
+        views.contact_messages_view,
+        name="admin_contact_messages",
+    ),
     # Register a new user
     path("register/", views.register_view, name="register"),
     # Account settings

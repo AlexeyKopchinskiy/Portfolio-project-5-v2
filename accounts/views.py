@@ -12,6 +12,7 @@ from blog.models import Post, Comment
 from newsletter.models import Newsletter
 from .forms import AccountSettingsForm, ProfileForm
 from functools import wraps
+from pages.models import ContactMessage
 
 
 # Create your views here.
@@ -126,7 +127,7 @@ def admin_change_user_type(request):
     """View to change user roles by admin."""
     users = User.objects.all()
     groups = Group.objects.all()
-
+    # Exclude 'Administrator' group from being assigned
     if request.method == "POST":
         user_id = request.POST.get("user_id")
         new_group_id = request.POST.get("new_type")
@@ -135,7 +136,7 @@ def admin_change_user_type(request):
             user = User.objects.get(id=user_id)
             new_group = Group.objects.get(id=new_group_id)
 
-            # Clear existing groups and assign new one
+            # Clear existing groups and assign new ones
             user.groups.clear()
             user.groups.add(new_group)
 
@@ -149,7 +150,7 @@ def admin_change_user_type(request):
 
         return redirect(
             "dashboard_admin"
-        )  # Replace with your actual dashboard URL name
+        )  # Redirect to admin dashboard after change
 
     return render(
         request,
@@ -158,6 +159,17 @@ def admin_change_user_type(request):
             "users": users,
             "groups": groups,
         },
+    )
+
+
+@role_required("Administrator")
+def contact_messages_view(request):
+    """Display all contact messages to admin users."""
+    messages = ContactMessage.objects.all().order_by(
+        "-timestamp"
+    )  # Assuming you have a 'created_at' field
+    return render(
+        request, "accounts/admin_contact_messages.html", {"messages": messages}
     )
 
 

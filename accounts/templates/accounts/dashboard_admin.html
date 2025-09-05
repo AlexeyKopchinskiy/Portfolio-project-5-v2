@@ -96,6 +96,23 @@
       </div>
     </div>
 
+    <!-- Contact Messages Management -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-success text-white">
+          📬 Contact Messages
+        </div>
+        <div class="card-body">
+          <p>Review and respond to messages submitted via the contact form.</p>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'admin_contact_messages' %}" class="btn btn-sm btn-outline-success mb-2">📄 View Messages</a></li>
+            {% comment %} <li><a href="{% url 'export_contact_messages' %}" class="btn btn-sm btn-outline-secondary mb-2">📤 Export Messages</a></li>
+            <li><a href="{% url 'delete_contact_messages' %}" class="btn btn-sm btn-outline-danger">🗑️ Delete All</a></li> {% endcomment %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock %}

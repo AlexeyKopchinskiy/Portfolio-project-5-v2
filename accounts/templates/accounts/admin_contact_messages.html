@@ -1,0 +1,18 @@
+{% extends 'accounts/dashboard_base.html' %}
+{% block dashboard_title %}📬 Contact Messages{% endblock %}
+{% block dashboard_description %}View messages sent via the contact form.{% endblock %}
+{% block content %}
+  <h2>📬 Contact Messages</h2>
+  <ul>
+    {% for msg in messages %}
+      <li>
+        <strong>{{ msg.name }}</strong> ({{ msg.email }})<br>
+        <em>{{ msg.created_at }}</em><br>
+        {{ msg.message }}
+      </li>
+      <hr>
+    {% empty %}
+      <p>No messages yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
