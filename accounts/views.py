@@ -336,16 +336,16 @@ def dashboard_reviewer(request):
         "-created_on"
     )[:5]
 
-    return render(
-        request,
-        "accounts/dashboard_reviewer.html",
-        {
-            "posts": unpublished_posts,
-            "latest_posts": latest_posts,
-            "dashboard_title": "Reviewer Dashboard",
-            "dashboard_description": "Review pending articles and stay updated with recent publications.",
-        },
-    )
+    context = {
+        "posts": unpublished_posts,
+        "latest_posts": latest_posts,
+        "dashboard_title": "Reviewer Dashboard",
+        "dashboard_description": (
+            "Review pending articles and stay updated with recent publications."
+        ),
+    }
+
+    return render(request, "accounts/dashboard_reviewer.html", context)
 
 
 @login_required
