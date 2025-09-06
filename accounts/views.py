@@ -165,11 +165,11 @@ def admin_change_user_type(request):
 @role_required("Administrator")
 def contact_messages_view(request):
     """Display all contact messages to admin users."""
-    messages = ContactMessage.objects.all().order_by(
-        "-timestamp"
-    )  # Assuming you have a 'created_at' field
+    contact_messages = ContactMessage.objects.all().order_by("-timestamp")
     return render(
-        request, "accounts/admin_contact_messages.html", {"messages": messages}
+        request,
+        "accounts/admin_contact_messages.html",
+        {"contact_messages": contact_messages},
     )
 
 
