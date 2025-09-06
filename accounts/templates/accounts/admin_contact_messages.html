@@ -17,8 +17,8 @@
             <div class="card-body">
               <p class="card-text">{{ msg.message|linebreaks }}</p>
             </div>
-            <div class="card-footer text-muted small">
-              Sent on {{ msg.created_at|date:"M d, Y H:i" }}
+            <div class="card-footer small">
+              Sent on {{ msg.timestamp|date:"M d, Y H:i" }}
             </div>
           </div>
         </div>
