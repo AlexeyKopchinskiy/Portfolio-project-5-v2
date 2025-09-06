@@ -38,6 +38,11 @@ urlpatterns = [
         views.contact_messages_view,
         name="admin_contact_messages",
     ),
+    path(
+        "admin/contact-messages/<int:pk>/",
+        views.contact_message_detail,
+        name="contact_message_detail",
+    ),
     # Register a new user
     path("register/", views.register_view, name="register"),
     # Account settings

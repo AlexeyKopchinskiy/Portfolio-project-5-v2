@@ -1,0 +1,26 @@
+{% extends 'accounts/dashboard_base.html' %}
+{% block dashboard_title %}📨 Message from {{ message.name }}{% endblock %}
+{% block dashboard_description %}Manage this contact message{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card border-info shadow-sm">
+    <div class="card-header bg-success text-white">
+      <strong>{{ message.name }}</strong> <small>({{ message.email }})</small>
+    </div>
+    <div class="card-body">
+      <p>{{ message.message|linebreaks }}</p>
+      <p class="text-muted small">Sent on {{ message.timestamp|date:"M d, Y H:i" }}</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="resolved" id="resolved" {% if message.resolved %}checked{% endif %}>
+          <label class="form-check-label" for="resolved">Mark as resolved</label>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+        <a href="{% url 'admin_contact_messages' %}" class="btn btn-secondary mt-3">Back</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

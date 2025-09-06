@@ -173,6 +173,21 @@ def contact_messages_view(request):
     )
 
 
+@role_required("Administrator")
+def contact_message_detail(request, pk):
+    message = get_object_or_404(ContactMessage, pk=pk)
+
+    if request.method == "POST":
+        resolved = request.POST.get("resolved") == "on"
+        message.resolved = resolved
+        message.save()
+        return redirect("admin_contact_messages")
+
+    return render(
+        request, "accounts/contact_message_details.html", {"message": message}
+    )
+
+
 # end of admin views
 
 
