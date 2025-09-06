@@ -32,14 +32,39 @@ main {
 }
 
 /* Promo section on the start page */
-.promo-section {
+.list-group {
     background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.list-group-item {
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #444;
+    color: #ccc;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-section {
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
     border: 2px solid #00ffff;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
     margin-bottom: 30px;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.form-text {
+    color: #888;
+}
+
+.promo-section .btn-close {
+    background-color: #00ffff;
 }
 
 .promo-section h2 {
@@ -268,3 +293,11 @@ form input[type="password"]:focus {
 .lpage {
     border-bottom: 1px solid #444;
 }
+
+/* Bookstrap classes modifires */
+.text-muted {
+    color: #888 !important;
+    margin-bottom: 4px !important;
+}
+
+/* End of Bookstrap classes modifires */
