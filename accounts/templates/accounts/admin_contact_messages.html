@@ -15,7 +15,7 @@
               <strong>{{ msg.name }}</strong> <small class="text-light">({{ msg.email }})</small>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ msg.message|linebreaks }}</p>
+              <p class="card-text">{{ msg.message|linebreaks|truncatechars:200 }}</p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center small">
               <span>
