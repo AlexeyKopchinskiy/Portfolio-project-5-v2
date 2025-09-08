@@ -4,13 +4,14 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
 from .forms import PostForm, CommentForm, AuthorForm, ReviewerForm
+from django.utils import timezone
 
 # Create your views here.
 
 
 def post_list(request):
     """View to list all published blog posts."""
-    posts = Post.objects.filter(is_published=True).order_by("-published")
+    posts = Post.objects.filter(is_published=True).order_by("-published_on")
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
@@ -159,10 +160,19 @@ def is_reviewer(user):
 def review_user_post(request, post_id):
     """View for reviewers to edit and approve blog posts."""
     post = get_object_or_404(Post, id=post_id)
-    form = ReviewerPostForm(request.POST or None, instance=post)
+    form = ReviewerForm(request.POST or None, instance=post)
+
     if request.method == "POST" and form.is_valid():
-        form.save()
+        updated_post = form.save(commit=False)
+
+        if updated_post.is_published:
+            if not updated_post.published_on:
+                updated_post.published_on = timezone.now()
+            updated_post.review_status = "Reviewed"
+
+        updated_post.save()
         return redirect("reviewer_dashboard")
+
     return render(
         request, "review_user_post.html", {"form": form, "post": post}
     )
@@ -172,7 +182,7 @@ def review_user_post(request, post_id):
 def dashboard(request):
     """View to display the dashboard for authors and reviewers."""
     latest_posts = Post.objects.filter(is_published=True).order_by(
-        "-published"
+        "-published_on"
     )[:5]
     return render(
         request,
