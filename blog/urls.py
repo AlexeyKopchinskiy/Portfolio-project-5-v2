@@ -20,4 +20,9 @@ urlpatterns = [
         views.edit_user_post,
         name="edit_user_post",
     ),
+    path(
+        "review/edit/<int:post_id>/",
+        views.review_user_post,
+        name="review_user_post",
+    ),
 ]

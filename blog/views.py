@@ -134,7 +134,16 @@ def edit_user_post(request, post_id):
     )
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        updated_post = form.save(commit=False)
+
+        # Only apply reviewer logic
+        if user.groups.filter(name="Reviewer").exists():
+            if updated_post.is_published and not updated_post.published_on:
+                updated_post.published_on = timezone.now()
+            updated_post.review_status = "Reviewed"
+
+        updated_post.save()
+
         return redirect(
             "dashboard_author" if user == post.author else "dashboard_reviewer"
         )
