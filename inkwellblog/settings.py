@@ -32,7 +32,7 @@ stripe.api_key = STRIPE_SECRET_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", False)
+DEBUG = os.getenv("DEBUG", True)
 
 ALLOWED_HOSTS = [
     "127.0.0.1",

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta_description %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}Review Post — InkwellBlog{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">🔍 Review Post: "{{ post.title }}"</h2>
+
+  <div class="mb-3">
+    <strong>Author:</strong> {{ post.author.username }}<br>
+    <strong>Created:</strong> {{ post.created_on|date:"F j, Y H:i" }}<br>
+    <strong>Status:</strong> {{ post.review_status|default:"—" }}<hr>
+    <h3 class="mb-4">Post Content:</h3>
+    <div class="border p-3 bg-dark">{{ post.content|safe }}</div>
+    <hr>
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group mb-3">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+
+    <div class="mt-4 d-flex justify-content-between">
+      <a href="{% url 'dashboard_reviewer' %}" class="btn btn-outline-secondary">❌ Cancel</a>
+      <button type="submit" class="btn btn-primary">✅ Submit Review</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

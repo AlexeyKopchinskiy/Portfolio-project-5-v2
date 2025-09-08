@@ -180,10 +180,10 @@ def review_user_post(request, post_id):
             updated_post.review_status = "Reviewed"
 
         updated_post.save()
-        return redirect("reviewer_dashboard")
+        return redirect("dashboard_reviewer")
 
     return render(
-        request, "review_user_post.html", {"form": form, "post": post}
+        request, "blog/review_user_post.html", {"form": form, "post": post}
     )
 
 

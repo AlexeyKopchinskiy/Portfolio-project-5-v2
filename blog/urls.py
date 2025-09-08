@@ -1,10 +1,9 @@
 from django.urls import path
 from . import views
-from .views import my_comments, edit_comment
 
 
 urlpatterns = [
-    path("my-comments/", my_comments, name="my_comments"),
+    path("my-comments/", views.my_comments, name="my_comments"),
     path("comments/edit/<int:pk>/", views.edit_comment, name="edit_comment"),
     path(
         "comment/<int:pk>/delete/", views.delete_comment, name="delete_comment"
@@ -16,7 +15,7 @@ urlpatterns = [
     path("edit/<int:post_id>/edit/", views.edit_post, name="edit_post"),
     path("post/<int:id>/delete/", views.delete_post, name="delete_post"),
     path(
-        "review/edit/<int:post_id>/",
+        "author/edit/<int:post_id>/",
         views.edit_user_post,
         name="edit_user_post",
     ),
