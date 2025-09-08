@@ -290,7 +290,7 @@ def dashboard_reader(request):
     )[:5]
     latest_posts = Post.objects.filter(is_published="True").order_by(
         "-created_on"
-    )[:5]
+    )[:3]
 
     context = {
         "recent_comments": recent_comments,

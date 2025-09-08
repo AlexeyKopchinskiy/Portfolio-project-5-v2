@@ -44,6 +44,7 @@ def post_detail(request, slug):
 @login_required
 def create_post(request):
     """View to create a new blog post."""
+
     # Restrict access for users in the "Reader" group
     if request.user.groups.filter(name="Reader").exists():
         messages.warning(
@@ -51,15 +52,22 @@ def create_post(request):
         )
         return redirect("home")
 
+    # Determine form based on user group
+    if request.user.groups.filter(name="Reviewer").exists():
+        FormClass = ReviewerForm
+    else:
+        FormClass = AuthorForm
+
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
+        form = FormClass(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, "Your post has been created.")
             return redirect("my_posts")
     else:
-        form = PostForm()
+        form = FormClass()
 
     return render(request, "blog/create_post.html", {"form": form})
 
