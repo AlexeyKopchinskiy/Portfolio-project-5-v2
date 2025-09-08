@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django_summernote.fields import SummernoteTextField
 from django.urls import reverse
+from django.utils import timezone
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class Post(models.Model):
         upload_to="blog_images/", blank=True, null=True
     )
     created_on = models.DateTimeField(auto_now_add=True)
-    published = models.DateTimeField(blank=True, null=True)
+    published_on = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
     reviewer_notes = models.TextField(blank=True, null=True)
 
@@ -35,6 +36,13 @@ class Post(models.Model):
         blank=False,
         null=False,
     )
+
+    def publish(self):
+        if not self.published:
+            self.published = timezone.now()
+        self.review_status = "published"
+        self.is_published = True
+        self.save()
 
     def save(self, *args, **kwargs):
         if not self.slug:
