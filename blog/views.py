@@ -229,6 +229,7 @@ def edit_comment(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
+            messages.success(request, "✅ Your comment has been updated.")
             return redirect("my_comments")
     else:
         form = CommentForm(instance=comment)
@@ -249,4 +250,5 @@ def delete_comment(request, pk):
             "You can't delete someone else's comment."
         )
     comment.delete()
+    messages.success(request, "✅ Your comment has been updated.")
     return redirect("my_comments")
