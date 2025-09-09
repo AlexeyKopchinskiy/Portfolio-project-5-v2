@@ -64,4 +64,7 @@ urlpatterns = [
         views.guidelines_for_reviewers,
         name="guidelines_for_reviewers",
     ),
+    path(
+        "authors/<str:username>/", views.author_profile, name="author_profile"
+    ),
 ]

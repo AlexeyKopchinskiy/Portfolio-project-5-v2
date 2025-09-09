@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ author.username }} — Author Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>🖋️ {{ author.get_full_name|default:author.username }}</h2>
+  <p class="text-muted">Member since {{ author.date_joined|date:"F Y" }}</p>
+
+  <hr>
+
+  <h4>📚 Published Posts</h4>
+  {% if posts %}
+    <ul class="list-group mb-4">
+      {% for post in posts %}
+        <li class="list-group-item">
+          <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+          <small class="text-muted d-block">Published on {{ post.created_on|date:"M d, Y" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts published yet.</p>
+  {% endif %}
+
+  <h4>💬 Recent Comments</h4>
+  {% if comments %}
+    <ul class="list-group">
+      {% for comment in comments %}
+        <li class="list-group-item">
+          <strong>On:</strong> <a href="{% url 'post_detail' comment.post.slug %}">{{ comment.post.title }}</a><br>
+          {{ comment.body|truncatewords:20 }}
+          <small class="text-muted d-block">Commented on {{ comment.created_on|date:"M d, Y" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No comments yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
