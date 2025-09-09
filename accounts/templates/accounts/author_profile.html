@@ -29,7 +29,7 @@
         <li class="list-group-item">
           <strong>On:</strong> <a href="{% url 'post_detail' comment.post.slug %}">{{ comment.post.title }}</a><br>
           {{ comment.body|truncatewords:20 }}
-          <small class="text-muted d-block">Commented on {{ comment.created_on|date:"M d, Y" }}</small>
+          <small class="text-muted d-block">Commented on {{ comment.created_at|date:"M d, Y" }}</small>
         </li>
       {% endfor %}
     </ul>

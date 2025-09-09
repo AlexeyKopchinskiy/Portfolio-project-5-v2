@@ -284,7 +284,7 @@ def author_profile(request, username):
     posts = Post.objects.filter(author=author, is_published=True).order_by(
         "-created_on"
     )
-    comments = Comment.objects.filter(author=author).order_by("-created_on")
+    comments = Comment.objects.filter(author=author).order_by("-created_at")
 
     context = {
         "author": author,
@@ -292,6 +292,11 @@ def author_profile(request, username):
         "comments": comments,
     }
     return render(request, "accounts/author_profile.html", context)
+
+
+def community(request):
+    authors = User.objects.filter(groups__name="Author").order_by("username")
+    return render(request, "accounts/community.html", {"authors": authors})
 
 
 # Dashboard views for different user roles

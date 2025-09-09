@@ -67,4 +67,5 @@ urlpatterns = [
     path(
         "authors/<str:username>/", views.author_profile, name="author_profile"
     ),
+    path("community/", views.community, name="community"),
 ]
