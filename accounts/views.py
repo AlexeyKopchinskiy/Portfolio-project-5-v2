@@ -349,7 +349,7 @@ def dashboard_reviewer(request):
     unpublished_posts = Post.objects.filter(is_published=False)
     latest_posts = Post.objects.filter(is_published=True).order_by(
         "-created_on"
-    )[:5]
+    )[:3]
 
     context = {
         "posts": unpublished_posts,
@@ -387,6 +387,12 @@ def account_settings(request):
         "profile_form": profile_form,
     }
     return render(request, "accounts/settings.html", context)
+
+
+@login_required
+@role_required("Reviewer")
+def guidelines_for_reviewers(request):
+    return render(request, "accounts/guidelines_for_reviewers.html")
 
 
 # Custom password change view

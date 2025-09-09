@@ -59,4 +59,9 @@ urlpatterns = [
         PasswordChangeDoneView.as_view(),
         name="password_change_done",
     ),
+    path(
+        "guidelines/reviewers/",
+        views.guidelines_for_reviewers,
+        name="guidelines_for_reviewers",
+    ),
 ]
