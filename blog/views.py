@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from .forms import PostForm, CommentForm, AuthorForm, ReviewerForm
+from .forms import CommentForm, AuthorForm, ReviewerForm
 from django.utils import timezone
 
 # Create your views here.
@@ -28,6 +28,7 @@ def post_detail(request, slug):
             comment.post = post
             comment.author = request.user
             comment.save()
+            messages.success(request, "✅ Your comment has been posted.")
             return redirect("post_detail", slug=post.slug)
 
     return render(
