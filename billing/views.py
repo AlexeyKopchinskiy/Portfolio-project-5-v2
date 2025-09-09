@@ -31,10 +31,10 @@ def create_checkout_session(request):
             ],
             mode="payment",
             success_url=(
-                "http://localhost:8000/billing/success/"
-                "?session_id={CHECKOUT_SESSION_ID}"
+                f"{settings.DOMAIN_URL}/billing/success/"
+                f"?session_id={{CHECKOUT_SESSION_ID}}"
             ),
-            cancel_url="http://localhost:8000/billing/cancel/",
+            cancel_url=f"{settings.DOMAIN_URL}/billing/cancel/",
             client_reference_id=str(
                 request.user.id
             ),  # ✅ Stripe will send this in webhook
