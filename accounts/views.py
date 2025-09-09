@@ -279,6 +279,21 @@ def register_view(request):
     return render(request, "account/signup.html")
 
 
+def author_profile(request, username):
+    author = get_object_or_404(User, username=username)
+    posts = Post.objects.filter(author=author, is_published=True).order_by(
+        "-created_on"
+    )
+    comments = Comment.objects.filter(author=author).order_by("-created_on")
+
+    context = {
+        "author": author,
+        "posts": posts,
+        "comments": comments,
+    }
+    return render(request, "accounts/author_profile.html", context)
+
+
 # Dashboard views for different user roles
 @login_required
 def dashboard_reader(request):
