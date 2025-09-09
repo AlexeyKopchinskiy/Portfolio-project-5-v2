@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Community — Meet Our Authors{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>👥 Meet the Authors</h2>
+  <p class="text-muted mb-4">Explore profiles, discover stories, and connect with our creative minds.</p>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for author in authors %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ author.get_full_name|default:author.username }}</h5>
+            <p class="card-text text-muted">Joined {{ author.date_joined|date:"F Y" }}</p>
+            <a href="{% url 'author_profile' author.username %}" class="btn btn-outline-primary btn-sm">View Profile</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No authors found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
