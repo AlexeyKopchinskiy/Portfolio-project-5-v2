@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
-from blog.models import Post
+from blog.models import Post, Comment
+from django.contrib.auth.models import User, Group
 
 
 # Create your views here.
@@ -18,11 +19,30 @@ def custom_500(request):
 
 
 def home(request):
-    """Render the home page with only published posts."""
+    """Render the home page with published posts and platform stats."""
     latest_posts = Post.objects.filter(is_published=True).order_by(
         "-created_on"
     )[:6]
-    return render(request, "pages/home.html", {"latest_posts": latest_posts})
+
+    # Platform statistics
+    user_count = User.objects.count()
+    group_counts = {
+        group.name: group.user_set.count() for group in Group.objects.all()
+    }
+    post_count = Post.objects.count()
+    published_count = Post.objects.filter(is_published=True).count()
+    comment_count = Comment.objects.count()
+
+    context = {
+        "latest_posts": latest_posts,
+        "user_count": user_count,
+        "group_counts": group_counts,
+        "post_count": post_count,
+        "published_count": published_count,
+        "comment_count": comment_count,
+    }
+
+    return render(request, "pages/home.html", context)
 
 
 def about(request):
