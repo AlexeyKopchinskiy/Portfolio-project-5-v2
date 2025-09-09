@@ -95,9 +95,10 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+# Static files settings for local environment
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 # Simplified static file serving.
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 ROOT_URLCONF = "inkwellblog.urls"
