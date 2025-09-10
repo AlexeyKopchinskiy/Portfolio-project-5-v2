@@ -102,18 +102,18 @@ main {
 .text-border {
     text-align: center;
     padding: 10px 20px;
-    font-size: 72px;
-    font-weight: 900;
+    font-size: 65px;
+    font-weight: 600;
     color: #ffffff;
     text-shadow:
-        -2px -2px 0 #012b53,
-        2px -2px 0 #012b53,
-        -2px 2px 0 #012b53,
-        2px 2px 0 #012b53,
-        -3px 0px 0 #012b53,
-        3px 0px 0 #012b53,
-        0px -3px 0 #012b53,
-        0px 3px 0 #012b53;
+        -2px -2px 0 #222222,
+        2px -2px 0 #222222,
+        -2px 2px 0 #222222,
+        2px 2px 0 #222222,
+        -3px 0px 0 #222222,
+        3px 0px 0 #222222,
+        0px -3px 0 #222222,
+        0px 3px 0 #222222;
 }
 
 /* End of cards */
@@ -319,3 +319,22 @@ form input[type="password"]:focus {
 }
 
 /* End of Bookstrap classes modifires */
+
+/* Simple styles */
+
+/* End of Simple styles */
+.bgOpacity10 {
+    background: rgba(40, 41, 41, 0.3) !important;
+}
+
+.bgOpacity15 {
+    background: rgba(40, 41, 41, 0.5) !important;
+}
+
+.bgOpacity20 {
+    background: rgba(40, 41, 41, 0.7) !important;
+}
+
+.bgOpacity30 {
+    background: rgba(40, 41, 41, 0.9) !important;
+}
