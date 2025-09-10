@@ -2,7 +2,7 @@
 {% block title %}Welcome — InkwellBlog{% endblock %}
 {% block content %}
 <div class="text-center py-5">
-  <h1 class="display-4">Welcome to InkwellBlog</h1>
+  <h1 class="display-4 text-border">Welcome to InkwellBlog!</h1>
   <p class="lead">Craft, share, and engage with meaningful writing in a creative, moderated community.</p>
 </div>
 
@@ -77,12 +77,12 @@
   </section>
 {% endif %}
 
-<div class="container mt-5">
+<section class="bg-warning bg-opacity-10 py-4 mt-5 p-3 rounded">
   <h2 class="mb-4">📊 Platform Overview</h2>
   <div class="row g-4">
 
     <!-- Left Column: Users (50%) -->
-    <div class="col-md-6">
+    <div class="col-md-6 bg-opacity-10">
       <div class="card border-primary shadow-sm h-100">
         <div class="card-body">
           <h5 class="card-title text-primary">👥 Users</h5>
@@ -118,12 +118,12 @@
 
     </div>
   </div>
-</div>
+</section>
 
 {% if user.is_authenticated %}
   {% for group in user.groups.all %}
     {% if group.name == "Reader" %}
-      <section class="bg-warning bg-opacity-10 py-4 mt-5 border-top">
+      <section class="bg-warning bg-opacity-10 py-4 mt-5 border-bottom rounded-top">
         <div class="container text-center">
           <h5 class="mb-2">🚀 Ready to Go Premium?</h5>
           <p class="lead mb-3">As a Reader, you're getting started. Upgrade now to unlock all the publishing perks, analytics, and community access.</p>
