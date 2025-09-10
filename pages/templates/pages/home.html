@@ -6,49 +6,6 @@
   <p class="lead">Craft, share, and engage with meaningful writing in a creative, moderated community.</p>
 </div>
 
-<div class="container mt-5">
-  <h2 class="mb-4">📊 Platform Overview</h2>
-  <div class="row g-4">
-
-    <!-- Left Column: Users (50%) -->
-    <div class="col-md-6">
-      <div class="card border-primary shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-primary">👥 Users</h5>
-          <p class="fs-5">Total: <strong>{{ user_count }}</strong></p>
-          <ul class="list-unstyled">
-            {% for group, count in group_counts.items %}
-              <li>{{ group }}: <strong>{{ count }}</strong></li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column: Posts + Comments (50%) -->
-    <div class="col-md-6 d-flex flex-column gap-4">
-
-      <!-- Posts Card -->
-      <div class="card border-success shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-success">📝 Posts</h5>
-          <p class="fs-5">Total: <strong>{{ post_count }}</strong></p>
-          <p>Published: <strong>{{ published_count }}</strong></p>
-        </div>
-      </div>
-
-      <!-- Comments Card -->
-      <div class="card border-warning shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-warning">💬 Comments</h5>
-          <p class="fs-5">Total: <strong>{{ comment_count }}</strong></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 {% if not user.is_authenticated %}
   <!-- Show subscription section for guests -->
   <section class="promo-section bg-light py-5 mt-5">
@@ -119,6 +76,49 @@
     </div>
   </section>
 {% endif %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">📊 Platform Overview</h2>
+  <div class="row g-4">
+
+    <!-- Left Column: Users (50%) -->
+    <div class="col-md-6">
+      <div class="card border-primary shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">👥 Users</h5>
+          <p class="fs-5">Total: <strong>{{ user_count }}</strong></p>
+          <ul class="list-unstyled">
+            {% for group, count in group_counts.items %}
+              <li>{{ group }}: <strong>{{ count }}</strong></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Posts + Comments (50%) -->
+    <div class="col-md-6 d-flex flex-column gap-4">
+
+      <!-- Posts Card -->
+      <div class="card border-success shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-success">📝 Posts</h5>
+          <p class="fs-5">Total: <strong>{{ post_count }}</strong></p>
+          <p>Published: <strong>{{ published_count }}</strong></p>
+        </div>
+      </div>
+
+      <!-- Comments Card -->
+      <div class="card border-warning shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-warning">💬 Comments</h5>
+          <p class="fs-5">Total: <strong>{{ comment_count }}</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 {% if user.is_authenticated %}
   {% for group in user.groups.all %}
