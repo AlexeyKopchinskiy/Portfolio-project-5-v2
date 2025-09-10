@@ -27,7 +27,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("admin/", admin.site.urls),
     path(
-        "accounts/", include("accounts.urls")
+        "profile/", include("accounts.urls")
     ),  # <-- This connects to the settings page
     path("accounts/", include("allauth.urls")),  # Allauth still lives here too
     path("blog/", include("blog.urls")),
