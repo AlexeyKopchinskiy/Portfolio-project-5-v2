@@ -35,7 +35,9 @@ urlpatterns = [
     path(
         "newsletter/", include("newsletter.urls")
     ),  # <-- This connects newsletter app
-    path("billing/", include("billing.urls")),
+    path(
+        "billing/", include(("billing.urls", "billing"), namespace="billing")
+    ),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
