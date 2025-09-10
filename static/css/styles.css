@@ -3,8 +3,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
-    color: #e0e0e0;
+    background-image: url('../img/inkwellblog-background.webp');
     font-family: 'Segoe UI', sans-serif;
+    color: #f1f1f1;
 }
 
 main {
@@ -96,6 +97,23 @@ main {
 .promo-section .btn-primary:focus {
     outline: none;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.text-border {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 72px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow:
+        -2px -2px 0 #012b53,
+        2px -2px 0 #012b53,
+        -2px 2px 0 #012b53,
+        2px 2px 0 #012b53,
+        -3px 0px 0 #012b53,
+        3px 0px 0 #012b53,
+        0px -3px 0 #012b53,
+        0px 3px 0 #012b53;
 }
 
 /* End of cards */
