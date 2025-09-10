@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
@@ -7,3 +7,7 @@ urlpatterns = [
     path("success/", views.payment_success, name="payment_success"),
     path("cancel/", views.payment_cancel, name="payment_cancel"),
 ]
+
+
+# Namespace for the billing app
+app_name = "billing"
