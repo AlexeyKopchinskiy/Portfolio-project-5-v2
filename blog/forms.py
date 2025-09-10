@@ -85,7 +85,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ["content"]
+        fields = ["content", "approved"]
         widgets = {
             "content": SummernoteWidget(
                 attrs={
@@ -102,3 +102,9 @@ class CommentForm(forms.ModelForm):
                 }
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+        if not user or not user.is_staff:
+            self.fields.pop("approved", None)

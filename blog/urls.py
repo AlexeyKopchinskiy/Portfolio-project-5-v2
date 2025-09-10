@@ -26,6 +26,9 @@ urlpatterns = [
         views.review_user_post,
         name="review_user_post",
     ),
+    path(
+        "moderate/comments/", views.approve_comments, name="approve_comments"
+    ),
 ]
 
 if settings.DEBUG:

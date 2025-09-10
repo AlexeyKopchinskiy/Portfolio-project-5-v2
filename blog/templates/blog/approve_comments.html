@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4"><i class="bi bi-chat-square-text"></i> Pending Comments for Approval</h2>
+
+  {% if pending_comments %}
+    <div class="list-group">
+      {% for comment in pending_comments %}
+        <div class="list-group-item list-group-item-action flex-column align-items-start mb-3 border rounded shadow-sm">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ comment.author.username }}</h5>
+            <small class="text-muted">{{ comment.created_at|date:"M d, Y H:i" }}</small>
+          </div>
+          <p class="mb-1">{{ comment.content|linebreaks }}</p>
+          <small class="text-muted">On post: <a href="{% url 'post_detail' slug=comment.post.slug %}">{{ comment.post.title }}</a></small>
+          <form method="post" class="mt-3">
+            {% csrf_token %}
+            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+            <button type="submit" class="btn btn-success btn-sm">
+              <i class="bi bi-check-circle"></i> Approve
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+      🎉 No comments awaiting approval.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

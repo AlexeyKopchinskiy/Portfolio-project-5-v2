@@ -27,7 +27,7 @@
         <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
       </li>
     {% empty %}
-      <li>No comments yet. Be the first!</li>
+      <li><small class="text-muted">No approved comments yet. Be the first to submit a comment for review!</small></li>
     {% endfor %}
   </ul>
 

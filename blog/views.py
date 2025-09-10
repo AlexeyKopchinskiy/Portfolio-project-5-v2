@@ -18,8 +18,8 @@ def post_list(request):
 def post_detail(request, slug):
     """View to display a single blog post and its comments."""
     post = get_object_or_404(Post, slug=slug)
-    comments = post.comments.order_by("-created_at")
-    form = CommentForm()
+    comments = post.comments.filter(approved=True).order_by("-created_at")
+    form = CommentForm(request.POST or None, user=request.user)
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -27,8 +27,14 @@ def post_detail(request, slug):
             comment = form.save(commit=False)
             comment.post = post
             comment.author = request.user
+            if not request.user.is_staff:
+                comment.approved = False
             comment.save()
-            messages.success(request, "✅ Your comment has been posted.")
+            messages.success(
+                request,
+                "✅ Your comment has been submitted and is awaiting approval. "
+                "It will appear once reviewed.",
+            )
             return redirect("post_detail", slug=post.slug)
 
     return render(
@@ -193,6 +199,33 @@ def review_user_post(request, post_id):
 
     return render(
         request, "blog/review_user_post.html", {"form": form, "post": post}
+    )
+
+
+@login_required
+@user_passes_test(is_reviewer)
+def approve_comments(request):
+    """View for staff to approve pending comments."""
+    pending_comments = Comment.objects.filter(approved=False).order_by(
+        "-created_at"
+    )
+
+    if request.method == "POST":
+        comment_id = request.POST.get("comment_id")
+        comment = Comment.objects.filter(id=comment_id).first()
+        if comment:
+            comment.approved = True
+            comment.save()
+            messages.success(
+                request, f"✅ Comment by {comment.author} has been approved."
+            )
+
+        return redirect("approve_comments")  # Redirect to avoid resubmission
+
+    return render(
+        request,
+        "blog/approve_comments.html",
+        {"pending_comments": pending_comments},
     )
 
 
