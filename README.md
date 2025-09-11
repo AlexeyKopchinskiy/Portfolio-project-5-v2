@@ -5,6 +5,8 @@ Portfolio Project 5 - E-commerce Applications
 
 **InkWell** is a full-stack blogging platform that allows authors to publish both public and subscriber-only posts. It includes e-commerce integration for subscriptions, secure role-based authentication, SEO features, and a clean, accessible UI.
 
+![Responsive layout](./static/img/InkwellBlog-mockup.webp)
+
 ## 📌 Table of Contents
 - [Project Overview](#project-overview)
 - [User Types & User Stories](#user-types--user-stories)
