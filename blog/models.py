@@ -21,6 +21,9 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     published_on = models.DateTimeField(blank=True, null=True)
     is_published = models.BooleanField(default=False)
+    premium_post = models.BooleanField(
+        default=False, help_text="Mark this post as premium content"
+    )
     reviewer_notes = models.TextField(blank=True, null=True)
 
     REVIEW_STATUS_CHOICES = [
