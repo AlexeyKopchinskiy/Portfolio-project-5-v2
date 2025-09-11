@@ -27,6 +27,38 @@ Portfolio Project 5 - E-commerce Applications
 
 This platform allows authors to manage and monetize content while providing a premium experience for paid subscribers. The goal is to provide a clean, SEO-optimized, and secure blogging space with real e-commerce functionality.
 
+## Agile Methodology
+
+This project was developed using Agile principles, with GitHub Issues serving as the central hub for tracking User Stories — you can view them [here](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues). For better accessibility and organization, all issues were grouped into a dedicated GitHub Project, allowing me to visualize progress and manage priorities more effectively. This project called InkwellBlog project can be found [here](https://github.com/users/AlexeyKopchinskiy/projects/12).
+
+Each User Story was defined with clear Acceptance Criteria and associated Tasks. As the project evolved, I occasionally revised these tasks post-implementation, since the exact steps needed to meet the criteria weren’t always obvious at the outset.
+
+Being my only second project using both Agile and the Django framework, the process was still on a learning curve. Some initially separate User Stories were later grouped into Epics, as their functionality turned out to be closely related. Interestingly, while a few tasks were completed more quickly than expected, others required significantly more time and iteration.
+
+To prioritize effectively, I applied the MoSCoW method — categorizing each User Story as a 'Must Have', 'Should Have', or 'Could Have'. A handful of "Won’t Have" items were intentionally left in the backlog for potential future development. My focus was on crafting just enough stories to reach a solid Minimum Viable Product (MVP). Most of the stories were also labeled as 'Developer stories', 'Site owner stories' or 'Visitor stories'
+
+### 🚀 Agile Workflow
+
+- Agile board managed with GitHub Issues and Milestones  
+- User stories split into:
+  - Developer stories
+  - Site owner stories
+  - Visitor stories
+- Labels include `Must-Have`, `Should-Have`, and `Could-Have`
+- Milestones:
+  - Project Setup
+  - Auth & Roles
+  - E-Commerce
+  - Blog Engine
+  - UX/UI
+  - SEO & Marketing
+  - Testing & Deployment
+
+Screenshots of the Kanban board, Epics, and User Stories illustrate this workflow.
+
+Overall, adopting Agile proved invaluable. It gave structure to my development process and helped me manage my time more intentionally — even without fixed-length iterations. And yes, moving tasks from 'To Do' to 'Done' was genuinely satisfying.
+
+
 ## 🎯 Project Purpose & Rationale
 
 This web application was developed to support a multi-role content platform that facilitates publishing, reviewing, and engaging with written content. It is designed with four distinct user roles — **Readers**, **Authors**, **Reviewers**, and **Administrators** — each with tailored access, responsibilities, and interfaces.
@@ -168,22 +200,7 @@ The application includes a fully functional contact form accessible via /contact
 | Version Control    | Git & GitHub                  |
 | Github emoji       | Github emoji markup           |
 
-## 🚀 Agile Workflow
 
-- Agile board managed with GitHub Issues and Milestones  
-- User stories split into:
-  - Developer stories
-  - Site owner stories
-  - Visitor stories
-- Labels include `Must-Have`, `Should-Have`, and `Could-Have`
-- Milestones:
-  - Project Setup
-  - Auth & Roles
-  - E-Commerce
-  - Blog Engine
-  - UX/UI
-  - SEO & Marketing
-  - Testing & Deployment
 
 ## 📐 Wireframes & UX Design
 
