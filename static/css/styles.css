@@ -339,3 +339,90 @@ form input[type="password"]:focus {
 .bgOpacity30 {
     background: rgba(40, 41, 41, 0.9) !important;
 }
+
+/* 🔵 Large desktop screens (1440px+) */
+@media (min-width: 1440px) {
+    .table {
+        font-size: 18px;
+        /* ✅ Increase font for readability */
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        /* ✅ More spacing */
+    }
+}
+
+/* 🔵 Standard desktops & laptops (1024px - 1440px) */
+@media (max-width: 1440px) and (min-width: 1024px) {
+    .table {
+        font-size: 16px;
+    }
+
+    .table-container {
+        max-width: 90%;
+        /* ✅ Slightly reduce width */
+    }
+}
+
+/* 🟢 Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .table {
+        font-size: 15px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+/* 🟠 Large mobile phones (480px - 768px) */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .text-border {
+        font-size: 40px;
+        /* ✅ Adjust main heading size */
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        /* ✅ Centers the logo */
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 🔴 Extra-small mobile screens (below 480px) */
+@media (max-width: 480px) {
+
+    .text-border {
+        font-size: 34px;
+        /* ✅ Adjust main heading size */
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        /* ✅ Centers the logo */
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        background-color: #7b1863;
+        left: 15px;
+    }
+}
