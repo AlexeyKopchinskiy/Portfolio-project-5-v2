@@ -113,6 +113,23 @@
       </div>
     </div>
 
+    <!-- Blog Post Management -->
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-info text-white">
+          📝 Blog Post Management
+        </div>
+        <div class="card-body">
+          <p>View, edit, and organize blog posts across the site.</p>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'admin_manage_posts' %}" class="btn btn-sm btn-outline-info mb-2">📋 Manage Posts</a></li>
+            <li><a href="{% url 'create_post' %}" class="btn btn-sm btn-outline-success mb-2">➕ Create New Post</a></li>
+            <li><a href="{% url 'admin:blog_post_changelist' %}" class="btn btn-sm btn-outline-secondary">⚙️ Admin View</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock %}
