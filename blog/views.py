@@ -1,12 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
+
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from .forms import CommentForm, AuthorForm, ReviewerForm
+from .forms import CommentForm, AuthorForm, ReviewerForm, PostForm
 from django.utils import timezone
 
 # Create your views here.
+
+
+def is_reviewer(user):
+    """Check if the user belongs to the 'Reviewer' group."""
+    return user.groups.filter(name="Reviewer").exists()
 
 
 def post_list(request):
@@ -174,11 +181,6 @@ def edit_user_post(request, post_id):
     )
 
 
-def is_reviewer(user):
-    """Check if the user belongs to the 'Reviewer' group."""
-    return user.groups.filter(name="Reviewer").exists()
-
-
 @login_required
 @user_passes_test(is_reviewer)
 def review_user_post(request, post_id):
@@ -285,3 +287,31 @@ def delete_comment(request, pk):
     comment.delete()
     messages.success(request, "✅ Your comment has been updated.")
     return redirect("my_comments")
+
+
+# Additional admin views for managing posts
+@staff_member_required
+def admin_manage_posts(request):
+    """Admin view to manage and edit all blog posts."""
+    posts = Post.objects.all().order_by("-created_on")
+    return render(request, "blog/admin_manage_posts.html", {"posts": posts})
+
+
+@staff_member_required
+def admin_edit_post(request, post_id):
+    """Admin view to edit any blog post."""
+    post = get_object_or_404(Post, id=post_id)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
+
+    if request.method == "POST" and form.is_valid():
+        updated_post = form.save(commit=False)
+
+        if updated_post.is_published and not updated_post.published_on:
+            updated_post.published_on = timezone.now()
+
+        updated_post.save()
+        return redirect("admin_manage_posts")
+
+    return render(
+        request, "blog/admin_edit_post.html", {"form": form, "post": post}
+    )

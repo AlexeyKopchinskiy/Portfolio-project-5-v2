@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">📝 Admin: Manage Blog Posts</h2>
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Status</th>
+        <th>Premium</th>
+        <th>Published</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <td>{{ post.title }}</td>
+        <td>{{ post.author.username }}</td>
+        <td>{{ post.review_status }}</td>
+        <td>{% if post.premium_post %}🌟{% else %}—{% endif %}</td>
+        <td>{% if post.is_published %}✅{% else %}—{% endif %}</td>
+        <td>
+          <a href="{% url 'admin_edit_post' post.id %}" class="btn btn-sm btn-outline-warning">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

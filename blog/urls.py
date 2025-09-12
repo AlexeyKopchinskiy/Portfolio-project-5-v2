@@ -29,6 +29,16 @@ urlpatterns = [
     path(
         "moderate/comments/", views.approve_comments, name="approve_comments"
     ),
+    path(
+        "admin/manage-posts/",
+        views.admin_manage_posts,
+        name="admin_manage_posts",
+    ),
+    path(
+        "admin/edit-post/<int:post_id>/",
+        views.admin_edit_post,
+        name="admin_edit_post",
+    ),
 ]
 
 if settings.DEBUG:
