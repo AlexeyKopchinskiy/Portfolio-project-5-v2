@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card bg-dark text-light shadow-lg border-warning">
+    {% if post.featured_image %}
+      <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+    {% endif %}
+    <div class="card-body">
+      <h2 class="card-title text-warning">🌟 {{ post.title }}</h2>
+      <p class="text-muted">By <strong>{{ post.author.username }}</strong> on {{ post.published_on|date:"F j, Y" }}</p>
+      <hr class="border-warning">
+      <div class="card-text">
+        {{ post.content|safe }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: Back to Premium Posts -->
+  <div class="mt-4">
+    <a href="{% url 'premium_post_list' %}" class="btn btn-outline-warning">← Back to Premium Posts</a>
+  </div>
+</div>
+{% endblock %}

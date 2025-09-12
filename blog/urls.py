@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path("", views.post_list, name="post_list"),
+    path("premium/", views.premium_post_list, name="premium_post_list"),
     path("my-comments/", views.my_comments, name="my_comments"),
     path("comments/edit/<int:pk>/", views.edit_comment, name="edit_comment"),
     path(
@@ -12,7 +14,6 @@ urlpatterns = [
     ),
     path("create/", views.create_post, name="create_post"),
     path("my-posts/", views.my_posts, name="my_posts"),
-    path("", views.post_list, name="post_list"),
     path("<slug:slug>/", views.post_detail, name="post_detail"),
     path("edit/<int:post_id>/edit/", views.edit_post, name="edit_post"),
     path("post/<int:id>/delete/", views.delete_post, name="delete_post"),
@@ -38,6 +39,11 @@ urlpatterns = [
         "admin/edit-post/<int:post_id>/",
         views.admin_edit_post,
         name="admin_edit_post",
+    ),
+    path(
+        "premium/<slug:slug>/",
+        views.premium_post_detail,
+        name="premium_post_detail",
     ),
 ]
 

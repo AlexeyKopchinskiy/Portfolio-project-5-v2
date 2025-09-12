@@ -16,10 +16,37 @@ def is_reviewer(user):
     return user.groups.filter(name="Reviewer").exists()
 
 
+def is_premium_user(user):
+    """Check if the user belongs to 'Authors', 'Reviewers', or 'Admins' groups or is staff."""
+    return user.is_authenticated and (
+        user.groups.filter(
+            name__in=["Author", "Reviewer", "Administrator"]
+        ).exists()
+        or user.is_staff
+    )
+
+
 def post_list(request):
     """View to list all published blog posts."""
     posts = Post.objects.filter(is_published=True).order_by("-published_on")
     return render(request, "blog/post_list.html", {"posts": posts})
+
+
+@user_passes_test(is_premium_user)
+def premium_post_list(request):
+    """Show only premium posts to authorized users."""
+    posts = Post.objects.filter(is_published=True, premium_post=True).order_by(
+        "-published_on"
+    )
+    return render(request, "blog/premium_post_list.html", {"posts": posts})
+
+
+@user_passes_test(is_premium_user)
+def premium_post_detail(request, slug):
+    post = get_object_or_404(
+        Post, slug=slug, premium_post=True, is_published=True
+    )
+    return render(request, "blog/premium_post_detail.html", {"post": post})
 
 
 def post_detail(request, slug):
