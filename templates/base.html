@@ -208,18 +208,34 @@
   
 
     <footer class="bg-dark text-light py-4 mt-auto bgOpacity20 border-top border-secondary">
-      <div class="container text-center">
-        <p class="mb-1">&copy; {% now "Y" %} InkwellBlog</p>
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><a class="text-light" href="{% url 'about' %}">About</a></li>
-          <li class="list-inline-item"><a class="text-light" href="{% url 'cookies' %}">Cookies</a></li>
-          <li class="list-inline-item"><a class="text-light" href="{% url 'privacy' %}">Privacy</a></li>
-          <li class="list-inline-item"><a class="text-light" href="{% url 'newsletter_subscribe' %}">📬 Get Inkwell Updates</a></li>
-          <li class="list-inline-item bi bi-facebook"> <a href="https://www.facebook.com/profile.php?id=61578100172311" target="_blank" class="social-link"> Follow us on Facebook</a></li>
-          <li class="list-inline-item"><a class="text-light" href="{% url 'contact' %}" >💬 Contact us</a></li>
-        </ul>
-      </div>
-    </footer>
+  <div class="container text-center">
+    <p class="mb-1">&copy; {% now "Y" %} InkwellBlog</p>
+
+    <!-- Main Footer Links -->
+    <ul class="list-inline mb-2">
+      <li class="list-inline-item"><a class="text-light" href="{% url 'about' %}">About</a></li>
+      <li class="list-inline-item"><a class="text-light" href="{% url 'cookies' %}">Cookies</a></li>
+      <li class="list-inline-item"><a class="text-light" href="{% url 'privacy' %}">Privacy</a></li>
+      <li class="list-inline-item"><a class="text-light" href="{% url 'newsletter_subscribe' %}">📬 Get Inkwell Updates</a></li>
+      <li class="list-inline-item"><a class="text-light" href="{% url 'contact' %}">💬 Contact us</a></li>
+    </ul>
+
+    <!-- Social Links Row -->
+    <div class="mt-3">
+      <ul class="list-inline">
+        <li class="list-inline-item bi bi-facebook">
+          <a href="https://www.facebook.com/profile.php?id=61578100172311" target="_blank" class="social-link text-light">Follow us on Facebook</a>
+        </li>
+        <li class="list-inline-item bi bi-twitter">
+          <a href="https://twitter.com" target="_blank" class="social-link text-light">Twitt us</a>
+        </li>
+        <li class="list-inline-item bi bi-linkedin">
+          <a href="https://www.linkedin.com" target="_blank" class="social-link text-light">Connect on LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
       
 
   <!-- Cookie Consent Banner -->
