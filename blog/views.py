@@ -32,17 +32,20 @@ def post_list(request):
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
-@user_passes_test(is_premium_user)
+@login_required
 def premium_post_list(request):
-    """Show only premium posts to authorized users."""
+    if not is_premium_user(request.user):
+        return render(request, "blog/access_denied.html")  # ✅ fixed
     posts = Post.objects.filter(is_published=True, premium_post=True).order_by(
         "-published_on"
     )
     return render(request, "blog/premium_post_list.html", {"posts": posts})
 
 
-@user_passes_test(is_premium_user)
+@login_required
 def premium_post_detail(request, slug):
+    if not is_premium_user(request.user):
+        return render(request, "blog/access_denied.html")  # ✅ consistent
     post = get_object_or_404(
         Post, slug=slug, premium_post=True, is_published=True
     )
