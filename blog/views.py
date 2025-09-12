@@ -32,7 +32,6 @@ def post_list(request):
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
-@login_required
 def premium_post_list(request):
     if not is_premium_user(request.user):
         return render(request, "blog/access_denied.html")  # ✅ fixed
@@ -42,7 +41,6 @@ def premium_post_list(request):
     return render(request, "blog/premium_post_list.html", {"posts": posts})
 
 
-@login_required
 def premium_post_detail(request, slug):
     if not is_premium_user(request.user):
         return render(request, "blog/access_denied.html")  # ✅ consistent
