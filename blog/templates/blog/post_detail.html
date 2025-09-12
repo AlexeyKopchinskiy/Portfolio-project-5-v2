@@ -4,42 +4,57 @@
 {% endblock %}
 {% block title %}{{ post.title }} — InkwellBlog{% endblock %}
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
 
-  <!-- Blog Post Content -->
-  <h1>{{ post.title }}</h1>
-  {% if post.featured_image %}
-    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" style="max-width:100%; height:auto;">
-  {% endif %}
-  <p class="text-muted">Published on {{ post.created_on|date:"F j, Y" }}{% if post.author %} by {{ post.author.username }}{% endif %}</p>
-  <hr>
-  <div class="mb-5">
-    {{ post.content|safe }}
+      <!-- Blog Post Card -->
+      <div class="card bg-light shadow-sm mb-4">
+        {% if post.featured_image %}
+          <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+        {% endif %}
+        <div class="card-body">
+          <h1 class="card-title">{{ post.title }}</h1>
+          <p class="card-subtitle text-muted mb-3">
+            Published on {{ post.created_on|date:"F j, Y" }}
+            {% if post.author %} by {{ post.author.username }}{% endif %}
+          </p>
+          <hr>
+          <div class="card-text">
+            {{ post.content|safe }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Comments</h3>
+          <ul class="list-unstyled">
+            {% for comment in comments %}
+              <li class="mb-3 border-bottom pb-2">
+                <strong>{{ comment.author.username }}</strong> said:<br>
+                {{ comment.content|safe }}<br>
+                <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
+              </li>
+            {% empty %}
+              <li><small class="text-muted">No approved comments yet. Be the first to submit a comment for review!</small></li>
+            {% endfor %}
+          </ul>
+
+          {% if user.is_authenticated %}
+            <form method="post" class="mt-4">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="btn btn-primary">Post Comment</button>
+            </form>
+          {% else %}
+            <p class="mt-3"><a href="{% url 'account_login' %}">Log in</a> to comment</p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <!-- Comments Section -->
-  <h3>Comments</h3>
-  <ul class="list-unstyled">
-    {% for comment in comments %}
-      <li class="mb-3">
-        <strong>{{ comment.author.username }}</strong> said:<br>
-        {{ comment.content|safe }}<br>
-        <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
-      </li>
-    {% empty %}
-      <li><small class="text-muted">No approved comments yet. Be the first to submit a comment for review!</small></li>
-    {% endfor %}
-  </ul>
-
-  {% if user.is_authenticated %}
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="btn btn-primary">Post Comment</button>
-    </form>
-  {% else %}
-    <p><a href="{% url 'account_login' %}">Log in</a> to comment</p>
-  {% endif %}
-
 </div>
 {% endblock %}

@@ -77,48 +77,84 @@
   </section>
 {% endif %}
 
-<section class="bg-warning bg-opacity-10 py-4 mt-5 p-3 rounded">
-  <h2 class="mb-4">📊 Platform Overview</h2>
+<div class="container mt-5">
   <div class="row g-4">
 
-    <!-- Left Column: Users (50%) -->
-    <div class="col-md-6 bg-opacity-10">
-      <div class="card border-primary shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title text-primary">👥 Users</h5>
-          <p class="fs-5">Total: <strong>{{ user_count }}</strong></p>
-          <ul class="list-unstyled">
-            {% for group, count in group_counts.items %}
-              <li>{{ group }}: <strong>{{ count }}</strong></li>
-            {% endfor %}
-          </ul>
+    <!-- Left Section: Platform Overview -->
+    <div class="col-lg-6">
+      <section class="bg-warning bg-opacity-10 py-4 p-3 rounded h-100">
+        <h2 class="mb-4">Platform Overview</h2>
+        <div class="row g-4">
+
+          <!-- Users -->
+          <div class="col-md-12">
+            <div class="card border-primary shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title text-primary">👥 Users</h5>
+                <p class="fs-5">Total: <strong>{{ user_count }}</strong></p>
+                <ul class="list-unstyled">
+                  {% for group, count in group_counts.items %}
+                    <li>{{ group }}: <strong>{{ count }}</strong></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Posts + Comments -->
+          <div class="col-md-12 d-flex flex-column gap-4 mt-4">
+
+            <!-- Posts -->
+            <div class="card border-success shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-success">📝 Posts</h5>
+                <p class="fs-5">Total: <strong>{{ post_count }}</strong></p>
+                <p>Published: <strong>{{ published_count }}</strong></p>
+              </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="card border-warning shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-warning">💬 Comments</h5>
+                <p class="fs-5">Total: <strong>{{ comment_count }}</strong></p>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
+      </section>
     </div>
 
-    <!-- Right Column: Posts + Comments (50%) -->
-    <div class="col-md-6 d-flex flex-column gap-4">
+    <!-- Right Section: Premium Posts -->
+    <div class="col-lg-6">
+      <section class="bg-dark py-4 px-3 rounded shadow-sm h-100">
+        <h2 class="mb-4">Premium Posts</h2>
 
-      <!-- Posts Card -->
-      <div class="card border-success shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-success">📝 Posts</h5>
-          <p class="fs-5">Total: <strong>{{ post_count }}</strong></p>
-          <p>Published: <strong>{{ published_count }}</strong></p>
-        </div>
-      </div>
+        {% for post in premium_posts|slice:":3" %}
+          <div class="card border-warning mb-3 shadow-sm">
+            {% if post.featured_image %}
+              <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title text-warning">{{ post.title }}</h5>
+              <p class="card-text">{{ post.content|safe|truncatewords:20 }}</p>
+              <a href="{% url 'premium_post_detail' slug=post.slug %}" class="btn btn-outline-warning btn-sm">Read More</a>
 
-      <!-- Comments Card -->
-      <div class="card border-warning shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-warning">💬 Comments</h5>
-          <p class="fs-5">Total: <strong>{{ comment_count }}</strong></p>
-        </div>
-      </div>
-
+              <p class="text-muted fst-italic mt-3 mb-0 small">
+                Full access to this post is available to <strong>premium members</strong> only.
+                <a href="{% url 'pricing' %}" class="text-warning text-decoration-underline">Learn more</a>.
+              </p>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-muted">No premium posts available at the moment.</p>
+        {% endfor %}
+      </section>
     </div>
+
   </div>
-</section>
+</div>
 
 {% if user.is_authenticated %}
   {% for group in user.groups.all %}
