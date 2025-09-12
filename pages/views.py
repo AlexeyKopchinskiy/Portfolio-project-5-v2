@@ -24,6 +24,10 @@ def home(request):
         "-created_on"
     )[:6]
 
+    premium_posts = Post.objects.filter(
+        is_published=True, premium_post=True
+    ).order_by("-published_on")[:2]
+
     # Platform statistics
     user_count = User.objects.count()
     group_counts = {
@@ -40,6 +44,7 @@ def home(request):
         "post_count": post_count,
         "published_count": published_count,
         "comment_count": comment_count,
+        "premium_posts": premium_posts,
     }
 
     return render(request, "pages/home.html", context)
