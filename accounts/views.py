@@ -188,6 +188,22 @@ def contact_message_detail(request, pk):
     )
 
 
+@role_required("Administrator")
+def dashboard_admin(request):
+    """Dashboard view for Admin role."""
+    user = request.user
+
+    latest_posts = Post.objects.filter(is_published="True").order_by(
+        "-created_on"
+    )[:2]
+
+    context = {
+        "latest_posts": latest_posts,
+    }
+
+    return render(request, "accounts/dashboard_admin.html", context)
+
+
 # end of admin views
 
 
@@ -345,22 +361,6 @@ def dashboard_author(request):
     }
 
     return render(request, "accounts/dashboard_author.html", context)
-
-
-@login_required
-def dashboard_admin(request):
-    """Dashboard view for Admin role."""
-    user = request.user
-
-    latest_posts = Post.objects.filter(is_published="True").order_by(
-        "-created_on"
-    )[:2]
-
-    context = {
-        "latest_posts": latest_posts,
-    }
-
-    return render(request, "accounts/dashboard_admin.html", context)
 
 
 @role_required("Reviewer")
