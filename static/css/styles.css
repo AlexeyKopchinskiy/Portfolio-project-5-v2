@@ -396,7 +396,7 @@ form input[type="password"]:focus {
     .navbar-brand {
         justify-content: center;
         /* ✅ Centers the logo */
-        width: 100%;
+        /* width: 100%; */
         text-align: center;
     }
 }
@@ -410,19 +410,20 @@ form input[type="password"]:focus {
     }
 
     .container {
-        width: 100%;
+        /* width: 100%; */
     }
 
     .navbar-brand {
         justify-content: center;
         /* ✅ Centers the logo */
-        width: 100%;
+        /* width: 100%; */
         text-align: center;
     }
 
     .navbar-toggler {
-        position: absolute;
+        position: relative;
         background-color: #7b1863;
-        left: 15px;
+        /* left: 15px; */
+        margin-right: auto;
     }
 }
