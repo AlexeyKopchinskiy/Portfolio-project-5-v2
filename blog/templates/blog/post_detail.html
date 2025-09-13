@@ -3,6 +3,16 @@
     <meta name="robots" content="noindex, nofollow">
 {% endblock %}
 {% block title %}{{ post.title }} — InkwellBlog{% endblock %}
+{% block meta_tags %}
+  <meta name="description" content="{{ post.summary|default:post.content|truncatewords:25 }}">
+  <meta name="keywords" content="{{ post.tags|join:', ' }}">
+  <meta name="author" content="{{ post.author.get_full_name }}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:description" content="{{ post.summary|default:post.content|truncatewords:25 }}">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:type" content="article">
+{% endblock %}
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
