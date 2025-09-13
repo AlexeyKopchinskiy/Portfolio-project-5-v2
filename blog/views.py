@@ -4,6 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import Post, Comment
 from .forms import CommentForm, AuthorForm, ReviewerForm, PostForm
 from django.utils import timezone
@@ -24,6 +25,21 @@ def is_premium_user(user):
         ).exists()
         or user.is_staff
     )
+
+
+def search_view(request):
+    """View to handle search queries for posts and comments."""
+    query = request.GET.get("q", "")
+    post_results = Post.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query)
+    )
+    comment_results = Comment.objects.filter(Q(content__icontains=query))
+    context = {
+        "query": query,
+        "post_results": post_results,
+        "comment_results": comment_results,
+    }
+    return render(request, "blog/search_results.html", context)
 
 
 def post_list(request):
