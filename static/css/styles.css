@@ -33,6 +33,12 @@ main {
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
+.card-text {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
 /* Promo section on the start page */
 .list-group {
     background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
