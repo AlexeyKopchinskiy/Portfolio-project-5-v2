@@ -81,7 +81,7 @@
   <div class="row g-4">
 
     <!-- Left Section: Platform Overview -->
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <section class="bg-warning bg-opacity-10 py-4 p-3 rounded h-100">
         <h2 class="mb-4">Platform Overview</h2>
         <div class="row g-4">
@@ -121,13 +121,36 @@
               </div>
             </div>
 
+            <div class="col-md-12">
+              <div class="card border-info shadow-sm h-100">
+                <div class="card-body">
+                  <h5 class="card-title text-info">📬 Latest Newsletters</h5>
+                  <p class="fs-5">Total Sent: <strong>{{ newsletter_count }}</strong></p>
+                  <ul class="list-unstyled">
+                    {% for newsletter in latest_newsletters %}
+                      <li class="mb-3">
+                        <strong>{{ newsletter.subject }}</strong><br>
+                        <small class="text-muted">{{ newsletter.created_at|date:"F j, Y" }}</small><br>
+                        <p class="mt-2 mb-1 text-muted small">
+                          {{ newsletter.content|striptags|truncatewords:20 }}
+                        </p>
+                        <a href="{% url 'view_newsletter' pk=newsletter.pk %}" class="btn btn-sm btn-outline-info mt-2">View Newsletter</a>
+                      </li>
+                    {% empty %}
+                      <li class="text-muted">No newsletters have been sent yet.</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
     </div>
 
     <!-- Right Section: Premium Posts -->
-    <div class="col-lg-6">
+    <div class="col-lg-8">
       <section class="bg-dark py-4 px-3 rounded shadow-sm h-100">
         <h2 class="mb-4">Premium Posts</h2>
 

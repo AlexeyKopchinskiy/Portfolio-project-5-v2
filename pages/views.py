@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactForm
 from blog.models import Post, Comment
+from newsletter.models import Newsletter
 from django.contrib.auth.models import User, Group
 
 
@@ -28,6 +29,9 @@ def home(request):
         is_published=True, premium_post=True
     ).order_by("-published_on")[:2]
 
+    latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
+    newsletter_count = Newsletter.objects.count()
+
     # Platform statistics
     user_count = User.objects.count()
     group_counts = {
@@ -45,6 +49,8 @@ def home(request):
         "published_count": published_count,
         "comment_count": comment_count,
         "premium_posts": premium_posts,
+        "latest_newsletters": latest_newsletters,
+        "newsletter_count": newsletter_count,
     }
 
     return render(request, "pages/home.html", context)
