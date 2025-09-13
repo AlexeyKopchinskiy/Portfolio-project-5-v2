@@ -161,7 +161,7 @@
             {% endif %}
             <div class="card-body">
               <h5 class="card-title text-warning">{{ post.title }}</h5>
-              <p class="card-text">{{ post.content|striptags|truncatewords:50 }}</p>
+              <p class="card-text">{{ post.content|striptags|truncatewords:50|linebreaksbr  }}</p>
               <a href="{% url 'premium_post_detail' slug=post.slug %}" class="btn btn-outline-warning btn-sm">Read More</a>
 
               <p class="text-muted fst-italic mt-3 mb-0 small">
@@ -209,7 +209,8 @@
             </a>
           </h5>
           <p class="card-text">
-            {{ post.content|truncatewords_html:30|safe }}
+            {% comment %} {{ post.content|truncatewords_html:30|safe }} {% endcomment %}
+            {{ post.content|striptags|truncatewords:50|linebreaksbr  }}
           </p>
         </div>
         <div class="card-footer text-muted">
