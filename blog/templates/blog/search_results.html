@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Search Results for "<strong>{{ query }}</strong>"</h2>
+
+  <!-- Posts Section -->
+  <h4 class="mb-3">Matching Posts</h4>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for post in post_results %}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{% url 'post_detail' slug=post.slug %}" class="text-decoration-none">{{ post.title }}</a>
+            </h5>
+            <p class="card-text">{{ post.content|safe|truncatewords:30 }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No matching posts found.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Comments Section -->
+  <h4 class="mt-5 mb-3">Matching Comments</h4>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for comment in comment_results %}
+      <div class="col">
+        <div class="card h-100 border-light bg-light">
+          <div class="card-body">
+            <p class="card-text">{{ comment.content|safe|truncatewords:30 }}</p>
+            <small class="text-muted">
+              On <a href="{% url 'post_detail' slug=comment.post.slug %}">{{ comment.post.title }}</a>
+            </small>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No matching comments found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

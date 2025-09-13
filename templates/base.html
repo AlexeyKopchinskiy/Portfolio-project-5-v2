@@ -125,6 +125,11 @@
             <a class="nav-link text-warning" href="{% url 'premium_post_list' %}">🌟 Premium Posts</a>
           </li>
         </ul>
+
+        <form method="GET" action="{% url 'search' %}" class="d-flex mt-3" role="search" style="max-width: 300px;">
+          <input class="form-control form-control-sm me-2" type="search" name="q" placeholder="Search..." aria-label="Search">
+          <button class="btn btn-sm btn-outline-light" type="submit">Go</button>
+        </form>
   
         <!-- RIGHT SIDE USER MENU -->
         <ul class="navbar-nav ms-auto">
