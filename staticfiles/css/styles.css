@@ -3,8 +3,10 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
-    color: #e0e0e0;
+    background-image: url('../img/inkwellblog-background.webp');
+    background-attachment: fixed;
     font-family: 'Segoe UI', sans-serif;
+    color: #f1f1f1;
 }
 
 main {
@@ -96,6 +98,23 @@ main {
 .promo-section .btn-primary:focus {
     outline: none;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.text-border {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 65px;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow:
+        -2px -2px 0 #222222,
+        2px -2px 0 #222222,
+        -2px 2px 0 #222222,
+        2px 2px 0 #222222,
+        -3px 0px 0 #222222,
+        3px 0px 0 #222222,
+        0px -3px 0 #222222,
+        0px 3px 0 #222222;
 }
 
 /* End of cards */
@@ -301,3 +320,110 @@ form input[type="password"]:focus {
 }
 
 /* End of Bookstrap classes modifires */
+
+/* Simple styles */
+
+/* End of Simple styles */
+.bgOpacity10 {
+    background: rgba(40, 41, 41, 0.3) !important;
+}
+
+.bgOpacity15 {
+    background: rgba(40, 41, 41, 0.5) !important;
+}
+
+.bgOpacity20 {
+    background: rgba(40, 41, 41, 0.7) !important;
+}
+
+.bgOpacity30 {
+    background: rgba(40, 41, 41, 0.9) !important;
+}
+
+/* 🔵 Large desktop screens (1440px+) */
+@media (min-width: 1440px) {
+    .table {
+        font-size: 18px;
+        /* ✅ Increase font for readability */
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        /* ✅ More spacing */
+    }
+}
+
+/* 🔵 Standard desktops & laptops (1024px - 1440px) */
+@media (max-width: 1440px) and (min-width: 1024px) {
+    .table {
+        font-size: 16px;
+    }
+
+    .table-container {
+        max-width: 90%;
+        /* ✅ Slightly reduce width */
+    }
+}
+
+/* 🟢 Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .table {
+        font-size: 15px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+/* 🟠 Large mobile phones (480px - 768px) */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .text-border {
+        font-size: 40px;
+        /* ✅ Adjust main heading size */
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        /* ✅ Centers the logo */
+        /* width: 100%; */
+        text-align: center;
+    }
+}
+
+/* 🔴 Extra-small mobile screens (below 480px) */
+@media (max-width: 480px) {
+
+    .text-border {
+        font-size: 34px;
+        /* ✅ Adjust main heading size */
+    }
+
+    .container {
+        /* width: 100%; */
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        /* ✅ Centers the logo */
+        /* width: 100%; */
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        position: relative;
+        background-color: #7b1863;
+        /* left: 15px; */
+        margin-right: auto;
+    }
+}
