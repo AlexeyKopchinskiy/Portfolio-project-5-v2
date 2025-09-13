@@ -147,20 +147,20 @@
                 {% for group in user.groups.all %}
                   {% if group.name == "Reader" %}
                   {% else %}
-                    <a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a>
+                    <li><a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a></li>
                   {% endif %}
                 {% empty %}
-                  <a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a>
+                  <li><a href="{% url 'create_post' %}" class="dropdown-item">✍️ Create Post</a></li>
                 {% endfor %}
               {% endif %}
               {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
                   {% if group.name == "Reader" %}
                   {% else %}
-                    <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
+                    <li><a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a></li>
                   {% endif %}
                 {% empty %}
-                  <a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a>
+                  <li><a href="{% url 'my_posts' %}" class="dropdown-item">📚 My Posts</a></li>
                 {% endfor %}
               {% endif %}
               <li><a class="dropdown-item" href="{% url 'my_comments' %}">📄 My Comments</a></li>
