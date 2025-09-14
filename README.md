@@ -117,7 +117,31 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 <summary>Screenshots of testing results.</summary>
 <br>
 
+**Startpage**
+
 ![No errors for the start page](/static/img/readme/Nu-Html-Checker-Startpage.jpg)
+
+**About page**
+
+![No errors for the about page](/static/img/readme/Nu-Html-Checker-about.jpg)
+
+**Cookies page**
+
+![No errors for the Cookies page](/static/img/readme/Nu-Html-Checker-cookies.jpg)
+
+**Privacy page**
+
+![No errors for the Privacy page](/static/img/readme/Nu-Html-Checker-privacy.jpg)
+
+**Contact form**
+
+![No errors for the contact form](/static/img/readme/Nu-Html-Checker-contact.jpg)
+
+
+**Contact form**
+
+![No errors for the contact form](/static/img/readme/Nu-Html-Checker-contact.jpg)
+
 
 </details>
 

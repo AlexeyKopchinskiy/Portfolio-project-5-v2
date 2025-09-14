@@ -18,7 +18,7 @@
             </h5>
           </div>
           <div class="card-body">
-            <p class="card-text">{{ post.content|safe|truncatewords:30 }}</p>
+            <p class="card-text">{{ post.content|striptags|truncatewords:50|linebreaksbr  }}</p>
           </div>
           <div class="card-footer bg-transparent border-top-0">
             <small class="text-muted">
