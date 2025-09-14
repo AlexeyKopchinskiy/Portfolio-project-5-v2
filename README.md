@@ -117,7 +117,7 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 <details>
 <summary>Screenshots of testing results.</summary>
 <br>
-![No errors for the start page](static/img/readme/Nu-Html-Checker-Startpage.jpg)
+![No errors for the start page](/static/img/readme/Nu-Html-Checker-Startpage.jpg)
 </details>
 
 temp:
