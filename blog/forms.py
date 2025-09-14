@@ -99,20 +99,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ["content", "approved"]
         widgets = {
-            "content": SummernoteWidget(
-                attrs={
-                    "summernote": {
-                        "toolbar": [
-                            ["style", ["bold", "italic"]],
-                            ["para", ["ul", "ol"]],
-                            ["insert", ["link"]],
-                            ["view", ["fullscreen", "codeview"]],
-                        ],
-                        "height": 300,
-                        "disableResizeEditor": True,
-                    }
-                }
-            ),
+            "content": SummernoteWidget(),
         }
 
     def __init__(self, *args, **kwargs):
