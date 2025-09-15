@@ -137,10 +137,21 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 ![No errors for the contact form](/static/img/readme/Nu-Html-Checker-contact.jpg)
 
+**Blog start page**
 
-**Contact form**
+![No errors for the Blog start page](/static/img/readme/Nu-Html-Checker-all-blog-posts.jpg)
 
-![No errors for the contact form](/static/img/readme/Nu-Html-Checker-contact.jpg)
+**Pricing page**
+
+![No errors for the Pricing page](/static/img/readme/Nu-Html-Checker-pricing.jpg)
+
+**Community page**
+
+![No errors for the Community page](/static/img/readme/Nu-Html-Checker-community.jpg)
+
+**Premium benefits**
+
+![No errors for the  page](/static/img/readme/Nu-Html-Checker-premium-benefits.jpg)
 
 
 </details>
