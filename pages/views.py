@@ -27,7 +27,7 @@ def home(request):
 
     premium_posts = Post.objects.filter(
         is_published=True, premium_post=True
-    ).order_by("-published_on")[:2]
+    ).order_by("-published_on")[:3]
 
     latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
     newsletter_count = Newsletter.objects.count()
