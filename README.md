@@ -8,16 +8,34 @@ Portfolio Project 5 - E-commerce Applications
 ![Responsive layout](./static/img/InkwellBlog-mockup.webp)
 
 ## Table of Contents
-- [Project Overview](#overview)
-- [User Types & User Stories](#user-types--user-stories)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Agile Workflow](#agile-workflow)
-- [Wireframes & UX Design](#wireframes--ux-design)
-- [Setup Instructions](#setup-instructions)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [License](#license)
+
+* [Overview](#overview)
+* [Agile Methodology](#agile-methodology)
+* [User Experience (UX)](#user-experience-ux)
+    * [Strategy / Site Goals](#strategy--site-goals)
+    * [Scope / User Stories](#scope--user-stories)
+    * [Structure / Design Choices](#structure--design-choices)
+    * [Skeleton / Wireframes](#skeleton--wireframes)
+    * [Surface](#surface)
+* [Features](#features)
+    * [Existing Features](#existing-features)
+    * [Future Features](#future-features)
+Authentication & Authorization  
+Product Management  
+Cart & Checkout Flow  
+Payment Integration  
+Order Management  
+Media & File Storage  
+Session & Security Features  
+* [Technologies Used](#technologies-used)
+* [Testing](#testing)
+* [Bugs](#bugs)
+* [Deployment](#deployment)
+    * [Forking the GitHub Repository](#forking-the-github-repository)
+    * [Creating a Local Clone](#creating-a-local-clone)
+* [Credits](#credits)
+* [Acknowledgements](#acknowledgements)
+
 
 ## Overview
 
@@ -28,6 +46,26 @@ Premium members gain access to exclusive posts, editorial voting rights, and enh
 With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
 
 [Back To Top](#table-of-contents)
+
+## Agile Methodology
+
+This project was developed following the principles of Agile Methodology, with GitHub Issues serving as the central hub for tracking User Stories. Each story was carefully structured with Acceptance Criteria and associated Tasks, though some of these evolved during implementation as the technical requirements became clearer. Several related User Stories were later grouped into Epics to better reflect their interconnected nature. While some tasks were completed more quickly than expected, others required significantly more time and iteration. For better grouping and time-wise management User Stories where assigned to 6 Milestones (see screenshots below). A GitHub project "InnkwellBlog project" was created at the same time. GitHub project allowes using its Board views with filtering and grouping options.
+
+<details>
+<summary>Screenshots of Kanban Board, Milestones and project board view</summary>
+
+![Kanband: Kanban board](/static/img/readme/Agile-Methodology-GtitHub-project-board-view.jpg)
+
+![Kanband: userstories and epic board](/static/img/readme/Agile-Methodology-User-Stories.jpg)
+
+![Kanband: Milestones](/static/img/readme/Agile-Methodology-Milestones.jpg)
+
+</details>
+
+To prioritize development effectively, I applied the MoSCoW Method — categorizing each User Story as a 'Must Have', 'Should Have', 'Could Have', or 'Won’t Have'. Only the essential stories needed to achieve a Minimum Viable Product (MVP) were implemented in this phase, with lower-priority items deferred to the backlog for future development.
+
+Visual tools like a Kanban board and issue tracking screenshots helped streamline progress and maintain clarity throughout the build. Overall, adopting Agile practices greatly improved my ability to organize, adapt, and manage time efficiently.
+
 --------------------------------------------------------------------
 ## Testing
 
