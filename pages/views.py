@@ -22,6 +22,7 @@ def custom_500(request):
 def home(request):
     user = request.user
     is_reader = False
+    is_premium = False
 
     """Render the home page with published posts and platform stats."""
     latest_posts = Post.objects.filter(
@@ -32,9 +33,10 @@ def home(request):
         is_published=True, premium_post=True
     ).order_by("-published_on")[:3]
 
-    # latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
     if user.is_authenticated:
         is_reader = user.groups.filter(name="Reader").exists()
+        premium_groups = ["Author", "Reviewer", "Administrator"]
+        is_premium = user.groups.filter(name__in=premium_groups).exists()
 
     newsletter_count = Newsletter.objects.count()
 
@@ -56,8 +58,8 @@ def home(request):
         "published_count": published_count,
         "comment_count": comment_count,
         "premium_posts": premium_posts,
-        # "latest_newsletters": latest_newsletters,
         "newsletter_count": newsletter_count,
+        "is_premium": is_premium,
     }
 
     return render(request, "pages/home.html", context)
@@ -85,8 +87,18 @@ def contact(request):
 
 
 def pricing(request):
-    """Render the pricing page showing available plans or services."""
-    return render(request, "pages/pricing.html")
+    user = request.user
+    is_premium = False
+
+    if user.is_authenticated:
+        premium_groups = ["Author", "Reviewer", "Administrator"]
+        is_premium = user.groups.filter(name__in=premium_groups).exists()
+
+    context = {
+        "is_premium": is_premium,
+    }
+
+    return render(request, "pages/pricing.html", context)
 
 
 def cookies(request):

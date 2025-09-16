@@ -77,16 +77,15 @@
             <a class="nav-link bi bi-send" href="{% url 'contact' %}"> Contact</a>
           </li>
           <li class="nav-item d-lg-none">
-            <a class="nav-link bi bi-mailbox" href="{% url 'newsletter_subscribe' %}"> Get Inkwell Updates</a>
-          </li>
-          <li class="nav-item d-lg-none">
             <a class="nav-link bi bi-book" href="{% url 'post_list' %}"> All Posts</a>
           </li>
         
           <!-- Static pages -->
+           {% if not is_premium %}
           <li class="nav-item">
             <a class="nav-link bi bi-currency-dollar text-info" href="{% url 'pricing' %}"> Pricing</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link bi bi-people-fill text-success" href="{% url 'community' %}"> Community</a>
           </li>
@@ -95,7 +94,7 @@
           </li>
         </ul>
 
-        <form method="GET" action="{% url 'search' %}" class="d-flex mt-3" role="search" style="max-width: 300px;">
+        <form method="GET" action="{% url 'search' %}" class="d-flex mt-1" role="search" style="max-width: 300px;">
           <input class="form-control form-control-sm me-2" type="search" name="q" placeholder="Search..." aria-label="Search">
           <button class="btn btn-sm btn-outline-light" type="submit">Go</button>
         </form>

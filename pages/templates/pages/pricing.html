@@ -1,26 +1,55 @@
 {% extends "base.html" %}
+
 {% block title %}Pricing — InkwellBlog{% endblock %}
+
 {% block meta_tags %}
   <meta name="description" content="Discover InkwellBlog’s premium membership plans. Unlock exclusive content, advanced features, and a richer writing experience tailored for creative minds.">
   <meta name="keywords" content="InkwellBlog pricing, premium membership, subscription plans, exclusive content, writing tools, blog upgrade">
   <meta name="author" content="Alexey">
   <meta name="robots" content="index, follow">
 {% endblock %}
+
 {% block content %}
-<div class="container py-4">
-  <h1>Membership & Pricing</h1>
-  <p class="lead">InkwellBlog is currently <strong>free to join</strong> and explore.</p>
+<div class="container py-5">
+  <div class="text-center">
+    <h1 class="mb-3">Membership & Pricing</h1>
+    <p class="lead">InkwellBlog is currently <strong>free to join</strong> and explore — but premium members unlock the full experience.</p>
+  </div>
 
-  <h2 class="mt-4">Coming Soon: Premium Subscriptions</h2>
-  <ul class="list-group">
-    <li class="list-group-item">🔓 Access exclusive content and author highlights</li>
-    <li class="list-group-item">🛠️ Advanced tools for Authors and Reviewers</li>
-    <li class="list-group-item">🌐 Community badges and editorial voting rights</li>
-    <li class="list-group-item">📬 Monthly newsletters curated by our editorial team</li>
-  </ul>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title">Benefits of Premium Subscription:</h4>
+          <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item">🔓 Access exclusive content and author highlights</li>
+            <li class="list-group-item">🛠️ Advanced tools for Authors and Reviewers</li>
+            <li class="list-group-item">🌐 Community badges and editorial voting rights (coming soon)</li>
+            <li class="list-group-item">📬 Monthly newsletters curated by our editorial team</li>
+          </ul>
+          <p class="mt-4">Founding members will receive early access and special perks. Stay tuned and subscribe to updates!</p>
 
-  <p class="mt-4">Founding members will receive early access and special perks. Stay tuned and subscribe to updates!</p>
+          {% if not user.is_authenticated %}
+            <p><a href="{% url 'account_signup' %}" class="btn btn-primary mt-3">Register & Upgrade to Premium</a></p>
+          {% elif not is_premium %}
+            <p class="d-flex justify-content-center">
+            <a href="/billing/checkout/" class="btn btn-primary mt-3">Upgrade Your Account</a>
+          </p>
+          <p class="text-center text-muted mt-2">
+            After clicking the button, you’ll be redirected to our secure Stripe payment portal to complete your premium membership upgrade.
+          </p>
+          {% else %}
+            <div class="alert alert-success mt-3" role="alert">
+              You're already a premium member. Enjoy the full experience!
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <a class="btn btn-outline-primary mt-3" href="{% url 'newsletter_subscribe' %}" role="button">Get Notified</a>
+  <div class="text-center mt-4">
+    <a class="btn btn-outline-primary" href="{% url 'newsletter_subscribe' %}" role="button">Join our newsletter and stay up to date on premium features, early access perks, and exclusive content drops!</a>
+  </div>
 </div>
 {% endblock %}
