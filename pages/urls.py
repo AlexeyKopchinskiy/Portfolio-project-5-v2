@@ -9,7 +9,7 @@ urlpatterns = [
     path("cookies/", views.cookies, name="cookies"),
     path("privacy/", views.privacy, name="privacy"),
     path("contact/", views.contact_view, name="contact"),
-    # path("sitemap/", views.sitemap, name="sitemap"),
+    path("upgrade-required/", views.upgrade_required, name="upgrade_required"),
     path(
         "sitemap.xml",
         TemplateView.as_view(

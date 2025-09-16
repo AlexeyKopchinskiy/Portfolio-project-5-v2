@@ -20,6 +20,9 @@ def custom_500(request):
 
 
 def home(request):
+    user = request.user
+    is_reader = False
+
     """Render the home page with published posts and platform stats."""
     latest_posts = Post.objects.filter(
         is_published=True, premium_post=False
@@ -29,7 +32,10 @@ def home(request):
         is_published=True, premium_post=True
     ).order_by("-published_on")[:3]
 
-    latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
+    # latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
+    if user.is_authenticated:
+        is_reader = user.groups.filter(name="Reader").exists()
+
     newsletter_count = Newsletter.objects.count()
 
     # Platform statistics
@@ -42,6 +48,7 @@ def home(request):
     comment_count = Comment.objects.count()
 
     context = {
+        "is_reader": is_reader,
         "latest_posts": latest_posts,
         "user_count": user_count,
         "group_counts": group_counts,
@@ -49,7 +56,7 @@ def home(request):
         "published_count": published_count,
         "comment_count": comment_count,
         "premium_posts": premium_posts,
-        "latest_newsletters": latest_newsletters,
+        # "latest_newsletters": latest_newsletters,
         "newsletter_count": newsletter_count,
     }
 
@@ -117,3 +124,7 @@ def contact_view(request):
     else:
         form = ContactForm()
     return render(request, "pages/contact.html", {"form": form})
+
+
+def upgrade_required(request):
+    return render(request, "pages/upgrade_required.html")

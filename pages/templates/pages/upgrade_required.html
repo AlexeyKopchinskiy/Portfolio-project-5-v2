@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="display-5 text-warning">Premium Content</h1>
+            <p class="lead mt-3">
+                The newsletter you're trying to access is available exclusively to our premium members.
+            </p>
+            <p class="mt-4">
+                Upgrade your account to unlock expert insights, exclusive updates, and behind-the-scenes stories from our authors.
+            </p>
+            <a href="{% url 'pricing' %}" class="btn btn-primary btn-lg mt-3">See Premium Plans</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
