@@ -202,6 +202,155 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 </details>
 
+## Functional testing
+
+<details>
+<summary>Results of functional testing</summary>
+<br>
+
+### ✅ Authentication & Authorization
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Login with valid credentials | should log user in and redirect to homepage | **Pass** – user logged in successfully |
+| Login with invalid credentials | should show error and stay on login page | **Pass** – error message displayed |
+| Logout from session     | should log user out and redirect to homepage    | **Pass** – session ended correctly |
+| Register new account    | should create account and log user in           | **Pass** – account created and logged in |
+| Session idle for 30+ min | should auto-expire and log user out            | **Pass** – session expired as expected |
+| Role-based access       | should show features based on user group        | **Pass** – correct features shown per role |
+
+---
+
+### 🏠 Homepage & Navigation
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Homepage as guest       | should show public posts and newsletter teaser  | **Pass** – content displayed correctly |
+| Pricing link for guest  | should be visible in navbar                     | **Pass** – link visible            |
+| Pricing link for premium user | should be hidden from navbar              | **Pass** – link hidden             |
+| Navigation links        | should route to correct pages                   | **Pass** – all links functional    |
+
+---
+
+### 📝 Blog Post Management
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Create post with image  | should save post and upload image to S3         | **Pass** – post created and image visible |
+| Edit existing post      | should update post content                      | **Pass** – changes reflected       |
+| Delete post             | should remove post from homepage and database   | **Pass** – post deleted            |
+| Image persistence       | should remain accessible after Heroku restart   | **Pass** – image served from S3    |
+| Submit invalid post     | should show validation errors                   | **Pass** – errors displayed        |
+
+---
+
+### 💳 Ecommerce & Payment Flow
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Access pricing page     | should show upgrade prompt and Stripe link      | **Pass** – page loads correctly    |
+| Stripe checkout         | should redirect to Stripe payment portal        | **Pass** – Stripe page opens       |
+| Successful payment      | should upgrade user and redirect to confirmation| **Pass** – user upgraded           |
+| Failed payment          | should show error or retry option               | **Pass** – error handled properly  |
+| Premium access          | should unlock premium content                   | **Pass** – content accessible      |
+
+---
+
+### 📬 Newsletter System
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| View newsletter count   | should show total sent                          | **Pass** – count accurate          |
+| View newsletter as premium | should show full content                     | **Pass** – newsletter displayed    |
+| View newsletter as guest | should show upgrade prompt                     | **Pass** – prompt shown            |
+| Click subscribe link    | should open subscription form or confirmation   | **Pass** – link functional         |
+
+---
+
+### 📊 Admin & Dashboard
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Admin login             | should access `/admin/` panel                   | **Pass** – admin panel accessible  |
+| Manage users            | should allow view/edit of user roles            | **Pass** – changes saved           |
+| Manage posts            | should allow edit/delete of posts               | **Pass** – updates reflected       |
+| Manage newsletters      | should allow creation and publishing            | **Pass** – newsletters published   |
+
+---
+
+### 🧪 Form Validation & UX
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Submit empty form       | should show validation errors                   | **Pass** – errors shown            |
+| Submit invalid data     | should show format errors                       | **Pass** – errors shown            |
+| Submit valid form       | should show success message or redirect         | **Pass** – feedback displayed      |
+| Button hover/click      | should respond visually and functionally        | **Pass** – buttons responsive      |
+
+---
+
+### 🌐 Deployment & Hosting
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Deploy to Heroku        | should run without errors                       | **Pass** – app deployed successfully |
+| Upload image            | should persist via S3 after dyno restart        | **Pass** – image remains accessible |
+| Use `.env` for secrets  | should keep credentials secure                  | **Pass** – no secrets exposed      |
+
+---
+
+### ♿️ Accessibility
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Keyboard navigation     | should allow full site access via keyboard      | **Pass** – all elements reachable  |
+| Screen reader support   | should read content in logical order            | **Pass** – screen reader compatible |
+| ARIA labels             | should be present where needed                  | **Pass** – labels verified         |
+| Color contrast          | should remain readable in high contrast mode    | **Pass** – contrast sufficient     |
+| Alt text for images     | should describe image content                   | **Pass** – alt tags present        |
+
+---
+
+### 📱 Mobile Responsiveness
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Mobile navbar           | should collapse into hamburger menu             | **Pass** – menu functional         |
+| Mobile form layout      | should resize without horizontal scroll         | **Pass** – layout responsive       |
+| Mobile image scaling    | should fit container without overflow           | **Pass** – images scale correctly  |
+| Mobile button tap       | should respond to touch                         | **Pass** – buttons responsive      |
+
+---
+
+### 🔍 SEO & Metadata
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Meta tags present       | should include title, description, OG tags      | **Pass** – tags verified           |
+| Sitemap available       | should load `/sitemap.xml`                      | **Pass** – sitemap loads           |
+| Robots.txt present      | should define crawl rules                       | **Pass** – file exists             |
+| Canonical URLs          | should prevent duplicate indexing               | **Pass** – canonical tags present  |
+| Social sharing preview  | should show correct title/image/description     | **Pass** – preview accurate        |
+
+---
+
+### 🚀 Performance & Optimization
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Page load speed         | should load homepage in <3 seconds              | **Pass** – fast load time          |
+| Lazy loading images     | should load only when visible                   | **Pass** – lazy loading works      |
+| Asset caching           | should cache static files                       | **Pass** – assets cached           |
+| Minified CSS/JS         | should serve compressed files                   | **Pass** – files minified          |
+| Efficient DB queries    | should minimize query count                     | **Pass** – queries optimized       |
+
+---
+
+
+</details>
+
+
+
 temp:
 -----------------------------------------------------------------------------------------------
 ## How to View the Project
