@@ -7,8 +7,8 @@ Portfolio Project 5 - E-commerce Applications
 
 ![Responsive layout](./static/img/InkwellBlog-mockup.webp)
 
-## 📌 Table of Contents
-- [Project Overview](#project-overview)
+## Table of Contents
+- [Project Overview](#overview)
 - [User Types & User Stories](#user-types--user-stories)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -19,7 +19,15 @@ Portfolio Project 5 - E-commerce Applications
 - [Deployment](#deployment)
 - [License](#license)
 
+## Overview
 
+**InkwellBlog** is a dynamic publishing platform designed for writers, reviewers, and readers to connect through curated content and community-driven storytelling. Whether you're an aspiring author or a passionate reader, the site offers a structured environment to share ideas, publish articles, and engage with thoughtful commentary. The platform supports both free and premium membership tiers, allowing users to explore content at their own pace while unlocking advanced features as they grow.
+
+Premium members gain access to exclusive posts, editorial voting rights, and enhanced tools tailored for content creators and reviewers. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
+
+With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
+
+[Back To Top](#table-of-contents)
 --------------------------------------------------------------------
 ## Testing
 
