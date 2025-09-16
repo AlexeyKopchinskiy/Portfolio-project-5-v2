@@ -34,7 +34,7 @@ stripe.api_key = STRIPE_SECRET_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", False)
+DEBUG = os.getenv("DEBUG", True)
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -223,9 +223,9 @@ STATICFILES_DIRS = [
 
 # Simplified static file serving.
 # Localhost
-# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 # Production
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Default primary key field type
