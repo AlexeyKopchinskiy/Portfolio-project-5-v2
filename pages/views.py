@@ -23,6 +23,7 @@ def home(request):
     user = request.user
     is_reader = False
     is_premium = False
+    latest_newsletters = None
 
     """Render the home page with published posts and platform stats."""
     latest_posts = Post.objects.filter(
@@ -37,6 +38,9 @@ def home(request):
         is_reader = user.groups.filter(name="Reader").exists()
         premium_groups = ["Author", "Reviewer", "Administrator"]
         is_premium = user.groups.filter(name__in=premium_groups).exists()
+
+        if is_premium:
+            latest_newsletters = Newsletter.objects.order_by("-created_at")[:3]
 
     newsletter_count = Newsletter.objects.count()
 
@@ -60,6 +64,7 @@ def home(request):
         "premium_posts": premium_posts,
         "newsletter_count": newsletter_count,
         "is_premium": is_premium,
+        "latest_newsletters": latest_newsletters,
     }
 
     return render(request, "pages/home.html", context)
