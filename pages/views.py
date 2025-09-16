@@ -21,9 +21,9 @@ def custom_500(request):
 
 def home(request):
     """Render the home page with published posts and platform stats."""
-    latest_posts = Post.objects.filter(is_published=True).order_by(
-        "-created_on"
-    )[:6]
+    latest_posts = Post.objects.filter(
+        is_published=True, premium_post=False
+    ).order_by("-created_on")[:6]
 
     premium_posts = Post.objects.filter(
         is_published=True, premium_post=True
