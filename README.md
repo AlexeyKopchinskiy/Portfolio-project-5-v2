@@ -20,13 +20,13 @@ Portfolio Project 5 - E-commerce Applications
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Future Features](#future-features)
-Authentication & Authorization  
-Product Management  
-Cart & Checkout Flow  
-Payment Integration  
-Order Management  
-Media & File Storage  
-Session & Security Features  
+* [Authentication & Authorization](#authentication--authorization)
+* [Product Management](#product-management)
+* [Cart & Checkout Flow](#cart--checkout-flow)
+* [Payment Integration](#payment-integration)
+* [Order Management](#order-management)
+* [Media & File Storage](#media--file-storage)
+* [Session & Security Features](#session--security-features)
 * [Technologies Used](#technologies-used)
 * [Testing](#testing)
 * [Bugs](#bugs)
@@ -66,7 +66,10 @@ To prioritize development effectively, I applied the MoSCoW Method — categoriz
 
 Visual tools like a Kanban board and issue tracking screenshots helped streamline progress and maintain clarity throughout the build. Overall, adopting Agile practices greatly improved my ability to organize, adapt, and manage time efficiently.
 
---------------------------------------------------------------------
+[Back To Top](#table-of-contents)
+
+----------------------------------------------------------------------------------------------
+
 ## Testing
 
 ### Testing Strategy Justification
@@ -351,9 +354,39 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 ---
 
-
 </details>
 
+[Back To Top](#table-of-contents)
+
+---------------------------------------------------------------------------
+
+---
+
+## Authentication & Authorization
+
+
+
+## Product Management
+
+
+
+## Cart & Checkout Flow
+
+
+
+## Payment Integration
+
+
+
+## Order Management
+
+
+
+## Media & File Storage
+
+
+
+## Session & Security Features
 
 
 temp:
