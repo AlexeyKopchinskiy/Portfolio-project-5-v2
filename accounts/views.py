@@ -377,7 +377,8 @@ def dashboard_reviewer(request):
         "latest_posts": latest_posts,
         "dashboard_title": "Reviewer Dashboard",
         "dashboard_description": (
-            "Review pending articles and stay updated with recent publications."
+            "Review pending articles and"
+            "and stay updated with recent publications."
         ),
     }
 
