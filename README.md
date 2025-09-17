@@ -244,10 +244,9 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 |        Scenario         |                    Expected                     |               Result               |
 | :---------------------: | :---------------------------------------------: | :--------------------------------: |
-| Create post with image  | should save post and upload image to S3         | **Pass** – post created and image visible |
+| Create post with image  | should save post and upload image to media folder         | **Pass** – post created and image visible |
 | Edit existing post      | should update post content                      | **Pass** – changes reflected       |
 | Delete post             | should remove post from homepage and database   | **Pass** – post deleted            |
-| Image persistence       | should remain accessible after Heroku restart   | **Pass** – image served from S3    |
 | Submit invalid post     | should show validation errors                   | **Pass** – errors displayed        |
 
 ---
@@ -279,7 +278,7 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 |        Scenario         |                    Expected                     |               Result               |
 | :---------------------: | :---------------------------------------------: | :--------------------------------: |
-| Admin login             | should access `/admin/` panel                   | **Pass** – admin panel accessible  |
+| Admin login             | should access admin dashboard                   | **Pass** – admin panel accessible  |
 | Manage users            | should allow view/edit of user roles            | **Pass** – changes saved           |
 | Manage posts            | should allow edit/delete of posts               | **Pass** – updates reflected       |
 | Manage newsletters      | should allow creation and publishing            | **Pass** – newsletters published   |
