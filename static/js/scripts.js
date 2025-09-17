@@ -70,14 +70,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Dynamic form population
-    const rawJson = document.getElementById('userDataJson')?.textContent.trim();
+    const rawJsonElement = document.getElementById('userDataJson');
     let userData = {};
 
-    try {
-        userData = JSON.parse(rawJson);
-    } catch (error) {
-        console.error("❌ Failed to parse user data JSON:", error);
-        return;
+    if (rawJsonElement) {
+        const rawJson = rawJsonElement.textContent.trim();
+
+        if (rawJson && rawJson !== "undefined") {
+            try {
+                userData = JSON.parse(rawJson);
+            } catch (error) {
+                console.error("❌ Failed to parse user data JSON:", error);
+                return;
+            }
+        } else {
+            console.warn("⚠️ rawJson is empty or invalid:", rawJson);
+        }
+    } else {
+        console.warn("⚠️ Element #userDataJson not found in DOM.");
     }
 
     const userSelect = document.getElementById('userSelect');

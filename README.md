@@ -7,35 +7,84 @@ Portfolio Project 5 - E-commerce Applications
 
 ![Responsive layout](./static/img/InkwellBlog-mockup.webp)
 
-## 📌 Table of Contents
-- [Project Overview](#project-overview)
-- [User Types & User Stories](#user-types--user-stories)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Agile Workflow](#agile-workflow)
-- [Wireframes & UX Design](#wireframes--ux-design)
-- [Setup Instructions](#setup-instructions)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [License](#license)
+## Table of Contents
+
+* [Overview](#overview)
+* [Agile Methodology](#agile-methodology)
+* [User Experience (UX)](#user-experience-ux)
+    * [Strategy / Site Goals](#strategy--site-goals)
+    * [Scope / User Stories](#scope--user-stories)
+    * [Structure / Design Choices](#structure--design-choices)
+    * [Skeleton / Wireframes](#skeleton--wireframes)
+    * [Surface](#surface)
+* [Features](#features)
+    * [Existing Features](#existing-features)
+    * [Future Features](#future-features)
+* [Authentication & Authorization](#authentication--authorization)
+* [Product Management](#product-management)
+* [Cart & Checkout Flow](#cart--checkout-flow)
+* [Payment Integration](#payment-integration)
+* [Order Management](#order-management)
+* [Media & File Storage](#media--file-storage)
+* [Session & Security Features](#session--security-features)
+* [Technologies Used](#technologies-used)
+* [Testing](#testing)
+* [Bugs](#bugs)
+* [Deployment](#deployment)
+    * [Forking the GitHub Repository](#forking-the-github-repository)
+    * [Creating a Local Clone](#creating-a-local-clone)
+* [Credits](#credits)
+* [Acknowledgements](#acknowledgements)
 
 
---------------------------------------------------------------------
+## Overview
+
+**InkwellBlog** is a dynamic publishing platform designed for writers, reviewers, and readers to connect through curated content and community-driven storytelling. Whether you're an aspiring author or a passionate reader, the site offers a structured environment to share ideas, publish articles, and engage with thoughtful commentary. The platform supports both free and premium membership tiers, allowing users to explore content at their own pace while unlocking advanced features as they grow.
+
+Premium members gain access to exclusive posts, editorial voting rights, and enhanced tools tailored for content creators and reviewers. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
+
+With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
+
+[Back To Top](#table-of-contents)
+
+## Agile Methodology
+
+This project was developed following the principles of Agile Methodology, with GitHub Issues serving as the central hub for tracking User Stories. Each story was carefully structured with Acceptance Criteria and associated Tasks, though some of these evolved during implementation as the technical requirements became clearer. Several related User Stories were later grouped into Epics to better reflect their interconnected nature. While some tasks were completed more quickly than expected, others required significantly more time and iteration. For better grouping and time-wise management User Stories where assigned to 6 Milestones (see screenshots below). A GitHub project "InnkwellBlog project" was created at the same time. GitHub project allowes using its Board views with filtering and grouping options.
+
+<details>
+<summary>Screenshots of Kanban Board, Milestones and project board view</summary>
+
+![Kanband: Kanban board](/static/img/readme/Agile-Methodology-GtitHub-project-board-view.jpg)
+
+![Kanband: userstories and epic board](/static/img/readme/Agile-Methodology-User-Stories.jpg)
+
+![Kanband: Milestones](/static/img/readme/Agile-Methodology-Milestones.jpg)
+
+</details>
+
+To prioritize development effectively, I applied the MoSCoW Method — categorizing each User Story as a 'Must Have', 'Should Have', 'Could Have', or 'Won’t Have'. Only the essential stories needed to achieve a Minimum Viable Product (MVP) were implemented in this phase, with lower-priority items deferred to the backlog for future development.
+
+Visual tools like a Kanban board and issue tracking screenshots helped streamline progress and maintain clarity throughout the build. Overall, adopting Agile practices greatly improved my ability to organize, adapt, and manage time efficiently.
+
+[Back To Top](#table-of-contents)
+
+----------------------------------------------------------------------------------------------
+
 ## Testing
 
-📝 Testing Strategy Justification
+### Testing Strategy Justification
 
 In the context of this project, I have chosen to focus on thorough manual testing rather than implementing automated testing. This decision is based on a careful evaluation of the project’s scope, complexity, and resource constraints.
 
-✅ Project Scope & Nature
+### Project Scope & Nature
 
 The application is relatively lightweight, with a clear and well-defined set of user interactions — such as viewing newsletters, navigating static pages, and submitting simple forms. These flows are straightforward to test manually and do not involve complex logic, high-volume data processing, or frequent regression scenarios that would typically justify automation.
 
-✅ Efficiency & Resource Allocation
+### Efficiency & Resource Allocation
 
 Setting up automated testing — including writing test cases, configuring test runners, and integrating CI pipelines — would require a significant investment of time and effort. Given the limited scale of the project, this would not yield proportional benefits. Instead, I’ve directed those resources toward refining the user experience, improving content quality, and ensuring mobile responsiveness — areas that offer more tangible value to users and reviewers.
 
-✅ Manual Testing Coverage
+### Manual Testing Coverage
 
 I’ve implemented a structured manual testing routine that covers:
   • Core functionality across all major pages
@@ -50,68 +99,73 @@ I’ve implemented a structured manual testing routine that covers:
   
 This routine is documented and repeatable, ensuring consistent quality checks after each deployment and update.
 
-✅ Future Considerations
+### Future Considerations
 
 Should the project evolve into a larger platform with more dynamic features, user-generated content, or frequent updates, I would absolutely revisit the testing strategy and introduce automation where it becomes beneficial. For now, however, manual testing offers the best balance of coverage, efficiency, and maintainability.
 By tailoring the testing approach to the actual needs of the project, I’ve ensured that time and effort are spent where they matter most — delivering a polished, functional, and user-friendly application.
 
-🧭 Manual Testing Scope: What to Cover
+### Manual Testing Scope: What to Cover
 
 Here’s a breakdown of areas that were tested manually, grouped by priority:
 
-🔹 Core Functionality
+#### Core Functionality
+  - ✅ Homepage loads correctly
+  - ✅ Navigation menu works across screen sizes
+  - ✅ Newsletter cards link to correct detail views
+  - ✅ Forms (contact, signup, etc.) submit and validate properly
+  - ✅ Sitemap.xml is accessible from the menu
 
-  • ✅ Homepage loads correctly
-  • ✅ Navigation menu works across screen sizes
-  • ✅ Newsletter cards link to correct detail views
-  • ✅ Forms (contact, signup, etc.) submit and validate properly
-  • ✅ Sitemap.xml is accessible from the menu
+#### Content Accuracy
 
-🔹 Content Accuracy
+  - ✅ Newsletter titles, dates, and previews display correctly
+  - ✅ Truncated content doesn’t show images (as intended)
+  - ✅ Static pages (About, Privacy, etc.) render expected content
 
-  • ✅ Newsletter titles, dates, and previews display correctly
-  • ✅ Truncated content doesn’t show images (as intended)
-  • ✅ Static pages (About, Privacy, etc.) render expected content
+#### Mobile Responsiveness
 
-🔹 Mobile Responsiveness
+  - ✅ Navbar collapses and expands correctly
+  - ✅ Buttons and links are tappable without overlap
+  - ✅ Font sizes and layout adapt to small screens
 
-  • ✅ Navbar collapses and expands correctly
-  • ✅ Buttons and links are tappable without overlap
-  • ✅ Font sizes and layout adapt to small screens
+#### Visual Consistency
 
-🔹 Visual Consistency
+  - ✅ Buttons have correct styling (e.g. newsletter “View” button)
+  - ✅ Headings and spacing look clean across pages
+  - ✅ No broken images or layout shifts
 
-  • ✅ Buttons have correct styling (e.g. newsletter “View” button)
-  • ✅ Headings and spacing look clean across pages
-  • ✅ No broken images or layout shifts
+#### Code Validation with W3C Validator 
 
-🔹 Code Validation with W3C Validator 
-
-  • ✅ Start page validation: Document checking completed. No errors or warnings to show.
-
+  - ✅ Start page validation: Document checking completed. No errors or warnings to show.
+  - ❌ Errors related to Summernote WISIWIG text editor:
   
-  • ❌ Errors related to Summernote WISIWIG text editor:
-  
-  ⚠️ HTML Validation Notes
+  **HTML Validation Notes**
+
   During development, the project was tested using the W3C HTML Validator to ensure semantic correctness and structural integrity. While most validation issues were addressed, a few remaining errors are directly related to the integration of third-party components — specifically the Summernote WYSIWYG editor used in the comment form.
-  ❌ Known Validation Issues
-    • Use of non-standard attributes such as summernote="{...}" on <textarea> elements
-    • Improper use of hidden="true" instead of the boolean hidden attribute
-    • Injection of <style> and <script> tags inside <p> elements, violating HTML content model rules
+
+  **Known Validation Issues**
+
+    - Use of non-standard attributes such as summernote="{...}" on <textarea> elements
+    - Improper use of hidden="true" instead of the boolean hidden attribute
+    - Injection of <style> and <script> tags inside <p> elements, violating HTML content model rules
+  
   These issues are not introduced by custom code, but are generated by Summernote’s rendering engine. Modifying or overriding this behavior would require deep customization of the widget’s internals, which is outside the scope of this project and could compromise stability or future compatibility.
-  ✅ Justification
-    • The Summernote editor functions correctly across modern browsers and does not impact user experience or accessibility.
-    • The errors do not affect layout, responsiveness, or form submission.
-    • Attempting to "fix" these errors would involve rewriting third-party logic, which is impractical and unnecessary for this project’s goals.
-  🧠 Developer’s Note
+
+  **Justification**
+    
+    - The Summernote editor functions correctly across modern browsers and does not impact user experience or accessibility.
+    - The errors do not affect layout, responsiveness, or form submission.
+    - Attempting to "fix" these errors would involve rewriting third-party logic, which is impractical and unnecessary for this project’s goals.
+  
+  **Developer’s Note**
+
   All custom HTML and Django templates have been validated and corrected where possible. Remaining issues are acknowledged and documented here for transparency. Should the project evolve into a production-grade platform, alternative editors or deeper integration strategies may be considered to achieve full compliance.
 
-🔹 SEO & Accessibility
+#### SEO & Accessibility
 
-  • ✅ Meta tags are present (viewport, description, etc.)
-  • ✅ Sitemap.xml is reachable and correctly formatted
-  • ✅ Alt text on images (if any)
-  • ✅ Keyboard navigation works
+  - ✅ Meta tags are present (viewport, description, etc.)
+  - ✅ Sitemap.xml is reachable and correctly formatted
+  - ✅ Alt text on images (if any)
+  - ✅ Keyboard navigation works
 
 <details>
 <summary>Screenshots of testing results.</summary>
@@ -155,6 +209,194 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 
 </details>
+
+## Functional testing
+
+<details>
+<summary>Results of functional testing</summary>
+<br>
+
+### ✅ Authentication & Authorization
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Login with valid credentials | should log user in and redirect to user page | **Pass** – user logged in successfully |
+| Login with invalid credentials | should show error and stay on login page | **Pass** – error message displayed |
+| Logout from session     | should log user out and redirect to homepage    | **Pass** – session ended correctly |
+| Register new account    | should create account and log user in           | **Pass** – account created and logged in |
+| Session idle for 15+ min | should auto-expire and log user out            | **Pass** – session expired as expected |
+| Role-based access       | should show features based on user group        | **Pass** – correct features shown per role |
+
+---
+
+### 🏠 Homepage & Navigation
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Homepage as guest       | should show public posts and newsletter teaser  | **Pass** – content displayed correctly |
+| Pricing link for guest  | should be visible in navbar                     | **Pass** – link visible            |
+| Pricing link for premium user | should be hidden from navbar              | **Pass** – link hidden             |
+| Navigation links        | should route to correct pages                   | **Pass** – all links functional    |
+
+---
+
+### 📝 Blog Post Management
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Create post with image  | should save post and upload image to media folder        | **Pass** – post created and image visible |
+| Edit existing post      | should update post content                      | **Pass** – changes reflected       |
+| Delete post             | should remove post from homepage and database   | **Pass** – post deleted            |
+| Submit invalid post     | should show validation errors                   | **Pass** – errors displayed        |
+
+---
+
+### 💳 Ecommerce & Payment Flow
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Access pricing page     | should show upgrade prompt and Stripe link      | **Pass** – page loads correctly    |
+| Stripe checkout         | should redirect to Stripe payment portal        | **Pass** – Stripe page opens       |
+| Successful payment      | should upgrade user and redirect to confirmation| **Pass** – user upgraded           |
+| Failed payment          | should show error or retry option               | **Pass** – error handled properly  |
+| Premium access          | should unlock premium content                   | **Pass** – content accessible      |
+
+---
+
+### 📬 Newsletter System
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| View newsletter count   | should show total sent                          | **Pass** – count accurate          |
+| View newsletter as premium | should show full content                     | **Pass** – newsletter displayed    |
+| View newsletter as guest | should show upgrade prompt                     | **Pass** – prompt shown            |
+| Click subscribe link    | should open subscription form or confirmation   | **Pass** – link functional         |
+
+---
+
+### 📊 Admin & Dashboard
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Admin login             | should access admin panel                   | **Pass** – admin panel accessible  |
+| Manage users            | should allow view/edit of user roles            | **Pass** – changes saved           |
+| Manage posts            | should allow edit/delete of posts               | **Pass** – updates reflected       |
+| Manage newsletters      | should allow creation and publishing            | **Pass** – newsletters published   |
+
+---
+
+### 🧪 Form Validation & UX
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Submit empty form       | should show validation errors                   | **Pass** – errors shown            |
+| Submit invalid data     | should show format errors                       | **Pass** – errors shown            |
+| Submit valid form       | should show success message or redirect         | **Pass** – feedback displayed      |
+| Button hover/click      | should respond visually and functionally        | **Pass** – buttons responsive      |
+
+---
+
+### 🌐 Deployment & Hosting
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Deploy to Heroku        | should run without errors                       | **Pass** – app deployed successfully |
+| Use `.env` for secrets  | should keep credentials secure                  | **Pass** – no secrets exposed      |
+
+---
+
+
+### 📱 Mobile Responsiveness
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Mobile navbar           | should collapse into hamburger menu             | **Pass** – menu functional         |
+| Mobile form layout      | should resize without horizontal scroll         | **Pass** – layout responsive       |
+| Mobile image scaling    | should fit container without overflow           | **Pass** – images scale correctly  |
+| Mobile button tap       | should respond to touch                         | **Pass** – buttons responsive      |
+
+---
+
+### 🔍 SEO & Metadata
+
+|        Scenario         |                    Expected                     |               Result               |
+| :---------------------: | :---------------------------------------------: | :--------------------------------: |
+| Meta tags present       | should include title, description, OG tags      | **Pass** – tags verified           |
+| Sitemap available       | should load `/sitemap.xml`                      | **Pass** – sitemap loads           |
+| Robots.txt present      | should define crawl rules                       | **Pass** – file exists             |
+| Canonical URLs          | should prevent duplicate indexing               | **Pass** – canonical tags present  |
+| Social sharing preview  | should show correct title/image/description     | **Pass** – preview accurate        |s
+
+---
+
+</details>
+
+### Lighthouse testing results
+
+<details>
+<summary>Results of functional testing</summary>
+<br>
+
+**Start page**
+
+![96 score for start page](/static/img/readme/Lighthouse-test-homepage.jpg)
+
+**Contact page**
+
+![91 score for the contact form](/static/img/readme/Lighthouse-test-contact-page.jpg)
+
+**All posts page**
+
+![97 score for the all posts page](/static/img/readme/Lighthouse-test-contact-page.jpg)
+
+**Login page**
+
+![97 score for the login page](/static/img/readme/Lighthouse-test-login-page.jpg)
+
+**Account settings page**
+
+![97 score for the Account settings page](/static/img/readme/Lighthouse-test-account-settings.jpg)
+
+**Account dashboard page**
+
+![97 score for the Account dashboard page](/static/img/readme/Lighthouse-test-account-dashboard-page.jpg)
+
+
+
+</details>
+
+[Back To Top](#table-of-contents)
+
+---------------------------------------------------------------------------
+
+---
+
+## Authentication & Authorization
+
+
+
+## Product Management
+
+
+
+## Cart & Checkout Flow
+
+
+
+## Payment Integration
+
+
+
+## Order Management
+
+
+
+## Media & File Storage
+
+
+
+## Session & Security Features
+
 
 temp:
 -----------------------------------------------------------------------------------------------
