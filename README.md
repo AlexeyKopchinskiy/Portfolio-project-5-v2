@@ -375,45 +375,79 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 **Main Python files**
 
+Main urls.py
+
 ![main urls.py](/static/img/readme/CI-Python-Linter-main-urls.jpg)
 
 **Pages app**
 
+Pages app views.py
+
 ![views.py](/static/img/readme/CI-Python-Linter-pages-views.jpg)
+
+Pages app urls.py
 
 ![urls.py](/static/img/readme/CI-Python-Linter-pages-urls.jpg)
 
+Pages app models.py
+
 ![models.py](/static/img/readme/CI-Python-Linter-pages-models.jpg)
+
+Pages app admin.py
 
 ![admin.py](/static/img/readme/CI-Python-Linter-pages-admin.jpg)
 
 **Newsletter app**
 
+Newsletter app views.py
+
 ![views.py](/static/img/readme/CI-Python-Linter-newsletter-views.jpg)
+
+Newsletter app urls.py
 
 ![urls.py](/static/img/readme/CI-Python-Linter-newsletter-urls.jpg)
 
+Newsletter app forms.py
+
 ![forms.py](/static/img/readme/CI-Python-Linter-newsletter-forms.jpg)
 
+Newsletter app models.py
+
 ![models.py](/static/img/readme/CI-Python-Linter-newsletter-models.jpg)
+
+Newsletter app admin.py
 
 ![admin.py](/static/img/readme/CI-Python-Linter-newsletter-admin.jpg)
 
 **Accounts app**
 
+Accounts app views.py
+
 ![views.py](/static/img/readme/CI-Python-Linter-accounts-views.jpg)
+
+Accounts app urls.py
 
 ![urls.py](/static/img/readme/CI-Python-Linter-accounts-urls.jpg)
 
+Accounts app signals.py
+
 ![signals.py](/static/img/readme/CI-Python-Linter-accounts-signals.jpg)
 
+Accounts app forms.py
+
 ![forms.py](/static/img/readme/CI-Python-Linter-accounts-forms.jpg)
+
+Accounts app models.py
 
 ![models.py](/static/img/readme/CI-Python-Linter-accounts-models.jpg)
 
 **Billing app**
 
+Billing app views.py
+
 ![views.py](/static/img/readme/CI-Python-Linter-billing-views.jpg)
+
+Billing app urls.py
 
 ![urls.py](/static/img/readme/CI-Python-Linter-billing-urls.jpg)s
 
