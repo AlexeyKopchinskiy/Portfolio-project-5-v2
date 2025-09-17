@@ -7,7 +7,6 @@ import django_summernote.fields
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -16,31 +15,92 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('slug', models.SlugField(blank=True, max_length=100, unique=True)),
-                ('content', django_summernote.fields.SummernoteTextField()),
-                ('featured_image', models.ImageField(blank=True, null=True, upload_to='blog_images/')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('published_on', models.DateTimeField(blank=True, null=True)),
-                ('is_published', models.BooleanField(default=False)),
-                ('premium_post', models.BooleanField(default=False, help_text='Mark this post as premium content')),
-                ('reviewer_notes', models.TextField(blank=True, null=True)),
-                ('review_status', models.CharField(choices=[('reviewed', '✅ Reviewed'), ('needs_changes', '⚠️ Needs Changes'), ('draft', '🕗 Draft')], default='draft', max_length=20)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                (
+                    "slug",
+                    models.SlugField(blank=True, max_length=100, unique=True),
+                ),
+                ("content", django_summernote.fields.SummernoteTextField()),
+                (
+                    "featured_image",
+                    models.ImageField(
+                        blank=True, null=True, upload_to="blog_images/"
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("published_on", models.DateTimeField(blank=True, null=True)),
+                ("is_published", models.BooleanField(default=False)),
+                (
+                    "premium_post",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Mark this post as premium content",
+                    ),
+                ),
+                ("reviewer_notes", models.TextField(blank=True, null=True)),
+                (
+                    "review_status",
+                    models.CharField(
+                        choices=[
+                            ("reviewed", "✅ Reviewed"),
+                            ("needs_changes", "⚠️ Needs Changes"),
+                            ("draft", "🕗 Draft"),
+                        ],
+                        default="draft",
+                        max_length=20,
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('approved', models.BooleanField(default=False)),
-                ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='blog.post')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("approved", models.BooleanField(default=False)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comments",
+                        to="blog.post",
+                    ),
+                ),
             ],
         ),
     ]
