@@ -220,11 +220,11 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 |        Scenario         |                    Expected                     |               Result               |
 | :---------------------: | :---------------------------------------------: | :--------------------------------: |
-| Login with valid credentials | should log user in and redirect to homepage | **Pass** – user logged in successfully |
+| Login with valid credentials | should log user in and redirect to user page | **Pass** – user logged in successfully |
 | Login with invalid credentials | should show error and stay on login page | **Pass** – error message displayed |
 | Logout from session     | should log user out and redirect to homepage    | **Pass** – session ended correctly |
 | Register new account    | should create account and log user in           | **Pass** – account created and logged in |
-| Session idle for 30+ min | should auto-expire and log user out            | **Pass** – session expired as expected |
+| Session idle for 15+ min | should auto-expire and log user out            | **Pass** – session expired as expected |
 | Role-based access       | should show features based on user group        | **Pass** – correct features shown per role |
 
 ---
