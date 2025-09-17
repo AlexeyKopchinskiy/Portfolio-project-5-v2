@@ -99,11 +99,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "inkwellblog.urls"
 
-# Expire sessions after 30 minutes of inactivity
+# Expire sessions after 15 minutes of inactivity
 SESSION_COOKIE_AGE = 900  # seconds (15 minutes)
 
 # Optional: expire when browser closes
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Use database for sessions
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 TEMPLATES = [
     {
