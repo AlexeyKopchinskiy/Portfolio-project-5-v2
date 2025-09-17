@@ -49,3 +49,50 @@ document.addEventListener("DOMContentLoaded", function () {
         window["ga-disable-UA-XXXXXXX-Y"] = true; // Replace with your GA ID
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Form validation
+    const updateForm = document.getElementById('updateUserForm');
+    const alertBox = document.getElementById('warningAlert');
+
+    if (updateForm) {
+        updateForm.addEventListener('submit', function (e) {
+            if (!updateForm.checkValidity()) {
+                e.preventDefault();
+                alertBox.classList.remove('d-none');
+                updateForm.classList.add('was-validated');
+            } else {
+                alertBox.classList.add('d-none');
+                updateForm.classList.remove('was-validated');
+            }
+        });
+    }
+
+    // Dynamic form population
+    const rawJson = document.getElementById('userDataJson')?.textContent.trim();
+    let userData = {};
+
+    try {
+        userData = JSON.parse(rawJson);
+    } catch (error) {
+        console.error("❌ Failed to parse user data JSON:", error);
+        return;
+    }
+
+    const userSelect = document.getElementById('userSelect');
+    if (userSelect) {
+        userSelect.addEventListener('change', function () {
+            const selectedId = this.value;
+            const data = userData[selectedId];
+
+            if (data) {
+                document.getElementById('firstName').value = data.first_name || '';
+                document.getElementById('lastName').value = data.last_name || '';
+                document.getElementById('emailUpdate').value = data.email || '';
+                document.getElementById('isActive').value = data.is_active ? 'true' : 'false';
+                document.getElementById('isStaff').value = data.is_staff ? 'true' : 'false';
+            }
+        });
+    }
+});

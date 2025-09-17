@@ -100,7 +100,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "inkwellblog.urls"
 
 # Expire sessions after 30 minutes of inactivity
-SESSION_COOKIE_AGE = 300  # seconds (5 minutes)
+SESSION_COOKIE_AGE = 900  # seconds (15 minutes)
 
 # Optional: expire when browser closes
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

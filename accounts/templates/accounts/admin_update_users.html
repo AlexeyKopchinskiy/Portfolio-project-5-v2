@@ -3,72 +3,76 @@
 {% block dashboard_description %}Edit user details and toggle account status.{% endblock %}
 
 {% block dashboard_content %}
-<div class="container mt-4">
-  <!-- Alert Box -->
-  <div id="warningAlert" class="alert alert-danger d-none" role="alert">
-    ⚠️ All fields are required. Please complete the form before saving.
+<div class="container mt-4 p-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <!-- Alert Box -->
+      <div id="warningAlert" class="alert alert-danger d-none" role="alert">
+        ⚠️ All fields are required. Please complete the form before saving.
+      </div>
+
+      <h2 class="mb-4">Update User Information</h2>
+
+      <form method="post" id="updateUserForm" novalidate>
+        {% csrf_token %}
+
+        <!-- User Selection -->
+        <div class="mb-3">
+          <label for="userSelect" class="form-label">Select User</label>
+          <select class="form-select form-select-sm" id="userSelect" name="user_id" required>
+            <option value="" disabled selected>Choose a user...</option>
+            {% for user in users %}
+              <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- First & Last Name -->
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control form-control-sm" id="firstName" name="first_name" required>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control form-control-sm" id="lastName" name="last_name" required>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-2">
+          <label for="emailUpdate" class="form-label">Email</label>
+          <input type="email" class="form-control form-control-sm" id="emailUpdate" name="email" required>
+        </div>
+
+        <!-- Status Toggles -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="isActive" class="form-label">Active Status</label>
+            <select class="form-select form-select-sm" id="isActive" name="is_active" required>
+              <option value="" disabled selected>Select status...</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="isStaff" class="form-label">Staff Status</label>
+            <select class="form-select form-select-sm" id="isStaff" name="is_staff" required>
+              <option value="" disabled selected>Select status...</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'dashboard_admin' %}" class="btn btn-secondary btn-sm">❌ Cancel</a>
+          <button type="submit" class="btn btn-primary btn-sm">💾 Save Changes</button>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <h2 class="mb-4">Update User Information</h2>
-
-  <form method="post" id="updateUserForm" novalidate>
-    {% csrf_token %}
-
-    <!-- User Selection -->
-    <div class="mb-3">
-      <label for="userSelect" class="form-label">Select User</label>
-      <select class="form-select form-select-sm" id="userSelect" name="user_id" required>
-        <option value="" disabled selected>Choose a user...</option>
-        {% for user in users %}
-          <option value="{{ user.id }}">{{ user.username }} ({{ user.email }})</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <!-- First & Last Name -->
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control form-control-sm" id="firstName" name="first_name" required>
-      </div>
-      <div class="col-md-6">
-        <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control form-control-sm" id="lastName" name="last_name" required>
-      </div>
-    </div>
-
-    <!-- Email -->
-    <div class="mb-2">
-      <label for="emailUpdate" class="form-label">Email</label>
-      <input type="email" class="form-control form-control-sm" id="emailUpdate" name="email" required>
-    </div>
-
-    <!-- Status Toggles -->
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label for="isActive" class="form-label">Active Status</label>
-        <select class="form-select form-select-sm" id="isActive" name="is_active" required>
-          <option value="" disabled selected>Select status...</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label for="isStaff" class="form-label">Staff Status</label>
-        <select class="form-select form-select-sm" id="isStaff" name="is_staff" required>
-          <option value="" disabled selected>Select status...</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="d-flex justify-content-between mt-4">
-      <a href="{% url 'dashboard_admin' %}" class="btn btn-secondary btn-sm">❌ Cancel</a>
-      <button type="submit" class="btn btn-primary btn-sm">💾 Save Changes</button>
-    </div>
-  </form>
 </div>
 
 <!-- ✅ Embed JSON safely -->
@@ -76,52 +80,4 @@
   {{ user_data_json|safe }}
 </script>
 
-<!-- JavaScript for Validation -->
-<script>
-  document.getElementById('updateUserForm').addEventListener('submit', function (e) {
-    const form = e.target;
-    const alertBox = document.getElementById('warningAlert');
-
-    if (!form.checkValidity()) {
-      e.preventDefault();
-      alertBox.classList.remove('d-none');
-      form.classList.add('was-validated');
-    } else {
-      alertBox.classList.add('d-none');
-      form.classList.remove('was-validated');
-    }
-  });
-</script>
-
-<!-- ✅ JavaScript for dynamic population -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const rawJson = document.getElementById('userDataJson').textContent.trim();
-    let userData = {};
-
-    try {
-      userData = JSON.parse(rawJson);
-    } catch (error) {
-      console.error("❌ Failed to parse user data JSON:", error);
-      return;
-    }
-
-    const userSelect = document.getElementById('userSelect');
-    userSelect.addEventListener('change', function () {
-      const selectedId = this.value;
-      const data = userData[selectedId];
-
-      console.log("Selected ID:", selectedId);
-      console.log("User Data:", data);
-
-      if (data) {
-        document.getElementById('firstName').value = data.first_name || '';
-        document.getElementById('lastName').value = data.last_name || '';
-        document.getElementById('emailUpdate').value = data.email || '';
-        document.getElementById('isActive').value = data.is_active ? 'true' : 'false';
-        document.getElementById('isStaff').value = data.is_staff ? 'true' : 'false';
-      }
-    });
-  });
-</script>
 {% endblock %}
