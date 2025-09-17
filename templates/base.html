@@ -81,10 +81,10 @@
           </li>
         
           <!-- Static pages -->
-          {% if user.is_authenticated and not user.groups.all.0.name in "Author Reviewer Administrator" %}
-            <li class="nav-item">
-              <a class="nav-link bi bi-currency-dollar text-info" href="{% url 'pricing' %}"> Pricing</a>
-            </li>
+          {% if not user.is_authenticated or not user.groups.all.0.name in "Author Reviewer Administrator" %}
+              <li class="nav-item">
+                <a class="nav-link bi bi-currency-dollar text-info" href="{% url 'pricing' %}"> Pricing</a>
+              </li>
           {% endif %}
           <li class="nav-item">
             <a class="nav-link bi bi-people-fill text-success" href="{% url 'community' %}"> Community</a>
