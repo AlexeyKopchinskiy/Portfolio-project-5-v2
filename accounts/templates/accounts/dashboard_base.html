@@ -19,7 +19,7 @@
     </div>
 
     <!-- Sidebar with latest posts -->
-    {% if not user.groups.all.0.name == "Author" %}
+    {% if not user.groups.all.0.name == "Author" and not hide_sidebar %}
     <div class="col-12 col-lg-4 mt-4 mt-lg-0">
       <h5 class="mb-3">📝 Latest Posts</h5>
       <div class="d-flex flex-column gap-3">

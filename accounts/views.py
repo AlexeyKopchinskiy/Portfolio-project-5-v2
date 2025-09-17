@@ -93,6 +93,7 @@ def admin_update_users(request):
         {
             "users": users,
             "user_data_json": user_data_json,
+            "hide_sidebar": True,
         },
     )
 
