@@ -361,7 +361,29 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
 
 ![97 score for the Account dashboard page](/static/img/readme/Lighthouse-test-account-dashboard-page.jpg)
 
+**Account settings page**
 
+![97 score for the Account settings page](/static/img/readme/Lighthouse-test-user-settings-page.jpg)
+
+</details>
+
+### C.I. Python Linter testing results
+
+<details>
+<summary>Results of C.I. Python Linter testing testing</summary>
+<br>
+
+**Pages app**
+
+- ![views.py](/static/img/readme/CI-Python-Linter-pages-views.jpg)
+
+- ![urls.py](/static/img/readme/CI-Python-Linter-pages-urls.jpg)
+
+- ![models.py](/static/img/readme/CI-Python-Linter-pages-models.jpg)
+
+- ![admin.py](/static/img/readme/CI-Python-Linter-pages-admin.jpg)
+
+**Newsletter app**
 
 </details>
 
