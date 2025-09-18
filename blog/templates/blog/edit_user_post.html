@@ -6,49 +6,53 @@
 {% block title %}Edit Post — InkwellBlog{% endblock %}
 {% block content %}
 <div class="container mt-5">
-  <h2 class="mb-4">📝 Edit Post: "{{ post.title }}"</h2>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="mb-4">📝 Edit Post: "{{ post.title }}"</h2>
 
-  <div class="mb-3">
-    <strong>Author:</strong> {{ post.author.username }}<br>
-    <strong>Created:</strong> {{ post.created_on|date:"F j, Y H:i" }}<br>
-    <strong>Status:</strong> {{ post.review_status|default:"—" }}<hr>
-    <h3 class="mb-4">post text:</h3> {{ post.content|safe }}
-    <hr>
-  </div>
-
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="form-group mb-3">
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors }}
+      <div class="mb-3">
+        <strong>Author:</strong> {{ post.author.username }}<br>
+        <strong>Created:</strong> {{ post.created_on|date:"F j, Y H:i" }}<br>
+        <strong>Status:</strong> {{ post.review_status|default:"—" }}<hr>
+        <h3 class="mb-4">post text:</h3> {{ post.content|safe }}
+        <hr>
       </div>
-    {% endfor %}
 
-    <div class="mt-4 d-flex justify-content-between">
-      {% if user == post.author %}
-        <a href="{% url 'dashboard_author' %}" class="btn btn-outline-secondary">❌ Cancel</a>
-      {% else %}
-        <a href="{% url 'dashboard_reviewer' %}" class="btn btn-outline-secondary">❌ Cancel</a>
-      {% endif %}
-      <button type="submit" class="btn btn-success">💾 Save & Return</button>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-group mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+          </div>
+        {% endfor %}
+
+        <div class="mt-4 d-flex justify-content-between">
+          {% if user == post.author %}
+            <a href="{% url 'dashboard_author' %}" class="btn btn-outline-secondary">❌ Cancel</a>
+          {% else %}
+            <a href="{% url 'dashboard_reviewer' %}" class="btn btn-outline-secondary">❌ Cancel</a>
+          {% endif %}
+          <button type="submit" class="btn btn-success">💾 Save & Return</button>
+        </div>
+        {% if user == post.author %}
+          <hr class="my-4">
+          <h5>🔍 Review Details</h5>
+
+          <div class="form-group mb-3">
+            <label for="review_status">Review Status</label>
+            <input type="text" class="form-control" id="review_status" value="{{ post.review_status }}" readonly>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="review_comment">Reviewer Notes</label>
+            <textarea class="form-control" id="review_comment" rows="5" readonly>{{ post.reviewer_notes }}</textarea>
+          </div>
+        {% endif %}
+
+      </form>
     </div>
-    {% if user == post.author %}
-      <hr class="my-4">
-      <h5>🔍 Review Details</h5>
-
-      <div class="form-group mb-3">
-        <label for="review_status">Review Status</label>
-        <input type="text" class="form-control" id="review_status" value="{{ post.review_status }}" readonly>
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="review_comment">Reviewer Notes</label>
-        <textarea class="form-control" id="review_comment" rows="5" readonly>{{ post.reviewer_notes }}</textarea>
-      </div>
-    {% endif %}
-
-  </form>
+  </div>
 </div>
 {% endblock %}
