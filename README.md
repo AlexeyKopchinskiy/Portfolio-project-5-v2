@@ -116,6 +116,65 @@ The strategy revolves around creating a **curated, professional blogging experie
 - **Cloud-native media**: Leveraging Cloudinary ensures your content is scalable and secure.
 - **Dual-role architecture**: Supporting both authors and reviewers creates a collaborative publishing environment.
 
+
+### Scope (User Stories)
+
+This section outlines the anticipated user interactions with the website, based on their goals and expectations. Each User Story has been documented as a GitHub Issue for traceability. Below, you'll find detailed scenarios describing the actions various user types — including the business owner — intend to perform. Developer-focused User Stories have also been included to capture technical requirements and implementation perspectives.
+
+**As website administrator**
+
+- Administrator Issue: Track and review subscriber activity
+- Administrator Issue: Manage blog content via admin dashboard
+- Administrator Issue: Manage user accounts
+- Administrator Issue: Track and manage newsletters
+- Administrator Issue: access Django admin interface
+
+**As Developer**
+
+- Developer Issue: Customize blog organization with categories and tags
+- Developer Issue: Run accessibility and SEO testing audit
+- Developer Issue: Final README and design documentation
+- Developer Issue: Write unit and integration tests
+- Developer Issue: Add newsletter signup via custom form
+- Developer Issue: Add dynamic meta descriptions to posts
+- Developer Issue: Let users bookmark or like posts
+- Developer Issue: Add dark/light mode toggle
+- Developer Issue: Implement accessibility checks (contrast, alt tags)
+- Developer Issue: Ensure env vars and secret keys are hidden
+- Developer Issue: Deploy app to Heroku (or alternative)
+- Developer Issue: Set up Facebook product page or mockup
+- Developer Issue: Add social sharing buttons
+- Developer Issue: Generate sitemap and robots.txt
+- Developer Issue: Build responsive layout and navigation menu
+- Developer Issue: Add post editor for admin users
+- Developer Issue: Build public and premium post views
+- Developer Issue: Create BlogPost model with categories and tags
+- Developer Issue: Restrict access to premium content by role
+- Developer Issue: Add feedback for successful/failed payments
+- Developer Issue: Integrate Stripe for paid subscription checkout
+- Developer Issue: Create protected dashboard for admins
+- Developer Issue: Add role-based access (admin, reviewer, author, reader)
+- Developer Issue: Implement Django user registration/login/logout
+
+**As a reviewer**
+
+- Reviewer Issue: Show notifications for key events
+- Reviewer Issue: Manage blog post review process
+
+**As a visitor**
+
+- Visitor Issue: Bookmark or like posts
+- Visitor Issue: Receive email updates about new premium content
+- Visitor Issue: Access premium subscriber-only content
+- Visitor Issue: Comment on blog posts
+- Visitor Issue: Upgrade to a paid subscription
+- Visitor Issue: Register and log in securely
+- Visitor Issue: Browse and read public blog posts without login
+
+
+
+
+
 ------------------------------------------------------------------------------------------------
 
 ## Testing
