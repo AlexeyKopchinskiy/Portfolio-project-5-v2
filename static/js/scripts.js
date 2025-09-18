@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
+// Admin user management form validation and dynamic population
 document.addEventListener('DOMContentLoaded', function () {
     // Form validation
     const updateForm = document.getElementById('updateUserForm');
@@ -86,8 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.warn("⚠️ rawJson is empty or invalid:", rawJson);
         }
-    } else {
-        console.warn("⚠️ Element #userDataJson not found in DOM.");
     }
 
     const userSelect = document.getElementById('userSelect');
