@@ -171,6 +171,37 @@ This section outlines the anticipated user interactions with the website, based 
 - Visitor Issue: Register and log in securely [#7](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/7)
 - Visitor Issue: Browse and read public blog posts without login [#8](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/8)
 
+### Structure / Design Choices
+
+Absolutely, Alexey — here’s a polished, first-person version of your **Structure / Design Choices** section for your README:
+
+---
+
+## 🧱 Structure & Design Choices
+
+When building this project, I focused on creating a clean, scalable, and user-friendly architecture that supports multiple user roles and a professional publishing workflow.
+
+### 🔹 Template Structure  
+I used Django’s template inheritance system to keep the layout modular and maintainable. Each page extends a base dashboard template, allowing me to define consistent headers, navigation, and styling across the site while customizing content blocks as needed.
+
+### 🔹 Role-Based Dashboards  
+The site supports different user roles — authors, reviewers, and admins — each with tailored dashboards and permissions. This structure helps streamline workflows and ensures that users only see the tools relevant to their role.
+
+### 🔹 Form-Driven UX  
+Instead of relying on auto-rendered forms, I manually styled each form using Bootstrap. This gave me full control over layout, spacing, and validation feedback, resulting in a cleaner and more intuitive user experience.
+
+### 🔹 Cloud-Based Media  
+To avoid Heroku’s ephemeral file system, I integrated Cloudinary for image uploads. This ensures that user-uploaded media is stored securely and served efficiently via CDN, making the platform more reliable and scalable.
+
+### 🔹 JavaScript Enhancements  
+I added vanilla JavaScript to handle dynamic form population and client-side validation. This keeps the interface responsive and reduces user errors without adding unnecessary dependencies.
+
+### 🔹 Responsive Design  
+Using Bootstrap’s grid system and utility classes, I made sure the site looks great on all screen sizes. I also added subtle UX touches like emoji-enhanced buttons and a “Back to Top” feature to improve navigation and engagement.
+
+---
+
+This structure reflects my goal of building a platform that’s not just functional, but thoughtfully engineered — one that balances backend robustness with frontend clarity and polish.
 
 
 
