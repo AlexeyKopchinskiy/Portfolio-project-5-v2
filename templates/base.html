@@ -231,5 +231,20 @@
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" 
     crossorigin="anonymous">
   </script>
+  <button id="backToTop" onclick="scrollToTop()" class="btn btn-secondary position-fixed bottom-0 end-0 m-4" style="display: none;" title="Back to top">
+    ⬆️ Top
+  </button>
+
+  <script>
+    const backToTop = document.getElementById("backToTop");
+
+    window.onscroll = function () {
+      backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
