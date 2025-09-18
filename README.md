@@ -117,7 +117,7 @@ The strategy revolves around creating a **curated, professional blogging experie
 - **Dual-role architecture**: Supporting both authors and reviewers creates a collaborative publishing environment.
 
 
-### Scope (User Stories)
+### Scope / User Stories
 
 This section outlines the anticipated user interactions with the website, based on their goals and expectations. Each User Story has been documented as a GitHub Issue for traceability. Below, you'll find detailed scenarios describing the actions various user types — including the business owner — intend to perform. Developer-focused User Stories have also been included to capture technical requirements and implementation perspectives.
 
@@ -173,7 +173,7 @@ This section outlines the anticipated user interactions with the website, based 
 
 ---
 
-### 🧱 Structure & Design Choices
+### Structure / Design Choices
 
 When building this project, I focused on creating a clean, scalable, and user-friendly architecture that supports multiple user roles and a professional publishing workflow.
 
@@ -225,8 +225,41 @@ I used CorelDraw to create wireframes. Later, during the developement stage the 
 
 ![Mobile Member Page](./static/img/pp5-wireframe-mobile-member-page.png)
 
+### Surface
 
+The website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
 
+Based on my CSS file, the website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
+
+---
+
+#### 🎨 Primary UX Colors
+
+| Purpose                | Color Code     | Description                              |
+|------------------------|----------------|------------------------------------------|
+| **Background Gradient**| `#0d0d0d`, `#1a1a1a` | Deep charcoal tones for immersive feel |
+| **Card Backgrounds**   | `#1f1f1f`, `#2c2c2c` | Soft dark grays for content containers |
+| **Text (Body)**        | `#f1f1f1`, `#ccc`, `#eee` | Light grays and whites for high contrast |
+| **Accent & Links**     | `#00ffff`      | Bright cyan for interactive elements     |
+| **Hover Effects**      | `#00e5e5`, `#ffffff` | Lighter cyan and white for feedback     |
+| **Borders & Shadows**  | `#444`, `#555`, `#333` | Subtle grays for depth and separation   |
+| **Muted Text**         | `#888`         | Used for secondary or helper text        |
+| **Error Messages**     | `#ff4d4d`      | Vivid red for alerts and validation      |
+| **Cookie Banner**      | `#f8f9fa`, `#007bff` | Light gray and blue for legal notices   |
+| **Navbar & Footer**    | `#111`, `#333` | Consistent dark tones for framing        |
+
+---
+
+#### 🧠 Design Intent
+
+- **Dark Mode Aesthetic**: The site uses a predominantly dark theme with layered grays to reduce eye strain and create a cinematic feel.
+- **Cyan as a Signature Accent**: `#00ffff` is used consistently for buttons, links, borders, and highlights — giving the interface a futuristic and cohesive look.
+- **High Contrast for Readability**: Light text on dark backgrounds ensures clarity across devices.
+- **Subtle Depth**: Shadows and gradients add dimension without overwhelming the layout.
+
+---
+
+This color strategy supports a professional, tech-forward vibe while keeping the interface accessible and visually engaging.
 
 
 
