@@ -158,18 +158,18 @@ This section outlines the anticipated user interactions with the website, based 
 
 **As a reviewer**
 
-- Reviewer Issue: Show notifications for key events [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Reviewer Issue: Manage blog post review process [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
+- Reviewer Issue: Show notifications for key events [#4](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/4)
+- Reviewer Issue: Manage blog post review process [#10](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/10)
 
 **As a visitor**
 
-- Visitor Issue: Bookmark or like posts [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Receive email updates about new premium content [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Access premium subscriber-only content [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Comment on blog posts [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Upgrade to a paid subscription [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Register and log in securely [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
-- Visitor Issue: Browse and read public blog posts without login [#](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/)
+- Visitor Issue: Bookmark or like posts [#2](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/2)
+- Visitor Issue: Receive email updates about new premium content [#3](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/3)
+- Visitor Issue: Access premium subscriber-only content [#5](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/5)
+- Visitor Issue: Comment on blog posts [#1](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/1)
+- Visitor Issue: Upgrade to a paid subscription [#6](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/6)
+- Visitor Issue: Register and log in securely [#7](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/7)
+- Visitor Issue: Browse and read public blog posts without login [#8](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/8)
 
 
 
