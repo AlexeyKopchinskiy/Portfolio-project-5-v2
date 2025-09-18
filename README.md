@@ -12,7 +12,7 @@ Portfolio Project 5 - E-commerce Applications
 * [Overview](#overview)
 * [Agile Methodology](#agile-methodology)
 * [User Experience (UX)](#user-experience-ux)
-    * [Strategy / Site Goals](#strategy--site-goals)
+    * [Strategy / Site Goals](#core-site-goals)
     * [Scope / User Stories](#scope--user-stories)
     * [Structure / Design Choices](#structure--design-choices)
     * [Skeleton / Wireframes](#skeleton--wireframes)
@@ -260,10 +260,11 @@ Based on my CSS file, the website’s color palette is designed to create a slee
 This color strategy supports a professional, tech-forward vibe while keeping the interface accessible and visually engaging.
 
 ---
+## Features
 
-## ✨ Existing Features
+### ✨ Existing Features
 
-### 🔝 Header & Navigation
+#### 🔝 Header & Navigation
 
 Featured on all pages, the fully responsive header enhances navigation and adapts to user status:
 
@@ -278,7 +279,7 @@ This adaptive navigation ensures users always know where they are and how to get
 
 ---
 
-### 📄 Footer
+#### 📄 Footer
 
 The footer is consistently styled across all pages and provides users with helpful links and social connectivity:
 
@@ -290,7 +291,7 @@ The footer reinforces brand presence while offering subtle guidance and connecti
 
 ---
 
-### 🏠 Landing Page
+#### 🏠 Landing Page
 
 The homepage acts as a visual and functional gateway to the platform:
 
@@ -302,7 +303,7 @@ This layout helps users quickly understand the value of the platform and navigat
 
 ---
 
-### 📚 Dashboard Pages
+#### 📚 Dashboard Pages
 
 Each user role is supported with a tailored dashboard experience:
 
@@ -314,7 +315,7 @@ All dashboards are styled consistently and include alert boxes, button icons, an
 
 ---
 
-### 🖼️ Media & Visuals
+#### 🖼️ Media & Visuals
 
 The site uses Cloudinary to manage and deliver images, ensuring fast load times and persistent storage:
 
@@ -326,7 +327,7 @@ These choices create a visually rich experience without overwhelming the user.
 
 ---
 
-### 📱 Responsive Design
+#### 📱 Responsive Design
 
 The entire site is built with mobile-first principles:
 
@@ -338,7 +339,7 @@ Users can comfortably interact with the site whether they’re on a phone, table
 
 ---
 
-### 🧠 Form UX & Validation
+#### 🧠 Form UX & Validation
 
 Forms throughout the site are designed to be intuitive and informative:
 
@@ -353,44 +354,44 @@ Great question, Alexey — your current feature set is already rich and well-str
 
 ---
 
-## 🌱 Potential Future Features
+### 🌱 Potential Future Features
 
-### 🧭 Enhanced Navigation & Personalization
+#### 🧭 Enhanced Navigation & Personalization
 - **User-specific dashboards** with personalized greetings, recent activity, and quick links
 - **Breadcrumb navigation** to help users understand their location within the site
 - **Theme switcher** (dark/light mode toggle) for accessibility and user preference
 
-### 📬 Notifications & Messaging
+#### 📬 Notifications & Messaging
 - **In-app notifications** for post reviews, status changes, or new comments
 - **Private messaging system** between authors and reviewers for collaborative feedback
 - **Toast alerts** for actions like saving, submitting, or errors — less intrusive than full-page alerts
 
-### 🗂️ Content Discovery & Filtering
+#### 🗂️ Content Discovery & Filtering
 - **Search bar** with live suggestions for posts, authors, or tags
 - **Advanced filtering** by category, review status, or publication date
 - **Tag system** for organizing posts and improving discoverability
 
-### 📊 Analytics & Insights
+#### 📊 Analytics & Insights
 - **Post performance dashboard** showing views, likes, and engagement over time
 - **Reviewer activity logs** to track feedback contributions
 - **User engagement heatmaps** to visualize popular content areas
 
-### 🧑‍🎨 UX Enhancements
+#### 🧑‍🎨 UX Enhancements
 - **Drag-and-drop image uploads** with preview before submission
 - **Inline editing** for post content or user details without leaving the page
 - **Progress indicators** during form submission or image upload
 
-### 🌍 Community & Social Features
+#### 🌍 Community & Social Features
 - **Comment system** for posts with moderation tools
 - **User profiles** with bios, published posts, and badges
 - **Follow/favorite system** to track authors or posts of interest
 
-### 🔐 Security & Trust
+#### 🔐 Security & Trust
 - **Two-factor authentication (2FA)** for admin and reviewer accounts
 - **Audit trail** for post edits and review actions
 - **Role-based access control** with granular permissions
 
-### 📱 Mobile App Companion
+#### 📱 Mobile App Companion
 - A lightweight mobile version or PWA (Progressive Web App) for on-the-go publishing and reviewing
 - Push notifications for review updates or new premium content
 
@@ -398,7 +399,125 @@ These additions would deepen engagement, streamline workflows, and make your pla
 
 ---
 
+## 🔐 Authentication & Authorization  
+The platform uses Django’s built-in authentication system, extended with **django-allauth** for robust user registration, login, and logout flows. Role-based access control ensures that users interact only with features relevant to their permissions:
 
+- **Anonymous users** can browse public content and register or log in.
+- **Authenticated users** gain access to personalized dashboards and publishing tools.
+- **Reviewers** can assess submitted posts and leave feedback.
+- **Admins** have full control over user management and site configuration.
+
+Navigation links dynamically adapt based on user status, and all forms include CSRF protection and validation feedback.
+
+---
+
+## 📦 Product Management  
+Posts are treated as content products, each with metadata, featured images, and review status. Authors can:
+
+- Create and edit posts using a rich-text editor
+- Upload images via Cloudinary
+- Submit posts for review and track their status
+
+Reviewers can update post status, leave notes, and ensure editorial quality before publication.
+
+---
+
+## 🛒 Cart & Checkout Flow *(Premium Content Model)*  
+While the site doesn’t use a traditional e-commerce cart, it features a **premium content access flow**:
+
+- Premium posts are previewed with limited access for non-members
+- Calls to action guide users to upgrade or register
+- Access control ensures only premium users can view full content
+
+This flow mimics a digital subscription model and can be extended to include actual checkout functionality.
+
+---
+
+## 💳 Payment Integration *(Future-Ready)*  
+The platform is designed to support payment integration for premium memberships or content unlocks. Planned features include:
+
+- Stripe or PayPal integration for secure transactions
+- Tiered membership plans with access levels
+- Payment history and invoice tracking
+
+This would allow monetization of exclusive content while maintaining a seamless user experience.
+
+---
+
+## 📋 Order Management *(Content Access Tracking)*  
+Instead of physical orders, the site tracks **content access and user interactions**:
+
+- Premium content access is logged per user
+- Review status and post history are visible in dashboards
+- Admins can monitor user activity and manage permissions
+
+This system can evolve into a full-featured content subscription tracker.
+
+---
+
+## 🖼️ Media & File Storage  
+All media is stored and served via **Cloudinary**, ensuring:
+
+- Persistent storage across deployments (especially on Heroku)
+- Fast delivery via CDN
+- Responsive image rendering and optimization
+
+Users can upload featured images for posts, and admins can manage media centrally.
+
+---
+
+## 🔒 Session & Security Features  
+Security and session integrity are prioritized throughout the platform:
+
+- CSRF protection on all forms
+- Secure password hashing and user authentication
+- Session-based access control for protected views
+- Input validation and error handling to prevent misuse
+
+Future enhancements may include two-factor authentication (2FA), audit logs, and granular permission settings.
+
+---
+
+## 🧪 Technologies Used
+
+This project is built using a modern, scalable tech stack that combines Django’s backend power with responsive frontend design and cloud-based media handling. Below is a breakdown of the key technologies and tools used:
+
+### ⚙️ Backend & Frameworks
+- **Python 3.11** — Core programming language powering the application logic
+- **Django** — High-level web framework used for rapid development and clean architecture
+- **django-allauth** — Handles user registration, login, logout, and social authentication
+- **Gunicorn** — WSGI HTTP server for deploying Django on Heroku
+
+### 🗄️ Database & Hosting
+- **SQLite** (development) / **PostgreSQL** (production via Heroku) — Relational database for storing user data, posts, and review metadata
+- **Heroku** — Cloud platform used for hosting and deploying the application
+
+### 🖼️ Media & File Storage
+- **Cloudinary** — Cloud-based image hosting and transformation service
+  - Stores featured images and user-uploaded media
+  - Delivers optimized content via CDN
+
+### 🎨 Frontend & Styling
+- **HTML5 & CSS3** — Semantic markup and custom styles
+- **Bootstrap 5** — Responsive design framework for layout and UI components
+- **JavaScript (Vanilla)** — Enhances interactivity, form validation, and dynamic content population
+- **Summernote** — Rich-text editor for post creation
+
+### 🔐 Security & Session Management
+- **CSRF Protection** — Built-in Django middleware for secure form submissions
+- **Session-based Authentication** — Ensures protected views are only accessible to logged-in users
+- **Password Hashing** — Django’s default secure password storage
+
+### 📦 Package & Dependency Management
+- **pip** — Python package installer
+- **requirements.txt** — Tracks all dependencies for deployment and development
+
+### 🧰 Developer Tools
+- **Git & GitHub** — Version control and issue tracking
+- **GitHub Issues** — Used to document user stories and development tasks
+- **Browser DevTools** — For debugging layout, responsiveness, and JavaScript behavior
+
+---
 
 
 
@@ -805,33 +924,6 @@ Billing app urls.py
 
 ---------------------------------------------------------------------------
 
----
-
-## Authentication & Authorization
-
-
-
-## Product Management
-
-
-
-## Cart & Checkout Flow
-
-
-
-## Payment Integration
-
-
-
-## Order Management
-
-
-
-## Media & File Storage
-
-
-
-## Session & Security Features
 
 
 
