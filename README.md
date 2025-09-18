@@ -70,6 +70,54 @@ Visual tools like a Kanban board and issue tracking screenshots helped streamlin
 
 ----------------------------------------------------------------------------------------------
 
+## User Experience (UX)
+
+### 🎯 Project Strategy: Empowering Creators Through Premium Publishing
+
+Your site is designed as a **content publishing platform** that serves two distinct user groups:
+- **Authors** who want to share high-quality blog posts
+- **Reviewers** or **premium members** who access exclusive content and help maintain editorial standards
+
+The strategy revolves around creating a **curated, professional blogging experience** that balances creative freedom with quality control. You’re not just building a blog — you’re building a **mini publishing ecosystem**.
+
+---
+
+### 🧭 Core Site Goals
+
+#### 1. **Enable Authors to Publish and Manage Posts**
+- Provide a clean dashboard for creating, editing, and deleting posts
+- Support rich media (images via Cloudinary, formatted text via Summernote)
+- Offer visibility into review status and reviewer feedback
+
+#### 2. **Deliver Premium Content to Subscribers**
+- Highlight exclusive posts in a “Premium” section
+- Gate full access behind a membership or pricing model
+- Encourage engagement with teasers and calls to action
+
+#### 3. **Maintain Editorial Quality Through Review Workflow**
+- Allow reviewers to leave notes and set review status
+- Give authors visibility into feedback without editing reviewer input
+- Create a structured publishing pipeline that mimics professional editorial standards
+
+#### 4. **Ensure Scalable, Reliable Media Hosting**
+- Use Cloudinary to store and serve images, avoiding Heroku’s ephemeral storage
+- Optimize media delivery via CDN for performance and reliability
+
+#### 5. **Offer a Seamless User Experience**
+- Use Bootstrap for responsive design
+- Add UX enhancements like “Back to Top” buttons
+- Keep navigation intuitive across dashboards and public pages
+
+---
+
+### 🧠 Strategic Differentiators
+
+- **Quality-first publishing**: Unlike open platforms, your site emphasizes editorial review and premium curation.
+- **Cloud-native media**: Leveraging Cloudinary ensures your content is scalable and secure.
+- **Dual-role architecture**: Supporting both authors and reviewers creates a collaborative publishing environment.
+
+------------------------------------------------------------------------------------------------
+
 ## Testing
 
 ### Testing Strategy Justification
