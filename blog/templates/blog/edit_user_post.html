@@ -21,13 +21,27 @@
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
+        {% if field.name != 'ready' %}
           <div class="form-group mb-3">
             {{ field.label_tag }}
             {{ field }}
             {{ field.errors }}
           </div>
+        {% endif %}
         {% endfor %}
 
+        {% if user == post.author %}
+          <div class="form-check mb-4">
+            {{ form.ready }}
+            {{ form.ready.label_tag }}
+            {{ form.ready.errors }}
+            <small class="form-text text-muted">
+              Mark this post as ready when you're finished editing and want it reviewed.
+            </small>
+          </div>
+        {% endif %}
+
+          
         <div class="mt-4 d-flex justify-content-between">
           {% if user == post.author %}
             <a href="{% url 'dashboard_author' %}" class="btn btn-outline-secondary">❌ Cancel</a>
@@ -36,6 +50,7 @@
           {% endif %}
           <button type="submit" class="btn btn-success">💾 Save & Return</button>
         </div>
+        
         {% if user == post.author %}
           <hr class="my-4">
           <h5>🔍 Review Details</h5>

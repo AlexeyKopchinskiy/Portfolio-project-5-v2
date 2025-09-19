@@ -107,7 +107,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Smooth scroll to top
 <script>
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+    window.scrollTo(top: 0, behavior: 'smooth' );
 </script>

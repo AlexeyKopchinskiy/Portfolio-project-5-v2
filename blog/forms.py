@@ -16,6 +16,7 @@ class PostForm(forms.ModelForm):
             "premium_post",
             "reviewer_notes",
             "review_status",
+            "ready",
         ]
         widgets = {
             "title": forms.TextInput(
@@ -46,10 +47,13 @@ class PostForm(forms.ModelForm):
                     "class": "form-control",
                 }
             ),
+            "ready": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input",
+                    "id": "readyCheckbox",
+                }
+            ),
         }
-
-
-# forms.py
 
 
 class AuthorForm(forms.ModelForm):
@@ -57,12 +61,18 @@ class AuthorForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ["title", "content", "featured_image"]
+        fields = ["title", "content", "featured_image", "ready"]
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
             "content": SummernoteWidget(),
             "featured_image": forms.ClearableFileInput(
                 attrs={"class": "form-control"}
+            ),
+            "ready": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input",
+                    "id": "readyCheckbox",
+                }
             ),
         }
 
@@ -77,6 +87,7 @@ class ReviewerForm(forms.ModelForm):
             "reviewer_notes",
             "is_published",
             "premium_post",
+            "ready",
         ]
         widgets = {
             "review_status": forms.Select(attrs={"class": "form-control"}),
@@ -88,6 +99,12 @@ class ReviewerForm(forms.ModelForm):
             ),
             "premium_post": forms.CheckboxInput(
                 attrs={"class": "form-check-input"}
+            ),
+            "ready": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input",
+                    "id": "readyCheckbox",
+                }
             ),
         }
 
