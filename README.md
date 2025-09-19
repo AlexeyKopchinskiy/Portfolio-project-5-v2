@@ -1236,9 +1236,7 @@ heroku run python manage.py collectstatic
 - The project uses SQLite locally for simplicity.
 - All PostgreSQL-specific options are conditionally applied to avoid crashes during local development.
 
----
-
-Absolutely, Alexey — here’s an extended and polished **Credits** section for your `README.md`, incorporating your original content and expanding it with clearer structure, attribution formatting, and additional acknowledgments where appropriate:
+[Back To Top](#table-of-contents)
 
 ---
 
@@ -1302,337 +1300,37 @@ Visual assets used in this project were sourced from royalty-free platforms and 
 
 > All media used is either custom-created or sourced from platforms that allow free commercial use with attribution.
 
----
-
-Let me know if you’d like to add GitHub usernames, license references, or acknowledgments for specific contributors. You’re crediting your sources like a true professional.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-temp:
------------------------------------------------------------------------------------------------
-
-
-## Agile Methodology
-
-This project was developed using Agile principles, with GitHub Issues serving as the central hub for tracking User Stories — you can view them [here](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues). For better accessibility and organization, all issues were grouped into a dedicated GitHub Project, allowing me to visualize progress and manage priorities more effectively. This project called InkwellBlog project can be found [here](https://github.com/users/AlexeyKopchinskiy/projects/12).
-
-Each User Story was defined with clear Acceptance Criteria and associated Tasks. As the project evolved, I occasionally revised these tasks post-implementation, since the exact steps needed to meet the criteria weren’t always obvious at the outset.
-
-Being my only second project using both Agile and the Django framework, the process was still on a learning curve. Some initially separate User Stories were later grouped into Epics, as their functionality turned out to be closely related. Interestingly, while a few tasks were completed more quickly than expected, others required significantly more time and iteration.
-
-To prioritize effectively, I applied the MoSCoW method — categorizing each User Story as a 'Must Have', 'Should Have', or 'Could Have'. A handful of "Won’t Have" items were intentionally left in the backlog for potential future development. My focus was on crafting just enough stories to reach a solid Minimum Viable Product (MVP). Most of the stories were also labeled as 'Developer stories', 'Site owner stories' or 'Visitor stories'
-
-### 🚀 Agile Workflow
-
-
-
-Screenshots of the Kanban board, Epics, and User Stories illustrate this workflow.
-
-Overall, adopting Agile proved invaluable. It gave structure to my development process and helped me manage my time more intentionally — even without fixed-length iterations. And yes, moving tasks from 'To Do' to 'Done' was genuinely satisfying.
-
-
-## 🎯 Project Purpose & Rationale
-
-This web application was developed to support a multi-role content platform that facilitates publishing, reviewing, and engaging with written content. It is designed with four distinct user roles — **Readers**, **Authors**, **Reviewers**, and **Administrators** — each with tailored access, responsibilities, and interfaces.
-
-The rationale behind the project is grounded in real-world user needs and is shaped by the following user stories and personas:
+[Back To Top](#table-of-contents)
 
 ---
-
-### 👤 Reader
-
-**Persona:** Casual or subscribed users who consume published content and engage through comments.
-
-**Needs:**
-- Discover and read the latest published posts.
-- View and manage their own comment history.
-- Navigate the platform easily across devices.
-
-**Dashboard Features:**
-- Recent comments panel.
-- Sidebar with latest published posts.
-- Mobile-responsive layout for reading on the go.
-
----
-
-### ✍️ Author
-
-**Persona:** Content creators who write and submit posts or newsletters.
-
-**Needs:**
-- Draft and edit posts before submission.
-- Track published content and engagement.
-- View recent feedback or comments on their work.
-
-**Dashboard Features:**
-- Drafts and published newsletters.
-- Recent authored posts.
-- Comment activity related to their content.
-
----
-
-### 🕵️ Reviewer
-
-**Persona:** Editorial staff or moderators responsible for content quality control.
-
-**Needs:**
-- Access to submitted drafts awaiting review.
-- Approve or reject content based on editorial standards.
-- Communicate feedback to authors.
-
-**Dashboard Features:**
-- Review queue with pending submissions.
-- Tools to approve, reject, or request revisions.
-- History of reviewed content.
-
----
-
-### 🛠️ Administrator
-
-**Persona:** Platform managers overseeing user activity, content flow, and system health.
-
-**Needs:**
-- Monitor platform-wide activity.
-- Manage user roles and permissions.
-- Ensure content visibility and operational integrity.
-
-**Dashboard Features:**
-- Overview of latest published content.
-- Access to all user dashboards and settings.
-- System-level controls and analytics.
-
----
-
-## 🧠 Why This Matters
-
-By clearly defining and implementing role-based access and dashboards, the application ensures that each user interacts with the platform in a way that aligns with their goals. This structure promotes:
-
-- ✅ **Security**: Users only access what they’re authorized to see.
-- ✅ **Usability**: Dashboards are tailored to each role’s workflow.
-- ✅ **Scalability**: New roles or features can be added without disrupting existing flows.
-- ✅ **Maintainability**: Clean separation of concerns across views and templates.
-
-The project demonstrates a thoughtful approach to user-centered design, with each feature grounded in a specific user story. It’s not just a technical build — it’s a solution to real communication and content management needs.
-
-
-## 👥 User Types & User Stories
-
-### Site Owner
-- Manage posts, categories, and publishing schedule
-- Track subscribers and view platform analytics
-- Receive notifications of new subscriptions and comments
-
-### Visitor / Reader
-- Browse and read public blog posts without registration
-- Register, log in, and subscribe for premium content
-- Like, bookmark, and comment on posts
-
-Check out the full list of [user stories and issues here](#) ← *(you can link to your Issues tab or GitHub project board)*
-
-## ✨ Features
-
-- Stripe-powered subscriptions
-- Public and premium post access
-- Role-based authentication
-- Responsive, accessible UI with dark/light mode
-- Bookmarking, commenting, and category filters
-- Facebook product page / promotional mockup
-- Newsletter signup and SEO features (meta tags, sitemap)
-- Functional contact form
-
-### 📮 Contact Form Feature
-
-The application includes a fully functional contact form accessible via /contact/. Visitors can submit their name, email, subject, and message directly through the form.
-
-- Submissions are stored in the database via the custom ContactMessage model.
-- Messages are timestamped and can be browsed via the Django admin interface.
-- User feedback is provided after successful form submission.
-- The form is styled with Bootstrap 5 for responsive and accessible design.
-- CSRF protection and validation are included.
-
-**This feature demonstrates:**
-
-- Form handling with validation (LO1.4)
-- Creation of a custom Django model (LO1.12)
-- Clean code with Bootstrap styling and UX considerations (LO2.1)
-
-## 🛠 Technologies & Software Used
-
-| Purpose            | Tool(s)                       |
-|--------------------|-------------------------------|
-| Code Development   | Visual Studio Code            |
-| Backend Framework  | Django (Python)               |
-| Database           | PostgreSQL                    |
-| DB modelling       | Dbdiagram.io                  |
-| UI Styling         | HTML, CSS, Bootstrap          |
-| Design/Mockups     | CorelDraw, Photoshop          |
-| Wireframing        | CorelDraw, Photoshop          |
-| Deployment         | Heroku (or similar)           |
-| Payments           | Stripe API                    |
-| Version Control    | Git & GitHub                  |
-| Github emoji       | Github emoji markup           |
-
-
-
-## 📐 Wireframes & UX Design
-
-- Homepage  
-- Post detail & premium prompt  
-- Admin dashboard  
-- User profile | saved posts  
-
-
-## 🔧 Django Apps
-
-| **App name**    | **Purpose**                                  |
-|-----------------|----------------------------------------------|
-| blog            | Posts, categories, tags, post detail views   |
-| accounts        | Custom user model, login, registration       |
-| subscriptions   | Stripe integration, premium access control   |
-| core            | Homepage, about, footer, reusable templates  |
-| admin_dashboard | Admin-only views for content and analytics   |
-
-## DB Modelling
-
-**dbdiagram.io** is used for DB modelling
-
-### 👦 User model
-```
-Table users {
-  id integer [primary key]
-  username varchar
-  role varchar
-  created_at timestamp
-}
-```
-
-### 📃 Posts model
-```
-Table posts {
-  id integer [primary key]
-  title varchar
-  body text [note: 'Content of the post']
-  user_id integer [not null]
-  status varchar
-  created_at timestamp
-}
-```
-
-### 🐾 Following users
-```
-Table follows {
-  following_user_id integer
-  followed_user_id integer
-  created_at timestamp
-}
-```
-
-### 🏷️ tags (many-to-many with posts)
-```
-Table tags {
-  id integer [primary key]
-  name varchar
-  slug varchar
-}
-
-Table post_tags {
-  post_id integer [ref: > posts.id]
-  tag_id integer [ref: > tags.id]
-}
-```
-
-### 💬 Comments or discussion
-```
-Table comments {
-  id integer [primary key]
-  post_id integer [ref: > posts.id]
-  user_id integer [ref: > users.id]
-  content text
-  created_at timestamp
-}
-```
-
-### 💼 Premium subscriptions (tied to Stripe IDs)
-```
-Table subscriptions {
-  id integer [primary key]
-  user_id integer [ref: > users.id]
-  plan varchar
-  started_on timestamp
-  expires_on timestamp
-  stripe_customer_id varchar
-}
-```
-
-## SQL markdown
-
-![SQL markdown](./static/img/sql-markdown.png)
-
-## User access rights
-
-| View / action                  |   Groups allowed      |     Description    |
-|--------------------------------|-----------------------|--------------------|
-| Admin Dashboard (/admin/)      | Admins (via is_staff) | Full access to Django's built-in admin site for managing models, users, and site data.                   |
-| Author Dashboard (/dashboard/) | Authors, Editors      | Personal workspace to manage drafts, edit posts, view writing stats. |
-| Create New Post                | Authors               | Access to a post creation form and the ability to submit content for review or publication. |
-| Edit/Delete Own Post           | Authors               | Authors can update or remove only the posts they’ve authored. |
-| Edit/Publish Any Post          | Editors, Admins       | Editors and admins can modify or publish any post on the platform, not just their own. |
-| View Published Posts           | Everyone              | Public blog posts are viewable by anyone visiting the site. |
-| Comment on Posts               | Logged-in Users       | Users with accounts can write comments on posts. |
-| Moderate/Delete Comments       | Moderators, Editors, Admins | Ability to remove or flag inappropriate comments and maintain community standards |
-| Manage User Groups / Permissions | Admins (via Django admin) | Only superusers can assign groups, roles, and advanced permissions via the admin panel. |
-| View Subscription Settings     | Logged-in Users (Readers, Authors) | Access to personal subscription status, invoices, and upgrade/cancel options. |
-| Access Premium Content         | Anyone with is_premium=True | Restricts access to exclusive or paywalled content for premium subscribers only. |
-
-## ⚙️ Setup Instructions
-
-```bash
-git clone https://github.com/your-username/inkwell.git
-cd inkwell
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
-## ✅ Testing
-- Manual testing checklist available in the /testing folder
-- Unit and integration tests written using Django’s TestCase framework
-- Accessibility and SEO audited with Lighthouse
-
-## 🚢 Deployment
-- Live app hosted on Heroku (or insert platform)
-- Environment variables managed securely via .env files
-- DEBUG = False and secret keys hidden in production
-
-## 📄 License
-🧑‍💻 Code
-This project is licensed under the dual-license (MIT License + Creative Commons).
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## ✍️ Content
-All original written content (blog posts, mock posts, text) is licensed under
-Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
 
 ## 🙌 Acknowledgements
-Special thanks to the tutors, the assessment handbook, and caffeine.
+
+Creating **InkwellBlog** has been a rewarding and challenging experience, and I’d like to express my sincere gratitude to everyone who supported and inspired this project.
+
+### 👨‍🏫 Code Institute
+
+A special thanks to **Code Institute** for providing the structure, resources, and mentorship that made this project possible. The curriculum, walkthroughs, and community have been instrumental in shaping my development skills.
+
+### 🧑‍🤝‍🧑 Mentors & Tutors
+
+To the tutors and mentors who offered guidance, reviewed code, and helped troubleshoot bugs — your support has been invaluable. Your insights helped me grow not just as a developer, but as a problem solver.
+
+### 💬 Slack Community
+
+To the **Slack community** — thank you for your encouragement, feedback, and camaraderie. Whether it was a quick tip, a shared resource, or just moral support during debugging marathons, you made the journey collaborative and fun.
+
+### 🧠 Fellow Students
+
+I’m grateful to fellow students whose projects, questions, and creativity sparked ideas and solutions throughout development. Seeing your work pushed me to refine mine.
+
+### 🛠️ Open Source Contributors
+
+To the developers behind the libraries and frameworks used in this project — especially Django, Bootstrap, and Allauth — thank you for building tools that empower creators like me to bring ideas to life.
+
+### 🧑‍🎨 Designers & Creators
+
+Thanks to the photographers and designers who share their work on platforms like **Pexels** and **Adobe Express**, allowing projects like this to look polished and professional.
+
+[Back To Top](#table-of-contents)
+
