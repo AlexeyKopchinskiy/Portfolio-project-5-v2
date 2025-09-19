@@ -156,11 +156,12 @@ DATABASES = {
     )
 }
 
-# Add extra connection options for Heroku Postgres
-DATABASES["default"]["OPTIONS"] = {
-    "connect_timeout": 10,  # Avoid hanging connections
-    "sslmode": "require",  # Ensure secure connection
-}
+# ✅ Only apply these options if using PostgreSQL
+if DATABASES["default"]["ENGINE"] == "django.db.backends.postgresql":
+    DATABASES["default"]["OPTIONS"] = {
+        "connect_timeout": 10,
+        "sslmode": "require",
+    }
 
 
 CSRF_TRUSTED_ORIGINS = [

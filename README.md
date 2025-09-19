@@ -20,6 +20,7 @@ Portfolio Project 5 - E-commerce Applications
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Future Features](#future-features)
+* [Database design](#database-design)
 * [Authentication & Authorization](#authentication--authorization)
 * [Product Management](#product-management)
 * [Cart & Checkout Flow](#cart--checkout-flow)
@@ -420,6 +421,14 @@ These additions would deepen engagement, streamline workflows, and make your pla
 [Back To Top](#table-of-contents)
 
 ---
+
+## Database design
+
+
+
+
+
+
 
 ## Authentication & Authorization  
 
