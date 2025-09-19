@@ -20,7 +20,7 @@ Portfolio Project 5 - E-commerce Applications
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Future Features](#future-features)
-* [Database design](#database-design)
+* [Database design](#database-configuration)
 * [Authentication & Authorization](#authentication--authorization)
 * [Product Management](#product-management)
 * [Cart & Checkout Flow](#cart--checkout-flow)
@@ -422,7 +422,56 @@ These additions would deepen engagement, streamline workflows, and make your pla
 
 ---
 
-## Database design
+## Database Configuration
+
+InkwellBlog is designed to run seamlessly across both local and production environments using Django’s flexible database setup.
+
+![SQLLight DB Markdown](./static/img/readme/db_sqlite3_markdown.png)
+
+### 🔧 Local Development: SQLite
+
+By default, the project uses **SQLite** for local development. This lightweight, file-based database requires no setup and is ideal for quick testing and prototyping.
+
+- Location: `db.sqlite3` in the project root
+- Automatically created and managed by Django
+- No external dependencies
+
+### 🚀 Production: PostgreSQL on Heroku
+
+In production, the app connects to a **PostgreSQL** database provisioned via Heroku’s Postgres add-on. The connection is configured using `dj_database_url`, which reads the `DATABASE_URL` environment variable provided by Heroku.
+
+- SSL is enforced for secure communication
+- Connection pooling is enabled via `conn_max_age`
+- Additional options like `connect_timeout` and `sslmode` are applied only when PostgreSQL is detected
+
+### ⚙️ Configuration Logic
+
+The database settings in `settings.py` dynamically adapt based on the detected engine:
+
+```python
+import dj_database_url
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+# Remove incompatible options if using SQLite
+engine = DATABASES["default"].get("ENGINE", "")
+if "sqlite" in engine:
+    DATABASES["default"].pop("OPTIONS", None)
+else:
+    DATABASES["default"]["OPTIONS"] = {
+        "connect_timeout": 10,
+        "sslmode": "require",
+    }
+```
+
+This setup ensures that no manual switching is required — the correct database engine is selected automatically depending on the environment, and incompatible options are safely excluded when using SQLite.
+
 
 
 
