@@ -152,12 +152,15 @@ DATABASES = {
     "default": dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
-        ssl_require=True,  # Set to False for local development
+        ssl_require=True,
     )
 }
 
-# ✅ Only apply these options if using PostgreSQL
-if DATABASES["default"]["ENGINE"] == "django.db.backends.postgresql":
+# ✅ Remove incompatible OPTIONS if using SQLite
+engine = DATABASES["default"].get("ENGINE", "")
+if "sqlite" in engine:
+    DATABASES["default"].pop("OPTIONS", None)
+else:
     DATABASES["default"]["OPTIONS"] = {
         "connect_timeout": 10,
         "sslmode": "require",
