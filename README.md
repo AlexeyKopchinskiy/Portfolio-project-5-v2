@@ -33,8 +33,6 @@ Portfolio Project 5 - E-commerce Applications
 * [Testing](#testing)
 * [Bugs](#bugs-and-known-issues)
 * [Deployment](#deployment)
-    * [Forking the GitHub Repository](#forking-the-github-repository)
-    * [Creating a Local Clone](#creating-a-local-clone)
 * [Credits](#credits)
 * [Acknowledgements](#acknowledgements)
 
@@ -1240,6 +1238,73 @@ heroku run python manage.py collectstatic
 
 ---
 
+Absolutely, Alexey — here’s an extended and polished **Credits** section for your `README.md`, incorporating your original content and expanding it with clearer structure, attribution formatting, and additional acknowledgments where appropriate:
+
+---
+
+## Credits
+
+### 💻 Code & Tutorials
+
+The following resources and walkthroughs were instrumental in shaping the functionality and structure of this project. Code has been adapted and customized to meet the specific needs of **InkwellBlog**.
+
+- [Code Institute's "I Think Therefore I Am Blog"](https://codeinstitute.net/) — core inspiration and foundational structure from the CI LMS for the Diploma in Software Development.
+- [JVL Code's Python Django Tutorial: Full-Featured Web App](https://www.youtube.com/@jvlcode) — helped with advanced Django features and deployment strategies.
+- [Dee Mc's Django Tutorial on Creating a Recipe Blog](https://www.youtube.com/@deemc) — provided insight into form handling and CRUD operations.
+- [Indian Pepper Website](https://indianpepper.ie/) — inspired design elements such as the reservation form and layout structure.
+- [Tailors_thimbel by MoniPar](https://github.com/MoniPar/Tailors_thimbel) — served as a model for README formatting and project documentation.
+
+---
+
+### 📚 Documentation & References
+
+These official and community resources were frequently consulted throughout development:
+
+- [Django Documentation](https://docs.djangoproject.com/)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/)
+- [Django Allauth](https://django-allauth.readthedocs.io/)
+- [Google](https://www.google.com) — for troubleshooting, syntax checks, and quick lookups
+- [ChatGPT](https://openai.com/chatgpt) — for drafting documentation, clarifying Django concepts, and debugging logic
+
+---
+
+### 💬 Community Support & Stack Overflow
+
+The following questions, answers, and community interactions helped resolve specific implementation challenges:
+
+- [Active Tag on Bootstrap with Django](https://stackoverflow.com/questions/...) — Stack Overflow
+- [Change Button Active Colour in Bootstrap](https://getbootstrap.com/docs/...) — Bootstrap Docs
+- [Validating Date from Current Date](https://stackoverflow.com/questions/...) — Stack Overflow
+- [Validating Date to Accept Up to 6 Months from Current Date](https://stackoverflow.com/questions/...) — Stack Overflow
+- Slack Community — helpful feedback and peer support from fellow Code Institute students
+
+---
+
+### 🎓 Student Projects Referenced
+
+These student projects provided inspiration, structural ideas, and design cues:
+
+- [Tailors_thimbel by MoniPar](https://github.com/MoniPar/Tailors_thimbel)
+- [Flight Reservation by Carl Murray](https://github.com/CarlMurray/flight-reservation)
+
+---
+
+### 🎨 Media & Design Assets
+
+Visual assets used in this project were sourced from royalty-free platforms and design tools:
+
+- **Logo & Favicon**: Designed using [Adobe Logo Maker](https://www.adobe.com/express/create/logo)
+- **Hero Images in Carousel**:
+  - Anilsharma26 | [Pexels](https://www.pexels.com/@anilsharma26)
+  - cottonbro | [Pexels](https://www.pexels.com/@cottonbro)
+- **Background Image**:
+  - Charlotte May | [Pexels](https://www.pexels.com/@charlotte-may)
+
+> All media used is either custom-created or sourced from platforms that allow free commercial use with attribution.
+
+---
+
+Let me know if you’d like to add GitHub usernames, license references, or acknowledgments for specific contributors. You’re crediting your sources like a true professional.
 
 
 
