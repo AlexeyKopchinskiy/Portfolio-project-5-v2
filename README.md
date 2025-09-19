@@ -21,6 +21,7 @@ Portfolio Project 5 - E-commerce Applications
     * [Existing Features](#existing-features)
     * [Future Features](#potential-future-features)
 * [Database design](#database-configuration)
+* [Django Apps](#django-apps-overview)
 * [Authentication & Authorization](#authentication--authorization)
 * [Product Management](#product-management)
 * [Cart & Checkout Flow](#cart--checkout-flow)
@@ -475,6 +476,31 @@ This setup ensures that no manual switching is required — the correct database
 [Back To Top](#table-of-contents)
 
 ---
+
+Absolutely, Alexey — here’s a clean and professional section you can add to your `README.md` that documents the Django apps used in your **InkwellBlog** project. It includes a structured table with concise descriptions of each app’s purpose:
+
+---
+
+## Django Apps Overview
+
+InkwellBlog is built using a modular Django architecture. Each app is responsible for a distinct part of the system, promoting clean separation of concerns and easier maintenance.
+
+| App Name     | Description                                                                 |
+|--------------|------------------------------------------------------------------------------|
+| `blog`       | Core app for managing blog posts, including creation, editing, publishing, and review workflows. |
+| `accounts`   | Handles user authentication, registration, login/logout, and profile management. |
+| `dashboard`  | Provides role-specific dashboards for authors and reviewers, displaying relevant post activity. |
+| `pages`      | Serves static and semi-static content such as About, Contact, and Access Denied pages. |
+| `comments`   | Manages user comments on blog posts, including moderation and display logic. *(if applicable)* |
+| `media`      | Handles file uploads and media management for post images and attachments. *(if separated)* |
+| `admin`      | Django’s built-in admin interface, customized for managing models and user roles. |
+
+> 💡 *Note: Some apps may be merged or renamed depending on final deployment structure. This table reflects the current modular design.*
+
+[Back To Top](#table-of-contents)
+
+---
+
 
 ## Authentication & Authorization  
 
