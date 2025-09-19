@@ -19,7 +19,7 @@ Portfolio Project 5 - E-commerce Applications
     * [Surface](#surface)
 * [Features](#features)
     * [Existing Features](#existing-features)
-    * [Future Features](#future-features)
+    * [Future Features](#potential-future-features)
 * [Database design](#database-configuration)
 * [Authentication & Authorization](#authentication--authorization)
 * [Product Management](#product-management)
@@ -30,7 +30,7 @@ Portfolio Project 5 - E-commerce Applications
 * [Session & Security Features](#session--security-features)
 * [Technologies Used](#technologies-used)
 * [Testing](#testing)
-* [Bugs](#bugs)
+* [Bugs](#bugs-and-known-issues)
 * [Deployment](#deployment)
     * [Forking the GitHub Repository](#forking-the-github-repository)
     * [Creating a Local Clone](#creating-a-local-clone)
@@ -294,7 +294,7 @@ This color strategy supports a professional, tech-forward vibe while keeping the
 
 ## Features
 
-### ✨ Existing Features
+### Existing Features
 
 #### 🔝 Header & Navigation
 
@@ -375,7 +375,7 @@ Great question, Alexey — your current feature set is already rich and well-str
 
 ---
 
-### 🌱 Potential Future Features
+### Potential Future Features
 
 #### 🧭 Enhanced Navigation & Personalization
 - **User-specific dashboards** with personalized greetings, recent activity, and quick links
@@ -472,12 +472,9 @@ else:
 
 This setup ensures that no manual switching is required — the correct database engine is selected automatically depending on the environment, and incompatible options are safely excluded when using SQLite.
 
+[Back To Top](#table-of-contents)
 
-
-
-
-
-
+---
 
 ## Authentication & Authorization  
 
@@ -490,7 +487,7 @@ The platform uses Django’s built-in authentication system, extended with **dja
 
 Navigation links dynamically adapt based on user status, and all forms include CSRF protection and validation feedback.
 
-## 📦 Product Management
+## Product Management
 
 Posts are treated as content products, each with metadata, featured images, and review status. Authors can:
 
@@ -510,7 +507,7 @@ While the site doesn’t use a traditional e-commerce cart, it features a **prem
 
 This flow mimics a digital subscription model and can be extended to include actual checkout functionality.
 
-## 💳 Payment Integration *(Future-Ready)*
+## Payment Integration *(Future-Ready)*
 
 The platform is designed to support payment integration for premium memberships or content unlocks. Planned features include:
 
@@ -520,7 +517,7 @@ The platform is designed to support payment integration for premium memberships 
 
 This would allow monetization of exclusive content while maintaining a seamless user experience.
 
-## 📋 Order Management *(Content Access Tracking)*
+## Order Management *(Content Access Tracking)*
 
 Instead of physical orders, the site tracks **content access and user interactions**:
 
@@ -530,7 +527,7 @@ Instead of physical orders, the site tracks **content access and user interactio
 
 This system can evolve into a full-featured content subscription tracker.
 
-## 🖼️ Media & File Storage
+## Media & File Storage
 
 All media is stored and served via **Cloudinary**, ensuring:
 
@@ -540,7 +537,7 @@ All media is stored and served via **Cloudinary**, ensuring:
 
 Users can upload featured images for posts, and admins can manage media centrally.
 
-## 🔒 Session & Security Features
+## Session & Security Features
 
 Security and session integrity are prioritized throughout the platform:
 
@@ -983,7 +980,36 @@ Billing app urls.py
 
 [Back To Top](#table-of-contents)
 
----------------------------------------------------------------------------
+---
+## Bugs and Known Issues
+
+InkwellBlog is an actively maintained project, and like any dynamic application, it occasionally encounters bugs — especially during feature development, deployment updates, or environment transitions.
+
+### 🔍 Current Status
+
+- All critical bugs are tracked and resolved as they arise.
+- Known issues are typically related to third-party services (e.g., database connectivity, deployment quirks on Heroku).
+- Minor UI or edge-case behavior may still be under refinement.
+
+### 🛠️ Fixing Philosophy
+
+This project follows a **continuous improvement** approach:
+- Bugs are logged and addressed promptly.
+- Fixes are committed with clear messages and documented in version history.
+- Stability and user experience are prioritized over rapid feature expansion.
+
+### 🧪 Reporting & Contributions
+
+If you encounter a bug or unexpected behavior:
+- Please open an issue via the GitHub repository.
+- Include steps to reproduce, screenshots (if applicable), and environment details.
+
+Community contributions and feedback are welcome — every report helps make InkwellBlog more robust.
+
+[Back To Top](#table-of-contents)
+
+---
+
 
 
 
