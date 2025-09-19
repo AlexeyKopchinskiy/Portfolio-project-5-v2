@@ -45,6 +45,11 @@ Premium members gain access to exclusive posts, editorial voting rights, and enh
 
 With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
 
+**How to View the Project**
+
+- [View the deployed website on Heroku](https://inkwell-blog-8edefa7bcffe.herokuapp.com/)
+- [View the website repository on GitHub](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2)
+
 [Back To Top](#table-of-contents)
 
 ## Agile Methodology
@@ -64,15 +69,32 @@ This project was developed following the principles of Agile Methodology, with G
 
 To prioritize development effectively, I applied the MoSCoW Method — categorizing each User Story as a 'Must Have', 'Should Have', 'Could Have', or 'Won’t Have'. Only the essential stories needed to achieve a Minimum Viable Product (MVP) were implemented in this phase, with lower-priority items deferred to the backlog for future development.
 
+User stories were  split into:
+
+  - Developer issues
+  - Administrator issues
+  - Reviewer issues
+  - Author issues
+  - Visitor issues
+
+- In orer to better control the flow of User Stories each was assigned to one of 6 separete milestones with variouse deadlines:
+
+  - Milestone 1: Project Setup & Authentication (Week 1-2)
+  - Milestone 2: Blog structure and MVP features (Week 3-4)
+  - Milestone 3: Reviewer and Administrator dashboards for user and data management (Week 5-6)
+  - Milestone 4: Testing & Optimization (Week 7-8)
+  - Milestone 5: Deployment & Documentation (Week 9-10)
+  - Milestone 6: add Could-have and Won’t Have features
+
 Visual tools like a Kanban board and issue tracking screenshots helped streamline progress and maintain clarity throughout the build. Overall, adopting Agile practices greatly improved my ability to organize, adapt, and manage time efficiently.
 
 [Back To Top](#table-of-contents)
 
-----------------------------------------------------------------------------------------------
+---
 
 ## User Experience (UX)
 
-### 🎯 Project Strategy: Empowering Creators Through Premium Publishing
+### Project Strategy: Empowering Creators Through Premium Publishing
 
 Your site is designed as a **content publishing platform** that serves two distinct user groups:
 - **Authors** who want to share high-quality blog posts
@@ -82,7 +104,7 @@ The strategy revolves around creating a **curated, professional blogging experie
 
 ---
 
-### 🧭 Core Site Goals
+### Core Site Goals
 
 #### 1. **Enable Authors to Publish and Manage Posts**
 - Provide a clean dashboard for creating, editing, and deleting posts
@@ -110,7 +132,7 @@ The strategy revolves around creating a **curated, professional blogging experie
 
 ---
 
-### 🧠 Strategic Differentiators
+### Strategic Differentiators
 
 - **Quality-first publishing**: Unlike open platforms, your site emphasizes editorial review and premium curation.
 - **Cloud-native media**: Leveraging Cloudinary ensures your content is scalable and secure.
@@ -171,6 +193,8 @@ This section outlines the anticipated user interactions with the website, based 
 - Visitor Issue: Register and log in securely [#7](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/7)
 - Visitor Issue: Browse and read public blog posts without login [#8](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/8)
 
+[Back To Top](#table-of-contents)
+
 ---
 
 ### Structure / Design Choices
@@ -196,6 +220,8 @@ I added vanilla JavaScript to handle dynamic form population and client-side val
 Using Bootstrap’s grid system and utility classes, I made sure the site looks great on all screen sizes. I also added subtle UX touches like emoji-enhanced buttons and a “Back to Top” feature to improve navigation and engagement.
 
 This structure reflects my goal of building a platform that’s not just functional, but thoughtfully engineered — one that balances backend robustness with frontend clarity and polish.
+
+[Back To Top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------
 
@@ -225,13 +251,15 @@ I used CorelDraw to create wireframes. Later, during the developement stage the 
 
 ![Mobile Member Page](./static/img/pp5-wireframe-mobile-member-page.png)
 
+[Back To Top](#table-of-contents)
+
+---
+
 ### Surface
 
 The website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
 
 Based on my CSS file, the website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
-
----
 
 #### 🎨 Primary UX Colors
 
@@ -259,7 +287,10 @@ Based on my CSS file, the website’s color palette is designed to create a slee
 
 This color strategy supports a professional, tech-forward vibe while keeping the interface accessible and visually engaging.
 
+[Back To Top](#table-of-contents)
+
 ---
+
 ## Features
 
 ### ✨ Existing Features
@@ -277,8 +308,6 @@ Featured on all pages, the fully responsive header enhances navigation and adapt
 
 This adaptive navigation ensures users always know where they are and how to get where they want to go.
 
----
-
 #### 📄 Footer
 
 The footer is consistently styled across all pages and provides users with helpful links and social connectivity:
@@ -288,8 +317,6 @@ The footer is consistently styled across all pages and provides users with helpf
 - All links are styled with hover effects and pointer cursors to clearly indicate interactivity.
 
 The footer reinforces brand presence while offering subtle guidance and connection points.
-
----
 
 #### 🏠 Landing Page
 
@@ -301,8 +328,6 @@ The homepage acts as a visual and functional gateway to the platform:
 
 This layout helps users quickly understand the value of the platform and navigate to content that interests them.
 
----
-
 #### 📚 Dashboard Pages
 
 Each user role is supported with a tailored dashboard experience:
@@ -312,8 +337,6 @@ Each user role is supported with a tailored dashboard experience:
 - **Admins** can update user details through a dynamic form that auto-populates fields based on selection, reducing friction and improving accuracy.
 
 All dashboards are styled consistently and include alert boxes, button icons, and validation feedback to guide user actions.
-
----
 
 #### 🖼️ Media & Visuals
 
@@ -325,8 +348,6 @@ The site uses Cloudinary to manage and deliver images, ensuring fast load times 
 
 These choices create a visually rich experience without overwhelming the user.
 
----
-
 #### 📱 Responsive Design
 
 The entire site is built with mobile-first principles:
@@ -336,8 +357,6 @@ The entire site is built with mobile-first principles:
 - Navigation elements collapse or expand based on device width, ensuring usability on all platforms.
 
 Users can comfortably interact with the site whether they’re on a phone, tablet, or laptop.
-
----
 
 #### 🧠 Form UX & Validation
 
@@ -349,8 +368,9 @@ Forms throughout the site are designed to be intuitive and informative:
 
 This ensures users feel confident and supported when submitting information.
 
----
 Great question, Alexey — your current feature set is already rich and well-structured, but there’s always room to elevate the UX and functionality even further. Here are some thoughtful additions that would complement your platform beautifully:
+
+[Back To Top](#table-of-contents)
 
 ---
 
@@ -397,9 +417,12 @@ Great question, Alexey — your current feature set is already rich and well-str
 
 These additions would deepen engagement, streamline workflows, and make your platform feel even more polished and professional.
 
+[Back To Top](#table-of-contents)
+
 ---
 
-## 🔐 Authentication & Authorization  
+## Authentication & Authorization  
+
 The platform uses Django’s built-in authentication system, extended with **django-allauth** for robust user registration, login, and logout flows. Role-based access control ensures that users interact only with features relevant to their permissions:
 
 - **Anonymous users** can browse public content and register or log in.
@@ -409,9 +432,8 @@ The platform uses Django’s built-in authentication system, extended with **dja
 
 Navigation links dynamically adapt based on user status, and all forms include CSRF protection and validation feedback.
 
----
+## 📦 Product Management
 
-## 📦 Product Management  
 Posts are treated as content products, each with metadata, featured images, and review status. Authors can:
 
 - Create and edit posts using a rich-text editor
@@ -420,9 +442,8 @@ Posts are treated as content products, each with metadata, featured images, and 
 
 Reviewers can update post status, leave notes, and ensure editorial quality before publication.
 
----
+## 🛒 Cart & Checkout Flow *(Premium Content Model)*
 
-## 🛒 Cart & Checkout Flow *(Premium Content Model)*  
 While the site doesn’t use a traditional e-commerce cart, it features a **premium content access flow**:
 
 - Premium posts are previewed with limited access for non-members
@@ -431,9 +452,8 @@ While the site doesn’t use a traditional e-commerce cart, it features a **prem
 
 This flow mimics a digital subscription model and can be extended to include actual checkout functionality.
 
----
+## 💳 Payment Integration *(Future-Ready)*
 
-## 💳 Payment Integration *(Future-Ready)*  
 The platform is designed to support payment integration for premium memberships or content unlocks. Planned features include:
 
 - Stripe or PayPal integration for secure transactions
@@ -442,9 +462,8 @@ The platform is designed to support payment integration for premium memberships 
 
 This would allow monetization of exclusive content while maintaining a seamless user experience.
 
----
+## 📋 Order Management *(Content Access Tracking)*
 
-## 📋 Order Management *(Content Access Tracking)*  
 Instead of physical orders, the site tracks **content access and user interactions**:
 
 - Premium content access is logged per user
@@ -453,9 +472,8 @@ Instead of physical orders, the site tracks **content access and user interactio
 
 This system can evolve into a full-featured content subscription tracker.
 
----
+## 🖼️ Media & File Storage
 
-## 🖼️ Media & File Storage  
 All media is stored and served via **Cloudinary**, ensuring:
 
 - Persistent storage across deployments (especially on Heroku)
@@ -464,9 +482,8 @@ All media is stored and served via **Cloudinary**, ensuring:
 
 Users can upload featured images for posts, and admins can manage media centrally.
 
----
+## 🔒 Session & Security Features
 
-## 🔒 Session & Security Features  
 Security and session integrity are prioritized throughout the platform:
 
 - CSRF protection on all forms
@@ -476,9 +493,11 @@ Security and session integrity are prioritized throughout the platform:
 
 Future enhancements may include two-factor authentication (2FA), audit logs, and granular permission settings.
 
+[Back To Top](#table-of-contents)
+
 ---
 
-## 🧪 Technologies Used
+## Technologies Used
 
 This project is built using a modern, scalable tech stack that combines Django’s backend power with responsive frontend design and cloud-based media handling. Below is a breakdown of the key technologies and tools used:
 
@@ -517,25 +536,9 @@ This project is built using a modern, scalable tech stack that combines Django�
 - **GitHub Issues** — Used to document user stories and development tasks
 - **Browser DevTools** — For debugging layout, responsiveness, and JavaScript behavior
 
+[Back To Top](#table-of-contents)
+
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------
 
 ## Testing
 
@@ -939,15 +942,17 @@ Billing app urls.py
 
 
 
+
+
+
+
+
+
+
+
 temp:
 -----------------------------------------------------------------------------------------------
-## How to View the Project
-- [View the deployed website on Heroku](https://inkwell-blog-8edefa7bcffe.herokuapp.com/)
-- [View the website repository on GitHub](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2)
 
-## 📖 Project Overview
-
-This platform allows authors to manage and monetize content while providing a premium experience for paid subscribers. The goal is to provide a clean, SEO-optimized, and secure blogging space with real e-commerce functionality.
 
 ## Agile Methodology
 
@@ -961,20 +966,7 @@ To prioritize effectively, I applied the MoSCoW method — categorizing each Use
 
 ### 🚀 Agile Workflow
 
-- Agile board managed with GitHub Issues and Milestones  
-- User stories split into:
-  - Developer stories
-  - Site owner stories
-  - Visitor stories
-- Labels include `Must-Have`, `Should-Have`, and `Could-Have`
-- Milestones:
-  - Project Setup
-  - Auth & Roles
-  - E-Commerce
-  - Blog Engine
-  - UX/UI
-  - SEO & Marketing
-  - Testing & Deployment
+
 
 Screenshots of the Kanban board, Epics, and User Stories illustrate this workflow.
 
