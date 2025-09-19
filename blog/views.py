@@ -181,19 +181,28 @@ def delete_post(request, id):
         return redirect("my_posts")
 
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render, redirect
+from django.utils import timezone
+from blog.models import Post
+from blog.forms import AuthorForm, ReviewerForm
+
+
 @login_required
 def edit_user_post(request, post_id):
     """View to edit a blog post by its author or a reviewer."""
     post = get_object_or_404(Post, id=post_id)
     user = request.user
 
-    # Determine which form to use
-    if user == post.author:
-        form_class = AuthorForm
-    elif user.groups.filter(name="Reviewer").exists():
-        form_class = ReviewerForm
-    else:
+    # ✅ Permission check before anything else
+    is_author = user == post.author
+    is_reviewer = user.groups.filter(name="Reviewer").exists()
+
+    if not is_author and not is_reviewer:
         return render(request, "pages/access_denied.html", status=403)
+
+    # ✅ Assign form class based on role
+    form_class = AuthorForm if is_author else ReviewerForm
 
     form = form_class(
         request.POST or None, request.FILES or None, instance=post
@@ -202,8 +211,8 @@ def edit_user_post(request, post_id):
     if request.method == "POST" and form.is_valid():
         updated_post = form.save(commit=False)
 
-        # Only apply reviewer logic
-        if user.groups.filter(name="Reviewer").exists():
+        # ✅ Reviewer-specific logic
+        if is_reviewer:
             if updated_post.is_published and not updated_post.published_on:
                 updated_post.published_on = timezone.now()
             updated_post.review_status = "Reviewed"
@@ -211,7 +220,7 @@ def edit_user_post(request, post_id):
         updated_post.save()
 
         return redirect(
-            "dashboard_author" if user == post.author else "dashboard_reviewer"
+            "dashboard_author" if is_author else "dashboard_reviewer"
         )
 
     return render(
