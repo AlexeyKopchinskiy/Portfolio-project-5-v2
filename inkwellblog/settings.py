@@ -36,7 +36,7 @@ stripe.api_key = STRIPE_SECRET_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -152,9 +152,16 @@ DATABASES = {
     "default": dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
-        ssl_require=False,  # Avoid issues locally
+        ssl_require=True,  # Set to False for local development
     )
 }
+
+# Add extra connection options for Heroku Postgres
+DATABASES["default"]["OPTIONS"] = {
+    "connect_timeout": 10,  # Avoid hanging connections
+    "sslmode": "require",  # Ensure secure connection
+}
+
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
