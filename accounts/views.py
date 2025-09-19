@@ -367,7 +367,7 @@ def dashboard_author(request):
 @role_required("Reviewer")
 def dashboard_reviewer(request):
     """Dashboard view for Reviewer role."""
-    unpublished_posts = Post.objects.filter(is_published=False)
+    unpublished_posts = Post.objects.filter(is_published=False, ready=True)
     latest_posts = Post.objects.filter(ready=True, is_published=True).order_by(
         "-created_on"
     )[:3]
