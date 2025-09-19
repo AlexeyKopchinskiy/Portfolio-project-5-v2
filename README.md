@@ -20,6 +20,7 @@ Portfolio Project 5 - E-commerce Applications
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Future Features](#potential-future-features)
+* [Business Model](#business-model)
 * [Database design](#database-configuration)
 * [Django Apps](#django-apps-overview)
 * [Authentication & Authorization](#authentication--authorization)
@@ -420,6 +421,50 @@ These additions would deepen engagement, streamline workflows, and make your pla
 [Back To Top](#table-of-contents)
 
 ---
+
+## Business Model
+
+The core monetization strategy of **InkwellBlog** is built around a **pay-to-publish model**, where readers who wish to become contributors are redirected to a secure **Stripe Checkout** page. Upon successful payment, they gain access to the post submission functionality.
+
+### 💳 Monetization via Stripe
+
+This model leverages **Stripe**, a globally trusted payment gateway, to handle transactions securely and efficiently. The integration ensures:
+
+- **Secure Payments**: Stripe handles all sensitive data, ensuring PCI compliance and user trust.
+- **Seamless UX**: Users are redirected to a clean, mobile-friendly checkout page with minimal friction.
+- **Scalable Billing**: Stripe supports one-time payments, subscriptions, and future upgrades if needed.
+
+### 🎯 Why This Model Works
+
+This monetization approach is both **practical** and **strategically sound** for a content platform like InkwellBlog:
+
+| Benefit | Explanation |
+|--------|-------------|
+| **Low Barrier to Entry** | Readers can browse freely, but pay only if they want to contribute — encouraging organic growth. |
+| **Quality Control** | Charging for submissions discourages spam and low-effort content, ensuring editorial standards. |
+| **Revenue Stream** | Each submission generates income, which can be reinvested into platform improvements or contributor rewards. |
+| **Scalable Model** | Easily extendable to tiered pricing, subscriptions, or premium publishing features. |
+| **No Ads Required** | Monetization is built into the user journey, avoiding intrusive advertising and preserving UX. |
+
+### 👥 User Flow
+
+1. A reader clicks “Submit a Post.”
+2. They are redirected to a Stripe Checkout page.
+3. Upon successful payment, they are granted access to the post submission form.
+4. Their post enters the review pipeline for editorial approval.
+
+This flow ensures that only paying users can submit content, while maintaining a free and open reading experience for the broader audience.
+
+### 🔐 Ethical & Practical Considerations
+
+- **Transparency**: Users are clearly informed about the payment requirement before submission.
+- **Security**: Stripe handles all payment data, reducing liability and complexity.
+- **Sustainability**: The model supports long-term platform maintenance without relying on external funding or ads.
+
+[Back To Top](#table-of-contents)
+
+---
+
 
 ## Database Configuration
 
