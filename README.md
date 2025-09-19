@@ -1036,6 +1036,209 @@ Community contributions and feedback are welcome — every report helps make Ink
 
 ---
 
+## Deployment
+
+This section provides a complete guide to deploying the **InkwellBlog** project to Heroku. Follow each step carefully to ensure a successful setup.
+
+### 📦 Prerequisites
+
+Before you begin, make sure you have:
+
+- A GitHub account
+- A Heroku account
+- Python 3.11 installed locally
+- Git installed locally
+- A code editor (e.g., VS Code)
+- A virtual environment tool (e.g., `venv` or `virtualenv`)
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed
+
+---
+
+### 🧑‍💻 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/inkwellblog.git
+cd inkwellblog
+```
+
+Replace `YOUR_USERNAME` with your actual GitHub username.
+
+---
+
+### 🐍 2. Set Up a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
+
+---
+
+### 📚 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### ⚙️ 4. Create Environment Variables
+
+Create a `.env` file in the root directory and add the following:
+
+```env
+SECRET_KEY=your_secret_key_here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+```
+
+> 💡 You can generate a secret key using:  
+> `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
+
+---
+
+### 🛠️ 5. Apply Migrations and Create Superuser
+
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+Follow the prompts to create an admin account.
+
+---
+
+### 🧪 6. Run the Project Locally
+
+```bash
+python manage.py runserver
+```
+
+Visit `http://127.0.0.1:8000` in your browser to confirm the app is working.
+
+---
+
+### ☁️ 7. Prepare for Heroku Deployment
+
+#### a. Create `Procfile`
+
+In the root directory, create a file named `Procfile` with the following content:
+
+```
+web: gunicorn inkwellblog.wsgi
+```
+
+#### b. Create `runtime.txt`
+
+Specify the Python version:
+
+```
+python-3.11.9
+```
+
+#### c. Add `staticfiles` settings in `settings.py`
+
+```python
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+```
+
+---
+
+### 📤 8. Push to GitHub
+
+```bash
+git add .
+git commit -m "Prepare for Heroku deployment"
+git push origin main
+```
+
+---
+
+### 🌐 9. Deploy to Heroku
+
+#### a. Login to Heroku CLI
+
+```bash
+heroku login
+```
+
+#### b. Create a Heroku App
+
+```bash
+heroku create inkwellblog-app-name
+```
+
+Replace `inkwellblog-app-name` with a unique name.
+
+#### c. Add Heroku Postgres
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+#### d. Set Environment Variables
+
+```bash
+heroku config:set SECRET_KEY=your_secret_key_here
+heroku config:set DEBUG=False
+```
+
+Heroku automatically sets `DATABASE_URL`.
+
+---
+
+### 📦 10. Push Code to Heroku
+
+```bash
+git push heroku main
+```
+
+---
+
+### 🔄 11. Run Migrations on Heroku
+
+```bash
+heroku run python manage.py migrate
+```
+
+---
+
+### 👤 12. Create Superuser on Heroku
+
+```bash
+heroku run python manage.py createsuperuser
+```
+
+---
+
+### ✅ 13. Visit Your Live Site
+
+Open your browser and go to:
+
+```
+https://inkwellblog-app-name.herokuapp.com
+```
+
+Replace `inkwellblog-app-name` with your actual Heroku app name.
+
+---
+
+### 🧹 Optional: Collect Static Files
+
+```bash
+heroku run python manage.py collectstatic
+```
+
+---
+
+## 🧠 Notes
+
+- Heroku automatically detects the `DATABASE_URL` and uses PostgreSQL in production.
+- The project uses SQLite locally for simplicity.
+- All PostgreSQL-specific options are conditionally applied to avoid crashes during local development.
+
+---
 
 
 
