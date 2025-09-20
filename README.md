@@ -42,7 +42,7 @@ Portfolio Project 5 - E-commerce Applications
 
 **InkwellBlog** is a dynamic publishing platform designed for writers, reviewers, and readers to connect through curated content and community-driven storytelling. Whether you're an aspiring author or a passionate reader, the site offers a structured environment to share ideas, publish articles, and engage with thoughtful commentary. The platform supports both free and premium membership tiers, allowing users to explore content at their own pace while unlocking advanced features as they grow.
 
-Premium members gain access to exclusive posts, editorial voting rights, and enhanced tools tailored for content creators and reviewers. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
+Premium members gain access to premium posts, editorial voting rights, and enhanced tools tailored for content creators and reviewers. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
 
 With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
 
@@ -1096,8 +1096,6 @@ Before you begin, make sure you have:
 git clone https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/inkwellblog.git
 cd inkwellblog
 
-----
-
 ### 🐍 2. Set Up a Virtual Environment
 
 ```bash
@@ -1105,15 +1103,44 @@ python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-----
-
 ### 📚 3. Install Dependencies
+
+Before running the project, make sure all dependencies are installed:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-----
+If you encounter missing packages during runtime (e.g., `ModuleNotFoundError` for `dotenv`, `cloudinary`, or `cloudinary_storage`), install them manually:
+
+```bash
+pip install python-dotenv
+pip install cloudinary
+pip install django-cloudinary-storage
+```
+
+> 💡 After installing manually, always update `requirements.txt`:
+> ```bash
+> pip freeze > requirements.txt
+> ```
+
+### 🪟 15. Windows-Specific Fixes
+
+Some users on Windows may encounter errors like:
+
+```
+[WinError 2] The system cannot find the file specified: 'dotenv.exe'
+[WinError 123] The filename, directory name, or volume label syntax is incorrect: '<frozen importlib._bootstrap>'
+```
+
+To resolve these:
+
+- **Delete corrupted files manually**:  
+  Navigate to `C:\Python39\Scripts\` and delete any leftover `dotenv.exe` or `dotenv.exe.deleteme` files.
+- **Run server without autoreload** (to bypass Django’s file-watching bug on Windows):
+  ```bash
+  python manage.py runserver --noreload
+  ```
 
 ### ⚙️ 4. Create Environment Variables
 
@@ -1129,8 +1156,6 @@ DATABASE_URL=sqlite:///db.sqlite3
 > 💡 You can generate a secret key using:  
 > `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
 
----
-
 ### 🛠️ 5. Apply Migrations and Create Superuser
 
 ```bash
@@ -1140,8 +1165,6 @@ python manage.py createsuperuser
 
 Follow the prompts to create an admin account.
 
----
-
 ### 🧪 6. Run the Project Locally
 
 ```bash
@@ -1149,8 +1172,6 @@ python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000` in your browser to confirm the app is working.
-
----
 
 ### ☁️ 7. Prepare for Heroku Deployment
 
@@ -1176,8 +1197,6 @@ python-3.11.9
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 ```
 
----
-
 ### 📤 8. Push to GitHub
 
 ```bash
@@ -1185,8 +1204,6 @@ git add .
 git commit -m "Prepare for Heroku deployment"
 git push origin main
 ```
-
----
 
 ### 🌐 9. Deploy to Heroku
 
@@ -1219,15 +1236,11 @@ heroku config:set DEBUG=False
 
 Heroku automatically sets `DATABASE_URL`.
 
----
-
 ### 📦 10. Push Code to Heroku
 
 ```bash
 git push heroku main
 ```
-
----
 
 ### 🔄 11. Run Migrations on Heroku
 
@@ -1235,15 +1248,11 @@ git push heroku main
 heroku run python manage.py migrate
 ```
 
----
-
 ### 👤 12. Create Superuser on Heroku
 
 ```bash
 heroku run python manage.py createsuperuser
 ```
-
----
 
 ### ✅ 13. Visit Your Live Site
 
@@ -1255,15 +1264,11 @@ https://inkwellblog-app-name.herokuapp.com
 
 Replace `inkwellblog-app-name` with your actual Heroku app name.
 
----
-
 ### 🧹 Optional: Collect Static Files
 
 ```bash
 heroku run python manage.py collectstatic
 ```
-
----
 
 ## 🧠 Notes
 
