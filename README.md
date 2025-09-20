@@ -42,7 +42,7 @@ Portfolio Project 5 - E-commerce Applications
 
 **InkwellBlog** is a dynamic publishing platform designed for writers, reviewers, and readers to connect through curated content and community-driven storytelling. Whether you're an aspiring author or a passionate reader, the site offers a structured environment to share ideas, publish articles, and engage with thoughtful commentary. The platform supports both free and premium membership tiers, allowing users to explore content at their own pace while unlocking advanced features as they grow.
 
-Premium members gain access to premium posts, editorial voting rights, and enhanced tools tailored for content creators and reviewers. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
+Premium members gain access to premium posts as well as ability to create content and submit it for review. Authors can showcase their work with rich formatting and media support, while reviewers contribute to the quality and visibility of published pieces. The platform also features a newsletter system that delivers curated updates, behind-the-scenes insights, and community highlights directly to subscribers.
 
 With a clean interface, role-based access, and a growing library of published content, InkwellBlog fosters a collaborative space for creative minds. Whether you're browsing the latest posts, contributing your own, or upgrading to premium for deeper engagement, the site is built to support meaningful interaction and elevate the writing experience.
 
@@ -62,7 +62,7 @@ This project was developed following the principles of Agile Methodology, with G
 
 ![Kanband: Kanban board](/static/img/readme/Agile-Methodology-GtitHub-project-board-view.jpg)
 
-![Kanband: userstories and epic board](/static/img/readme/Agile-Methodology-User-Stories.jpg)
+![Kanband: User Stories and epic board](/static/img/readme/Agile-Methodology-User-Stories.jpg)
 
 ![Kanband: Milestones](/static/img/readme/Agile-Methodology-Milestones.jpg)
 
@@ -97,11 +97,14 @@ Visual tools like a Kanban board and issue tracking screenshots helped streamlin
 
 ### Project Strategy: Empowering Creators Through Premium Publishing
 
-Your site is designed as a **content publishing platform** that serves two distinct user groups:
-- **Authors** who want to share high-quality blog posts
-- **Reviewers** or **premium members** who access exclusive content and help maintain editorial standards
+InkwellBlog website is designed as a **content publishing platform** that serves several distinct user groups:
 
-The strategy revolves around creating a **curated, professional blogging experience** that balances creative freedom with quality control. You’re not just building a blog — you’re building a **mini publishing ecosystem**.
+- **readers** who are interested in reading and commenting of the blog posts with potential to upgrade to Authors if they are ready to start sharing their content
+- **Authors** aka "premium members" who want to share high-quality blog posts with potential for these posts to be added to the premium content
+- **Reviewers**  who are tasked to review newly published blog posts in order to help maintain high editorial standards of the project
+- **Administrators** aka "SiteOwners" are tasked with keeping eye on the website development and safety
+
+The strategy revolves around creating a **curated, professional blogging experience** that balances creative freedom with quality control. We’re not just building a blog — you’re building a **mini publishing ecosystem**.
 
 ---
 
@@ -135,14 +138,14 @@ The strategy revolves around creating a **curated, professional blogging experie
 
 ### Strategic Differentiators
 
-- **Quality-first publishing**: Unlike open platforms, your site emphasizes editorial review and premium curation.
-- **Cloud-native media**: Leveraging Cloudinary ensures your content is scalable and secure.
+- **Quality-first publishing**: Unlike open platforms, this website emphasizes editorial review and premium curation.
+- **Cloud-native media**: Leveraging Cloudinary ensures the site content is scalable and secure.
 - **Dual-role architecture**: Supporting both authors and reviewers creates a collaborative publishing environment.
 
 
 ### Scope / User Stories
 
-This section outlines the anticipated user interactions with the website, based on their goals and expectations. Each User Story has been documented as a GitHub Issue for traceability. Below, you'll find detailed scenarios describing the actions various user types — including the business owner — intend to perform. Developer-focused User Stories have also been included to capture technical requirements and implementation perspectives.
+This section outlines the anticipated user interactions with the website, based on their goals and expectations. Each User Story has been documented as a GitHub Issue for traceability. Below, you'll find detailed scenarios describing the actions various user types — including the administrator (business owner) — intend to perform. Developer-focused User Stories have also been included to capture technical requirements and implementation perspectives.
 
 **As website administrator**
 
@@ -179,10 +182,18 @@ This section outlines the anticipated user interactions with the website, based 
 - Developer Issue: Add role-based access (admin, reviewer, author, reader) [#35](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/35)
 - Developer Issue: Implement Django user registration/login/logout [#36](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/36)
 
+**As an author**
+
+- Author Issue: Creation & Editing of posts [#42](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/42)
+- Author Issue: Submission & Review Workflow [#43](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/43)
+- Author Issue: Dashboard & UX [#44](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/44)
+- Author Issue: Media & Content Styling [#45](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/45)
+
 **As a reviewer**
 
 - Reviewer Issue: Show notifications for key events [#4](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/4)
 - Reviewer Issue: Manage blog post review process [#10](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/10)
+- Reviewer Issue: Ability to interact with the author of the posts [#46](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/46)
 
 **As a visitor**
 

@@ -162,7 +162,7 @@ if "sqlite" in engine:
     DATABASES["default"].pop("OPTIONS", None)
 else:
     DATABASES["default"]["OPTIONS"] = {
-        "connect_timeout": 10,
+        "connect_timeout": 50,
         "sslmode": "require",
     }
 
