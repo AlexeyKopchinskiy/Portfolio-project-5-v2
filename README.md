@@ -1292,8 +1292,8 @@ The following resources and walkthroughs were instrumental in shaping the functi
 - [W3School tutorials](https://www.w3schools.com/django/index.php) - W3School tutorial on Django
 - [Indian Curry by @Pramilashanmugam](https://github.com/Pramilashanmugam/Restaurant/blob/main/README.md) — served as a model for README formatting and project documentation.
 - [Learn how to build web applications and websites with Python and the Django framework](https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372660?start=0#overview) - an online cource on Udemy by Maximilian Schwarzmüller
-- [The Modern Javascript Bootcamp Course](https://www.udemy.com/course/javascript-beginners-complete-tutorial/learn/lecture/17010116?start=0#overview) - a JavaScript course by Bootcamp Instructor Colt Steele
-- [Complete SEO Training With Top SEO Expert Peter Kent!](https://www.udemy.com/course/search-engine-optimization-for-beginners-seo-that-works/learn/lecture/3412188?start=0#overview) - an Udemy course on SEO marketing by Author, SEO & E-Commerce Consultant Peter Kent
+- [The Modern Javascript Bootcamp Course](https://www.udemy.com/course/javascript-beginners-complete-tutorial/?kw=The+Modern+Javascript+Bootcamp+Course&src=sac) - a JavaScript course by Bootcamp Instructor Colt Steele
+- [Complete SEO Training With Top SEO Expert Peter Kent!](https://www.udemy.com/course/search-engine-optimization-for-beginners-seo-that-works/?kw=Complete+SEO+Training+With+Top+SEO+Expert+Peter+Kent%21&src=sac&couponCode=LETSLEARNNOW) - an Udemy course on SEO marketing by Author, SEO & E-Commerce Consultant Peter Kent
 
 ---
 
@@ -1316,34 +1316,18 @@ The following questions, answers, and community interactions helped resolve spec
 
 - [CodeInstitute Slack community](https://app.slack.com/client/T0L30B202/C0L316Z96) - CodeInstitute students Slack community
 - [CodeInstitute community on Discord](https://discord.com/) - CodeInstitute's Discord community
-- [Active Tag on Bootstrap with Django](https://stackoverflow.com/questions/) — Stack Overflow
-- [Change Button Active Colour in Bootstrap](https://getbootstrap.com/docs/) — Bootstrap Docs
-- [Validating Date from Current Date](https://stackoverflow.com/questions/) — Stack Overflow
-- [Validating Date to Accept Up to 6 Months from Current Date](https://stackoverflow.com/questions/) — Stack Overflow
-
----
-
-### 🎓 Student Projects Referenced
-
-These student projects provided inspiration, structural ideas, and design cues:
-
-- [Tailors_thimbel by MoniPar](https://github.com/MoniPar/Tailors_thimbel)
-- [Flight Reservation by Carl Murray](https://github.com/CarlMurray/flight-reservation)
+- [Bootstrap with Django](https://stackoverflow.com/questions/) — Stack Overflow
+- [Bootstrap - related questions](https://getbootstrap.com/docs/) — Bootstrap Docs
 
 ---
 
 ### 🎨 Media & Design Assets
 
-Visual assets used in this project were sourced from royalty-free platforms and design tools:
+Visual assets used in this project were sourced from AI-powered platforms and design tools:
 
 - **Logo & Favicon**: Designed using [Adobe Logo Maker](https://www.adobe.com/express/create/logo)
-- **Hero Images in Carousel**:
-  - Anilsharma26 | [Pexels](https://www.pexels.com/@anilsharma26)
-  - cottonbro | [Pexels](https://www.pexels.com/@cottonbro)
-- **Background Image**:
-  - Charlotte May | [Pexels](https://www.pexels.com/@charlotte-may)
+- **Background & blog images**: [Stability Generative AI Art](https://play.google.com/store/apps/details?id=com.KalromSystems.StabilityArtAI&hl=en&pli=1)
 
-> All media used is either custom-created or sourced from platforms that allow free commercial use with attribution.
 
 [Back To Top](#table-of-contents)
 
