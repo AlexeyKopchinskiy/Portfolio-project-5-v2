@@ -1,13 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from .models import Post, Comment
 from .forms import CommentForm, AuthorForm, ReviewerForm, PostForm
 from django.utils import timezone
+
 
 # Create your views here.
 
@@ -181,13 +181,6 @@ def delete_post(request, id):
         return redirect("my_posts")
 
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils import timezone
-from blog.models import Post
-from blog.forms import AuthorForm, ReviewerForm
-
-
 @login_required
 def edit_user_post(request, post_id):
     """View to edit a blog post by its author or a reviewer."""
@@ -218,6 +211,8 @@ def edit_user_post(request, post_id):
             updated_post.review_status = "Reviewed"
 
         updated_post.save()
+
+        messages.success(request, "Your changes have been saved successfully.")
 
         return redirect(
             "dashboard_author" if is_author else "dashboard_reviewer"
