@@ -217,7 +217,7 @@ When building this project, I focused on creating a clean, scalable, and user-fr
 I used Django’s template inheritance system to keep the layout modular and maintainable. Each page extends a base dashboard template, allowing me to define consistent headers, navigation, and styling across the site while customizing content blocks as needed.
 
 #### 🔹 Role-Based Dashboards  
-The site supports different user roles — authors, reviewers, and admins — each with tailored dashboards and permissions. This structure helps streamline workflows and ensures that users only see the tools relevant to their role.
+The site supports different user roles — readers, authors, reviewers, and admins — each with tailored dashboards and permissions. This structure helps streamline workflows and ensures that users only see the tools relevant to their role.
 
 #### 🔹 Form-Driven UX  
 Instead of relying on auto-rendered forms, I manually styled each form using Bootstrap. This gave me full control over layout, spacing, and validation feedback, resulting in a cleaner and more intuitive user experience.

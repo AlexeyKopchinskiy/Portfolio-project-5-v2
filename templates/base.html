@@ -112,22 +112,18 @@
               <li><a class="dropdown-item bi bi-speedometer2" href="{% url 'dashboard' %}"> Dashboard</a></li>
               {% if user.is_authenticated %}
                 {% for group in user.groups.all %}
-                  {% if group.name == "Reader" %}
-                  {% else %}
-                    <li><a href="{% url 'create_post' %}" class="dropdown-item bi bi-pencil-square"> Create Post</a></li>
+                  {% if group.name == "Author" %}
+                    <li>
+                      <a href="{% url 'create_post' %}" class="dropdown-item bi bi-pencil-square">
+                        Create Post
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'my_posts' %}" class="dropdown-item bi bi-stack">
+                        My Posts
+                      </a>
+                    </li>
                   {% endif %}
-                {% empty %}
-                  <li><a href="{% url 'create_post' %}" class="dropdown-item bi bi-pencil-square"> Create Post</a></li>
-                {% endfor %}
-              {% endif %}
-              {% if user.is_authenticated %}
-                {% for group in user.groups.all %}
-                  {% if group.name == "Reader" %}
-                  {% else %}
-                    <li><a href="{% url 'my_posts' %}" class="dropdown-item bi bi-stack"> My Posts</a></li>
-                  {% endif %}
-                {% empty %}
-                  <li><a href="{% url 'my_posts' %}" class="dropdown-item bi bi-stack"> My Posts</a></li>
                 {% endfor %}
               {% endif %}
               <li><a class="dropdown-item bi bi-chat-left-text-fill" href="{% url 'my_comments' %}"> My Comments</a></li>
