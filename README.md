@@ -269,8 +269,6 @@ I used CorelDraw to create wireframes. Later, during the development stage the d
 
 ### Surface
 
-The website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
-
 Based on my CSS file, the website’s color palette is designed to create a sleek, modern, and immersive user experience with a strong emphasis on contrast and readability. Here's a summary of the key colors used throughout the site:
 
 #### 🎨 Primary UX Colors
@@ -325,7 +323,8 @@ This adaptive navigation ensures users always know where they are and how to get
 The footer is consistently styled across all pages and provides users with helpful links and social connectivity:
 
 - Social media icons link to external platforms and open in new tabs, keeping users engaged without leaving the site.
-- A copyright disclaimer is displayed at the bottom.
+- Contact us link open contact form
+- Cookies, Privacy and About provide relevant information
 - All links are styled with hover effects and pointer cursors to clearly indicate interactivity.
 
 The footer reinforces brand presence while offering subtle guidance and connection points.
@@ -337,6 +336,8 @@ The homepage acts as a visual and functional gateway to the platform:
 - A hero section introduces the site’s purpose with bold typography and a dark-themed aesthetic.
 - Premium posts are highlighted in a dedicated section with card-style previews, drawing attention to exclusive content.
 - Each post card includes a featured image, title, excerpt, and a call-to-action button to read more — encouraging exploration and engagement.
+- Platform Overview section provides dynamic information about website statistics: total number of existing users with role distribution (Authors, Readers, Reviewers and Administrators) as well as information on current post numbers. 
+- Below statistics there is a small banner showing latest newsletter preview with links to password protected newsletter view page. This serves as additional teaser for upgrading to premium users.
 
 This layout helps users quickly understand the value of the platform and navigate to content that interests them.
 
@@ -344,6 +345,7 @@ This layout helps users quickly understand the value of the platform and navigat
 
 Each user role is supported with a tailored dashboard experience:
 
+- **Readers** can access posts that are not marked as premium. Attempting to open premium posts will show "Premium Access Required" banner with the upgrade link.
 - **Authors** can create, edit, and manage posts with a clean form interface and responsive layout.
 - **Reviewers** have access to review tools, including status toggles and comment fields, all styled for clarity and ease of use.
 - **Admins** can update user details through a dynamic form that auto-populates fields based on selection, reducing friction and improving accuracy.
@@ -455,12 +457,13 @@ This monetization approach is both **practical** and **strategically sound** for
 | **Scalable Model** | Easily extendable to tiered pricing, subscriptions, or premium publishing features. |
 | **No Ads Required** | Monetization is built into the user journey, avoiding intrusive advertising and preserving UX. |
 
+**note:* currently we are using Stripe sandbox account to simplify testing of the project.
+
 ### 👥 User Flow
 
-1. A reader clicks “Submit a Post.”
+1. A reader clicks “Upgrade to premium.”
 2. They are redirected to a Stripe Checkout page.
-3. Upon successful payment, they are granted access to the post submission form.
-4. Their post enters the review pipeline for editorial approval.
+3. Upon successful payment, their accounts are automatically upgraded to the "Author" role so that they can immediately start creating content.
 
 This flow ensures that only paying users can submit content, while maintaining a free and open reading experience for the broader audience.
 
@@ -533,15 +536,47 @@ This setup ensures that no manual switching is required — the correct database
 
 InkwellBlog is built using a modular Django architecture. Each app is responsible for a distinct part of the system, promoting clean separation of concerns and easier maintenance.
 
-| App Name     | Description                                                                 |
-|--------------|------------------------------------------------------------------------------|
-| `blog`       | Core app for managing blog posts, including creation, editing, publishing, and review workflows. |
-| `accounts`   | Handles user authentication, registration, login/logout, and profile management. |
-| `dashboard`  | Provides role-specific dashboards for authors and reviewers, displaying relevant post activity. |
-| `pages`      | Serves static and semi-static content such as About, Contact, and Access Denied pages. |
-| `comments`   | Manages user comments on blog posts, including moderation and display logic. *(if applicable)* |
-| `media`      | Handles file uploads and media management for post images and attachments. *(if separated)* |
-| `admin`      | Django’s built-in admin interface, customized for managing models and user roles. |
+Absolutely, Alexey — here’s a clean and professional `README.md` section that describes each of your Django apps. You can drop this directly into your project’s root README file:
+
+---
+
+```markdown
+## 🧩 App Overview
+
+This Django project is composed of five modular apps, each responsible for a distinct part of the platform's functionality:
+
+### 📄 `pages`
+Handles static and semi-static content across the site, including:
+- Home, About, Contact, and Terms pages
+- Custom error pages (404, 403, 500)
+- SEO-friendly routing and templating
+
+### 👤 `accounts`
+Manages user authentication and profile features:
+- Registration, login, logout, and password reset flows
+- Role-based access (Author, Reviewer, Reader, Admin)
+- User profile management with avatars and group assignment
+
+### 📝 `blog`
+Core content engine for publishing and managing articles:
+- Authors can create, edit, and delete posts
+- Reviewers can approve and publish content
+- Readers can browse, comment, and engage
+- Rich text editing, tagging, and post status tracking
+
+### 📬 `newsletter`
+Handles email-based engagement and subscriptions:
+- Users can subscribe/unsubscribe to site updates
+- Admins can compose and send newsletters
+
+### 💳 `billing`
+Manages payment and subscription logic:
+- Stripe integration for secure transactions
+- Access control based on billing status
+
+Each app is fully decoupled and follows Django best practices for scalability, maintainability, and reusability. Together, they form a robust publishing and engagement platform tailored for content creators and their audiences.
+
+---
 
 > 💡 *Note: Some apps may be merged or renamed depending on final deployment structure. This table reflects the current modular design.*
 
@@ -586,7 +621,6 @@ The platform is designed to support payment integration for premium memberships 
 
 - Stripe or PayPal integration for secure transactions
 - Tiered membership plans with access levels
-- Payment history and invoice tracking
 
 This would allow monetization of exclusive content while maintaining a seamless user experience.
 
