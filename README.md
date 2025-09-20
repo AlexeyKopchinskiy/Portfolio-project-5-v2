@@ -1100,13 +1100,10 @@ Before you begin, make sure you have:
 ### 🧑‍💻 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/inkwellblog.git
+git clone https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/inkwellblog.git
 cd inkwellblog
-```
 
-Replace `YOUR_USERNAME` with your actual GitHub username.
-
----
+----
 
 ### 🐍 2. Set Up a Virtual Environment
 
@@ -1115,7 +1112,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
----
+----
 
 ### 📚 3. Install Dependencies
 
@@ -1123,7 +1120,7 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
----
+----
 
 ### ⚙️ 4. Create Environment Variables
 
@@ -1292,10 +1289,11 @@ heroku run python manage.py collectstatic
 The following resources and walkthroughs were instrumental in shaping the functionality and structure of this project. Code has been adapted and customized to meet the specific needs of **InkwellBlog**.
 
 - [Code Institute's "I Think Therefore I Am Blog"](https://codeinstitute.net/) — core inspiration and foundational structure from the CI LMS for the Diploma in Software Development.
-- [JVL Code's Python Django Tutorial: Full-Featured Web App](https://www.youtube.com/@jvlcode) — helped with advanced Django features and deployment strategies.
-- [Dee Mc's Django Tutorial on Creating a Recipe Blog](https://www.youtube.com/@deemc) — provided insight into form handling and CRUD operations.
-- [Indian Pepper Website](https://indianpepper.ie/) — inspired design elements such as the reservation form and layout structure.
-- [Tailors_thimbel by MoniPar](https://github.com/MoniPar/Tailors_thimbel) — served as a model for README formatting and project documentation.
+- [W3School tutorials](https://www.w3schools.com/django/index.php) - W3School tutorial on Django
+- [Indian Curry by @Pramilashanmugam](https://github.com/Pramilashanmugam/Restaurant/blob/main/README.md) — served as a model for README formatting and project documentation.
+- [Learn how to build web applications and websites with Python and the Django framework](https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372660?start=0#overview) - an online cource on Udemy by Maximilian Schwarzmüller
+- [The Modern Javascript Bootcamp Course](https://www.udemy.com/course/javascript-beginners-complete-tutorial/learn/lecture/17010116?start=0#overview) - a JavaScript course by Bootcamp Instructor Colt Steele
+- [Complete SEO Training With Top SEO Expert Peter Kent!](https://www.udemy.com/course/search-engine-optimization-for-beginners-seo-that-works/learn/lecture/3412188?start=0#overview) - an Udemy course on SEO marketing by Author, SEO & E-Commerce Consultant Peter Kent
 
 ---
 
@@ -1306,6 +1304,7 @@ These official and community resources were frequently consulted throughout deve
 - [Django Documentation](https://docs.djangoproject.com/)
 - [Bootstrap Documentation](https://getbootstrap.com/docs/)
 - [Django Allauth](https://django-allauth.readthedocs.io/)
+- [MDN's tutorial on CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [Google](https://www.google.com) — for troubleshooting, syntax checks, and quick lookups
 - [ChatGPT](https://openai.com/chatgpt) — for drafting documentation, clarifying Django concepts, and debugging logic
 
@@ -1315,11 +1314,12 @@ These official and community resources were frequently consulted throughout deve
 
 The following questions, answers, and community interactions helped resolve specific implementation challenges:
 
-- [Active Tag on Bootstrap with Django](https://stackoverflow.com/questions/...) — Stack Overflow
-- [Change Button Active Colour in Bootstrap](https://getbootstrap.com/docs/...) — Bootstrap Docs
-- [Validating Date from Current Date](https://stackoverflow.com/questions/...) — Stack Overflow
-- [Validating Date to Accept Up to 6 Months from Current Date](https://stackoverflow.com/questions/...) — Stack Overflow
-- Slack Community — helpful feedback and peer support from fellow Code Institute students
+- [CodeInstitute Slack community](https://app.slack.com/client/T0L30B202/C0L316Z96) - CodeInstitute students Slack community
+- [CodeInstitute community on Discord](https://discord.com/) - CodeInstitute's Discord community
+- [Active Tag on Bootstrap with Django](https://stackoverflow.com/questions/) — Stack Overflow
+- [Change Button Active Colour in Bootstrap](https://getbootstrap.com/docs/) — Bootstrap Docs
+- [Validating Date from Current Date](https://stackoverflow.com/questions/) — Stack Overflow
+- [Validating Date to Accept Up to 6 Months from Current Date](https://stackoverflow.com/questions/) — Stack Overflow
 
 ---
 
