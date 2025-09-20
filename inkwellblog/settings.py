@@ -149,11 +149,7 @@ WSGI_APPLICATION = "inkwellblog.wsgi.application"
 
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        ssl_require=True,
-    )
+    "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 # ✅ Remove incompatible OPTIONS if using SQLite
@@ -162,7 +158,7 @@ if "sqlite" in engine:
     DATABASES["default"].pop("OPTIONS", None)
 else:
     DATABASES["default"]["OPTIONS"] = {
-        "connect_timeout": 50,
+        "connect_timeout": 5,
         "sslmode": "require",
     }
 
