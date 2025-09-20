@@ -566,8 +566,7 @@ Posts are treated as content products, each with metadata, featured images, and 
 
 Reviewers can update post status, leave notes, and ensure editorial quality before publication.
 
-## 🛒 Cart & Checkout Flow *(Premium Content Model)*
-
+## Cart & Checkout Flow
 While the site doesn’t use a traditional e-commerce cart, it features a **premium content access flow**:
 
 - Premium posts are previewed with limited access for non-members
@@ -576,7 +575,7 @@ While the site doesn’t use a traditional e-commerce cart, it features a **prem
 
 This flow mimics a digital subscription model and can be extended to include actual checkout functionality.
 
-## Payment Integration *(Future-Ready)*
+## Payment Integration
 
 The platform is designed to support payment integration for premium memberships or content unlocks. Planned features include:
 
@@ -586,7 +585,7 @@ The platform is designed to support payment integration for premium memberships 
 
 This would allow monetization of exclusive content while maintaining a seamless user experience.
 
-## Order Management *(Content Access Tracking)*
+## Order Management
 
 Instead of physical orders, the site tracks **content access and user interactions**:
 
@@ -1333,7 +1332,7 @@ Visual assets used in this project were sourced from AI-powered platforms and de
 
 ---
 
-## 🙌 Acknowledgements
+## Acknowledgements
 
 Creating **InkwellBlog** has been a rewarding and challenging experience, and I’d like to express my sincere gratitude to everyone who supported and inspired this project.
 
