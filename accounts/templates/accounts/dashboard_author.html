@@ -5,17 +5,6 @@ Time to share your next masterpiece. Draft, edit, and publish from here.
 {% endblock %}
 
 {% block dashboard_content %}
-
-  {% if messages %}
-  <div class="alert alert-info mb-0">
-    <ul class="messages">
-      {% for message in messages %}
-        <li class="alert alert-{{ message.tags }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
   <div class="d-flex align-items-center gap-3 mb-4">
     {% if user.profile.avatar %}
       <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}'s avatar"
