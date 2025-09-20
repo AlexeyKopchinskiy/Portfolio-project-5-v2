@@ -55,7 +55,7 @@ With a clean interface, role-based access, and a growing library of published co
 
 ## Agile Methodology
 
-This project was developed following the principles of Agile Methodology, with GitHub Issues serving as the central hub for tracking User Stories. Each story was carefully structured with Acceptance Criteria and associated Tasks, though some of these evolved during implementation as the technical requirements became clearer. Several related User Stories were later grouped into Epics to better reflect their interconnected nature. While some tasks were completed more quickly than expected, others required significantly more time and iteration. For better grouping and time-wise management User Stories where assigned to 6 Milestones (see screenshots below). A GitHub project "InnkwellBlog project" was created at the same time. GitHub project allowes using its Board views with filtering and grouping options.
+This project was developed following the principles of Agile Methodology, with GitHub Issues serving as the central hub for tracking User Stories. Each story was carefully structured with Acceptance Criteria and associated Tasks, though some of these evolved during implementation as the technical requirements became clearer. Several related User Stories were later grouped into Epics to better reflect their interconnected nature. While some tasks were completed more quickly than expected, others required significantly more time and iteration. For better grouping and time-wise management User Stories where assigned to 6 Milestones (see screenshots below). A GitHub project "InnkwellBlog project" was created at the same time. GitHub project allows using its Board views with filtering and grouping options.
 
 <details>
 <summary>Screenshots of Kanban Board, Milestones and project board view</summary>
@@ -78,7 +78,7 @@ User stories were  split into:
   - Author issues
   - Visitor issues
 
-- In orer to better control the flow of User Stories each was assigned to one of 6 separete milestones with variouse deadlines:
+- In order to better control the flow of User Stories each was assigned to one of 6 separate milestones with various deadlines:
 
   - Milestone 1: Project Setup & Authentication (Week 1-2)
   - Milestone 2: Blog structure and MVP features (Week 3-4)
@@ -158,7 +158,7 @@ This section outlines the anticipated user interactions with the website, based 
 - Developer Issue: Run accessibility and SEO testing audit [#14](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/14)
 - Developer Issue: Final README and design documentation [#15](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/15)
 - Developer Issue: Write unit and integration tests [#18](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/18)
-- Developer Issue: Add newsletter signup via custom form [#19](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/19)
+- Developer Issue: Add newsletter sign-up via custom form [#19](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/19)
 - Developer Issue: Add dynamic meta descriptions to posts [#23](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/23)
 - Developer Issue: Let users bookmark or like posts [#24](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/24)
 - Developer Issue: Add dark/light mode toggle [#25](https://github.com/AlexeyKopchinskiy/Portfolio-project-5-v2/issues/25)
@@ -228,7 +228,7 @@ This structure reflects my goal of building a platform that’s not just functio
 
 ### Skeleton / Wireframes
 
-I used CorelDraw to create wireframes. Later, during the developement stage the design of the interface somewhat deviated from the original mockups still maintaing its planned overall structure. 
+I used CorelDraw to create wireframes. Later, during the development stage the design of the interface somewhat deviated from the original mockups still maintaining its planned overall structure. 
 
 **Website low-fidelity wireframes:**
 
@@ -242,7 +242,7 @@ I used CorelDraw to create wireframes. Later, during the developement stage the 
 
 #### Mobile Blog Post Details
 
-![Blog post detaile mobile view](./static/img/pp5-wireframe-mobile-blog-post-details-simple.png)
+![Blog post details mobile view](./static/img/pp5-wireframe-mobile-blog-post-details-simple.png)
 
 #### Mobile Login/register page
 
@@ -368,8 +368,6 @@ Forms throughout the site are designed to be intuitive and informative:
 - Buttons include hover and focus effects to reinforce interactivity and guide user flow.
 
 This ensures users feel confident and supported when submitting information.
-
-Great question, Alexey — your current feature set is already rich and well-structured, but there’s always room to elevate the UX and functionality even further. Here are some thoughtful additions that would complement your platform beautifully:
 
 [Back To Top](#table-of-contents)
 
@@ -517,10 +515,6 @@ else:
 This setup ensures that no manual switching is required — the correct database engine is selected automatically depending on the environment, and incompatible options are safely excluded when using SQLite.
 
 [Back To Top](#table-of-contents)
-
----
-
-Absolutely, Alexey — here’s a clean and professional section you can add to your `README.md` that documents the Django apps used in your **InkwellBlog** project. It includes a structured table with concise descriptions of each app’s purpose:
 
 ---
 
@@ -705,7 +699,7 @@ Here’s a breakdown of areas that were tested manually, grouped by priority:
   - ✅ Homepage loads correctly
   - ✅ Navigation menu works across screen sizes
   - ✅ Newsletter cards link to correct detail views
-  - ✅ Forms (contact, signup, etc.) submit and validate properly
+  - ✅ Forms (contact, sign-up, etc.) submit and validate properly
   - ✅ Sitemap.xml is accessible from the menu
 
 #### Content Accuracy
@@ -1290,7 +1284,7 @@ The following resources and walkthroughs were instrumental in shaping the functi
 - [Code Institute's "I Think Therefore I Am Blog"](https://codeinstitute.net/) — core inspiration and foundational structure from the CI LMS for the Diploma in Software Development.
 - [W3School tutorials](https://www.w3schools.com/django/index.php) - W3School tutorial on Django
 - [Indian Curry by @Pramilashanmugam](https://github.com/Pramilashanmugam/Restaurant/blob/main/README.md) — served as a model for README formatting and project documentation.
-- [Learn how to build web applications and websites with Python and the Django framework](https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372660?start=0#overview) - an online cource on Udemy by Maximilian Schwarzmüller
+- [Learn how to build web applications and websites with Python and the Django framework](https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372660?start=0#overview) - an online course on Udemy by Maximilian Schwarzmüller
 - [The Modern Javascript Bootcamp Course](https://www.udemy.com/course/javascript-beginners-complete-tutorial/?kw=The+Modern+Javascript+Bootcamp+Course&src=sac) - a JavaScript course by Bootcamp Instructor Colt Steele
 - [Complete SEO Training With Top SEO Expert Peter Kent!](https://www.udemy.com/course/search-engine-optimization-for-beginners-seo-that-works/?kw=Complete+SEO+Training+With+Top+SEO+Expert+Peter+Kent%21&src=sac&couponCode=LETSLEARNNOW) - an Udemy course on SEO marketing by Author, SEO & E-Commerce Consultant Peter Kent
 
